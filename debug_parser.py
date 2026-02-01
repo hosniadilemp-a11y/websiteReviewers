@@ -1,6 +1,4 @@
-import re
 
-# Read the file
 with open('main.tex', 'r', encoding='utf-8') as f:
     content = f.read()
 
