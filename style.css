@@ -336,6 +336,8 @@ body {
     color: var(--text-color);
     font-size: 1rem;
     text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
 }
 
 .content-text p {
@@ -555,6 +557,9 @@ body {
     /* Increased padding/margin for text */
     display: block;
     animation: slideDown 0.3s ease-out;
+    text-align: justify;
+    line-height: 1.8;
+    /* Slightly looser for better reading */
 }
 
 @keyframes slideDown {
