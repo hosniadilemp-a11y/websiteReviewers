@@ -1,22 +1,28 @@
-# Interactive Reviewer Response
+# Interactive Reviewer Response Website
 
-**[Live Demo](https://hosniadilemp-a11y.github.io/websiteReviewers/)**
+This website allows you to browse reviewer comments and responses from your LaTeX source file.
 
-This project is an interactive dashboard designed to present responses to paper reviewers in a structured, navigable, and visually appealing format. It parses reviewer comments from a LaTeX file and displays them in a modern web interface.
+## How to Update Content
 
-## Features
+If you edit the content in `../supercomputting_respond_letter/main.tex`, you need to regenerate the website data.
 
-- **Interactive Dashboard:** Organize responses by reviewer and comment.
-- **Network Science Theme:** A tech-inspired "Computer Science / Network Analysis" aesthetic with grid backgrounds and monospaced typography.
-- **Rich Content:** Renders LaTeX formulas (MathJax), tables, and images.
-- **Stats & Badges:** Visual indicators for experiments, revisions, and new content.
-- **Dark Mode:** A realistic 3D toggle for light/dark themes.
+### Option 1: Run the helper script (Recommended)
+Open a terminal in this directory and run:
 
-## Setup
+```bash
+./update_website.sh
+```
 
-1.  Clone the repository.
-2.  Open `index.html` in your web browser.
+### Option 2: Run the Python script manually
+You can also run the Python parser directly:
 
-## Data Source
+```bash
+python3 parse_latex_to_js.py
+```
 
-The content is generated from `main.tex` and parsed into `data.js`.
+## Files
+- `index.html`: The main website file. Open this in your browser.
+- `data.js`: The generated data file containing parsed comments and responses.
+- `parse_latex_to_js.py`: The script that parses the LaTeX file and generates `data.js`.
+- `style.css`: The website styling.
+- `script.js`: The website logic.

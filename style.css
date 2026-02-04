@@ -330,6 +330,34 @@ body {
     background: rgba(21, 128, 61, 0.2);
 }
 
+.tag-methodology {
+    border-color: #7c3aed;
+    color: #5b21b6;
+    background: #f5f3ff;
+}
+
+.tag-comparison {
+    border-color: #f97316;
+    color: #c2410c;
+    background: #fff7ed;
+}
+
+[data-theme="dark"] .tag-methodology {
+    border-color: #6d28d9;
+    color: #a78bfa;
+    background: rgba(109, 40, 217, 0.2);
+}
+
+[data-theme="dark"] .tag-comparison {
+    border-color: #ea580c;
+    color: #fdba74;
+    background: rgba(234, 88, 12, 0.2);
+}
+
+/* Outline Coloring - Text color removed as requested, keeping classes for potential structure if needed */
+/* .toc-item.item-experiment span:first-child { color: ... } */
+/* Rules removed to keep text standard color */
+
 
 .content-text {
     line-height: 1.7;
@@ -344,6 +372,39 @@ body {
     margin-bottom: 1rem;
 }
 
+/* Improved Typographic Elements */
+.content-text b,
+.content-text strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.content-text i,
+.content-text em {
+    font-style: italic;
+    color: var(--sidebar-text);
+    /* Slightly lighter */
+}
+
+.content-text ul,
+.content-text ol {
+    margin: 1rem 0 1rem 1.5rem;
+    padding-left: 1rem;
+}
+
+.content-text li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.content-text blockquote {
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: var(--sidebar-text);
+}
+
 .content-text code {
     background-color: var(--code-bg);
     padding: 0.2rem 0.4rem;
@@ -351,6 +412,24 @@ body {
     font-family: var(--font-mono);
     font-size: 0.9em;
     color: var(--primary-color);
+}
+
+/* Response Section Styling */
+.response-block {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dotted var(--card-border);
+}
+
+.response-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
 }
 
 /* Enhanced Tables */
@@ -505,8 +584,136 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Response Controls */
+.response-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+/* Sticky Navigation Header */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--card-border);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 2rem;
+    backdrop-filter: blur(8px);
+    opacity: 0.98;
+}
+
+[data-theme="dark"] .sticky-header {
+    background: rgba(15, 23, 42, 0.95);
+}
+
+.nav-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    /* Space for icon */
+    border-radius: 20px;
+    border: 1px solid var(--card-border);
+    background: var(--code-bg);
+    color: var(--text-color);
+    width: 200px;
+    transition: width 0.3s;
+    font-size: 0.9rem;
+}
+
+.search-input:focus {
+    width: 300px;
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    color: var(--text-color);
+    opacity: 0.5;
+    font-size: 0.9rem;
+}
+
+/* Interactive Legends */
+.legend-item {
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.legend-item:hover {
+    background: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+}
+
+.legend-item.filter-active {
+    border-color: var(--primary-color);
+    background: var(--card-bg);
+    box-shadow: var(--shadow-md);
+}
+
+.legend-item.filter-dimmed {
+    opacity: 0.4;
+}
+
+/* Hidden items via filter */
+.discussion-item.hidden-by-filter {
+    display: none !important;
+}
+
+/* Highlight search */
+.highlight-text {
+    background-color: #fef08a;
+    /* Yellow-ish */
+    color: black;
+    border-radius: 2px;
+}
+
+[data-theme="dark"] .highlight-text {
+    background-color: #854d0e;
+    color: white;
+}
+
 .response-header {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.02);
     border-bottom: 1px solid var(--card-border);
     padding: 0.75rem 1.25rem;
     cursor: pointer;
@@ -517,7 +724,8 @@ body {
 }
 
 .response-header:hover {
-    background-color: var(--code-bg);
+    background-color: rgba(37, 99, 235, 0.05);
+    /* Tint of primary */
 }
 
 .response-header h4 {
@@ -731,11 +939,15 @@ body {
 
 /* Stats Badges */
 .stat-badge-full {
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-family: var(--font-mono);
-    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-color);
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
 }
 
 /* Question Styling */
@@ -748,4 +960,142 @@ body {
 .q-icon {
     font-size: 1.1rem;
     opacity: 0.8;
+}
+
+/* Tags and Badges */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.tag-experiment {
+    background-color: #dbeafe;
+    /* Blue 100 */
+    color: #1e40af;
+    /* Blue 800 */
+}
+
+.tag-revision {
+    background-color: #fce7f3;
+    /* Pink 100 */
+    color: #9d174d;
+    /* Pink 800 */
+}
+
+.tag-new-content {
+    background-color: #dcfce7;
+    /* Green 100 */
+    color: #166534;
+    /* Green 800 */
+}
+
+[data-theme="dark"] .tag-experiment {
+    background-color: rgba(30, 64, 175, 0.3);
+    color: #93c5fd;
+}
+
+[data-theme="dark"] .tag-revision {
+    background-color: rgba(157, 23, 77, 0.3);
+    color: #f9a8d4;
+}
+
+[data-theme="dark"] .tag-new-content {
+    background-color: rgba(22, 101, 52, 0.3);
+    color: #86efac;
+}
+
+/* Dashboard Stats Badges in Header */
+.toc-stats {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    vertical-align: middle;
+}
+
+/* Mini Badges in List Items */
+.badge-container {
+    display: inline-flex;
+    gap: 2px;
+    margin-left: auto;
+}
+
+.mini-badge {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* Legend Styling */
+.dashboard-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1.5rem auto 2.5rem auto;
+    max-width: 600px;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    justify-content: flex-start;
+}
+
+.legend-desc {
+    opacity: 0.8;
+    font-family: var(--font-sans);
+}
+
+/* Responsive Legend */
+@media (max-width: 600px) {
+    .dashboard-legend {
+        align-items: flex-start;
+    }
+
+    .legend-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+}
+
+/* Paragraph and Caption Spacing */
+.para-break {
+    height: 8px;
+    /* Reduced spacing */
+}
+
+.table-caption {
+    font-weight: 600;
+    text-align: center;
+    margin: 1rem 0 0.5rem 0;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+}
+
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: 2rem;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
 }

@@ -20,6 +20,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Render Dashboard initially
+
+    // Merge Tags from Extenal File
+    if (typeof commentTags !== 'undefined' && typeof responseData !== 'undefined') {
+        responseData.forEach(reviewerBlock => {
+            if (reviewerBlock.comments) {
+                reviewerBlock.comments.forEach(comment => {
+                    // Create key: "Reviewer Name: Title"
+                    // Check if title includes reviewer name already
+                    // Our parser extracts title like "Reviewer 4, Comment 4.1"
+                    // So key is just title? 
+                    // Let's match the generator logic: key = f"{reviewer}: {comment['title']}"
+                    // Reviewer block has 'reviewer' field e.g. "Reviewer 4"
+
+                    const key = `${reviewerBlock.reviewer}: ${comment.title}`;
+                    if (commentTags[key]) {
+                        comment.tags = commentTags[key];
+                    }
+                });
+            }
+        });
+    }
+
     renderDashboard(responseData);
 
     // Function to calculate detailed stats for a reviewer
@@ -28,15 +50,22 @@ document.addEventListener('DOMContentLoaded', () => {
         let revisions = 0;
         let experiments = 0;
         let newContent = 0;
+        let methodology = 0;
+        let comparison = 0;
 
         reviewerData.comments.forEach(c => {
             if (!c.is_intro) comments++;
-            if (c.tags.includes('Revision')) revisions++;
-            if (c.tags.includes('Experiment')) experiments++;
-            if (c.tags.includes('New Content')) newContent++;
+            // Check tags from both item and global map if needed - but here item.tags is populated
+            if (c.tags) {
+                if (c.tags.includes('Revision')) revisions++;
+                if (c.tags.includes('Experiment')) experiments++;
+                if (c.tags.includes('New Content')) newContent++;
+                if (c.tags.includes('Methodology')) methodology++;
+                if (c.tags.includes('Comparison')) comparison++;
+            }
         });
 
-        return { comments, revisions, experiments, newContent };
+        return { comments, revisions, experiments, newContent, methodology, comparison };
     }
 
     function renderDashboard(data) {
@@ -48,6 +77,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = document.createElement('div');
         header.className = 'dashboard-header';
         header.innerHTML = `<h1>Outline of Responses</h1>`;
+
+        // Add Legend
+        const legend = document.createElement('div');
+        legend.className = 'dashboard-legend';
+        legend.innerHTML = `
+            <div class="legend-item" data-tag="Experiment" onclick="toggleFilter('Experiment')">
+                <span class="stat-badge-full" style="color:#1e40af; background:#dbeafe;">🧪 Experiments</span>
+                <span class="legend-desc">New experiments have been added</span>
+            </div>
+            <div class="legend-item" data-tag="Revision" onclick="toggleFilter('Revision')">
+                <span class="stat-badge-full" style="color:#9d174d; background:#fce7f3;">📄 Revisions</span>
+                <span class="legend-desc">Text revisions and corrections</span>
+            </div>
+            <div class="legend-item" data-tag="New Content" onclick="toggleFilter('New Content')">
+                <span class="stat-badge-full" style="color:#166534; background:#dcfce7;">➕ New Content</span>
+                <span class="legend-desc">New sections or appendices</span>
+            </div>
+            <div class="legend-item" data-tag="Methodology" onclick="toggleFilter('Methodology')">
+                <span class="stat-badge-full" style="color:#5b21b6; background:#f5f3ff;">🧠 Methodology</span>
+                <span class="legend-desc">Theoretical analysis and models</span>
+            </div>
+            <div class="legend-item" data-tag="Comparison" onclick="toggleFilter('Comparison')">
+                <span class="stat-badge-full" style="color:#c2410c; background:#fff7ed;">⚖️ Comparison</span>
+                <span class="legend-desc">Baseline and SOTA comparisons</span>
+            </div>
+        `;
+        header.appendChild(legend);
+
         dashboard.appendChild(header);
 
         // Defined Outline Data
@@ -155,6 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (stats.experiments > 0) statsHtml += `<span class="stat-badge-full" style="color:#1e40af; background:#dbeafe;">🧪 ${stats.experiments} Experiments</span>`;
             if (stats.revisions > 0) statsHtml += `<span class="stat-badge-full" style="color:#9d174d; background:#fce7f3;">📄 ${stats.revisions} Revisions</span>`;
             if (stats.newContent > 0) statsHtml += `<span class="stat-badge-full" style="color:#166534; background:#dcfce7;">➕ ${stats.newContent} New Content</span>`;
+            if (stats.methodology > 0) statsHtml += `<span class="stat-badge-full" style="color:#5b21b6; background:#f5f3ff;">🧠 ${stats.methodology} Methodology</span>`;
+            if (stats.comparison > 0) statsHtml += `<span class="stat-badge-full" style="color:#c2410c; background:#fff7ed;">⚖️ ${stats.comparison} Comparison</span>`;
             statsHtml += `</span>`;
 
             sectionTitle.innerHTML = `<span>${section.title}</span> ${statsHtml}`;
@@ -162,6 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const ul = document.createElement('ul');
             ul.className = 'toc-list';
+
 
             section.items.forEach(item => {
                 const li = document.createElement('li');
@@ -186,9 +246,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Generate mini badges for the list item
                 let badgesHtml = '';
-                if (itemTags.includes('Experiment')) badgesHtml += '<span class="mini-badge exp" title="Experiment">🧪</span>';
-                if (itemTags.includes('Revision')) badgesHtml += '<span class="mini-badge rev" title="Revision">📄</span>';
-                if (itemTags.includes('New Content')) badgesHtml += '<span class="mini-badge new" title="New Content">➕</span>';
+                if (itemTags.includes('Experiment')) { badgesHtml += '<span class="mini-badge exp" title="Experiment">🧪</span>'; li.classList.add('item-experiment'); }
+                if (itemTags.includes('Revision')) { badgesHtml += '<span class="mini-badge rev" title="Revision">📄</span>'; li.classList.add('item-revision'); }
+                if (itemTags.includes('New Content')) { badgesHtml += '<span class="mini-badge new" title="New Content">➕</span>'; li.classList.add('item-new-content'); }
+                if (itemTags.includes('Methodology')) { badgesHtml += '<span class="mini-badge meth" title="Methodology">🧠</span>'; li.classList.add('item-methodology'); }
+                if (itemTags.includes('Comparison')) { badgesHtml += '<span class="mini-badge comp" title="Comparison">⚖️</span>'; li.classList.add('item-comparison'); }
 
                 li.innerHTML = `<span>${item.label}</span> <span class="badge-container">${badgesHtml}</span>`;
 
@@ -288,18 +350,178 @@ document.addEventListener('DOMContentLoaded', () => {
         return processed;
     }
 
+    // State for filtering
+    let activeFilter = null; // 'Experiment', 'Revision', etc.
+
+    function toggleFilter(tag) {
+        if (activeFilter === tag) {
+            activeFilter = null; // Clear filter
+        } else {
+            activeFilter = tag;
+        }
+
+        // Re-render current view to apply filter
+        // If we are in dashboard, just update visual state of legend
+        const dashboard = document.querySelector('.dashboard');
+        if (dashboard) {
+            updateLegendVisuals();
+        } else {
+            // We are in reviewer view, re-render content
+            // Need to know current reviewer index. We can find it from existing DOM or passed state
+            const currentSection = document.querySelector('.reviewer-section');
+            if (currentSection) {
+                // Determine current index from title or something? 
+                // Better: rely on global state or reconstruct. 
+                // Actually, renderHeader passes the index. 
+                // Let's just trigger a re-render if we can. 
+                // Ideally, we just toggle visibility classes without full re-render.
+                applyFilterToContent();
+            }
+        }
+        updateLegendVisuals(); // Update legend everywhere if visible
+    }
+
+    // Expose to window for onclick handlers
+    window.toggleFilter = toggleFilter;
+
+    function updateLegendVisuals() {
+        document.querySelectorAll('.legend-item').forEach(item => {
+            const tag = item.getAttribute('data-tag');
+            if (activeFilter) {
+                if (activeFilter === tag) {
+                    item.classList.add('filter-active');
+                    item.classList.remove('filter-dimmed');
+                } else {
+                    item.classList.remove('filter-active');
+                    item.classList.add('filter-dimmed');
+                }
+            } else {
+                item.classList.remove('filter-active');
+                item.classList.remove('filter-dimmed');
+            }
+        });
+    }
+
+    function applyFilterToContent() {
+        const items = document.querySelectorAll('.discussion-item');
+        items.forEach(item => {
+            if (!activeFilter) {
+                item.classList.remove('hidden-by-filter');
+                return;
+            }
+
+            // Check tags of this item
+            // We need to look up data again or check DOM. 
+            // Looking at the DOM for tags is easiest since we render them.
+            const tags = Array.from(item.querySelectorAll('.tag')).map(t => t.innerText.trim());
+            // Tags text often includes icon, e.g. "🧪 Experiment"
+            // Let's check if any tag text includes our filter keyword
+            const matches = tags.some(t => t.includes(activeFilter));
+
+            if (matches) {
+                item.classList.remove('hidden-by-filter');
+            } else {
+                item.classList.add('hidden-by-filter');
+            }
+        });
+    }
+
+    function renderHeader(reviewerIndex, title) {
+        // Remove existing header if any
+        const existing = document.querySelector('.sticky-header');
+        if (existing) existing.remove();
+
+        const header = document.createElement('div');
+        header.className = 'sticky-header';
+
+        // Left: Home + Title
+        const left = document.createElement('div');
+        left.className = 'nav-controls';
+
+        const homeBtn = document.createElement('button');
+        homeBtn.className = 'nav-btn';
+        homeBtn.innerHTML = '🏠 Home';
+        homeBtn.onclick = () => renderDashboard(responseData);
+        left.appendChild(homeBtn);
+
+        // Previous
+        if (reviewerIndex > 0) { // Reviewer 1 is index 1
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'nav-btn';
+            prevBtn.innerHTML = '← Prev';
+            prevBtn.onclick = () => renderContent(responseData[reviewerIndex - 1], reviewerIndex - 1);
+            left.appendChild(prevBtn);
+        }
+
+        // Next
+        if (reviewerIndex < responseData.length - 1) {
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'nav-btn';
+            nextBtn.innerHTML = 'Next →';
+            nextBtn.onclick = () => renderContent(responseData[reviewerIndex + 1], reviewerIndex + 1);
+            left.appendChild(nextBtn);
+        }
+
+        // Center/Right: Search
+        const right = document.createElement('div');
+        right.className = 'search-container';
+        right.innerHTML = `
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search in this review...">
+        `;
+
+        // Search logic
+        const input = right.querySelector('input');
+        input.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.discussion-item');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(term)) {
+                    item.style.display = ''; // Reset display (might conflict with filter, handle later)
+                    if (activeFilter) { // Re-apply filter check
+                        // Re-running applyFilter is safer but let's do simple check
+                        const tags = Array.from(item.querySelectorAll('.tag')).map(t => t.innerText.trim());
+                        if (!tags.some(t => t.includes(activeFilter))) item.classList.add('hidden-by-filter');
+                        else item.classList.remove('hidden-by-filter');
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        header.appendChild(left);
+        header.appendChild(right);
+
+        return header;
+    }
+
     function renderContent(reviewerData, index) {
         contentContainer.innerHTML = '';
+        activeFilter = null; // Reset filter on nav? Or keep it? User might want persistence. Let's keep global but visually reset? No, let's reset to avoid confusion.
 
-        // Back Button
-        const backButton = document.createElement('button');
-        backButton.className = 'back-btn';
-        backButton.innerHTML = '← Back to Outline';
-        backButton.onclick = () => renderDashboard(responseData);
-        contentContainer.appendChild(backButton);
+        // Create Sticky Header
+        const header = renderHeader(index, reviewerData.reviewer);
+        contentContainer.appendChild(header);
+
+        // Add Filter Legend (Mini version) here? Or just focus on content.
+        // Maybe add "Collapse All" button here
+        const controls = document.createElement('div');
+        controls.className = 'response-controls';
+        controls.style.padding = '0 2rem 1rem 2rem';
+        controls.innerHTML = `<button class="nav-btn" id="collapse-all">Collapse All Responses</button>`;
+        contentContainer.appendChild(controls);
+
+        controls.querySelector('#collapse-all').addEventListener('click', () => {
+            document.querySelectorAll('.response-card').forEach(card => {
+                card.style.display = card.style.display === 'none' ? 'block' : 'none';
+            });
+        });
 
         const section = document.createElement('section');
         section.className = 'reviewer-section';
+        // ... rest of render logic ...
 
         const title = document.createElement('h2');
         title.className = 'section-title';
@@ -327,6 +549,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (tag === 'Experiment') { icon = '🧪'; className += ' tag-experiment'; }
                         else if (tag === 'Revision') { icon = '📄'; className += ' tag-revision'; }
                         else if (tag === 'New Content') { icon = '➕'; className += ' tag-new-content'; }
+                        else if (tag === 'Methodology') { icon = '🧠'; className += ' tag-methodology'; }
+                        else if (tag === 'Comparison') { icon = '⚖️'; className += ' tag-comparison'; }
 
                         tagsHtml += `<span class="${className}">${icon} ${tag}</span>`;
                     });
@@ -337,6 +561,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Enhanced styling for question as requested
                 const commentCard = document.createElement('div');
                 commentCard.className = 'reviewer-card';
+
+                // Extract Reviewer ID and Comment ID from title to generate stable ID
+                // Format: "Reviewer X, Comment X.Y" -> id="comment:X.Y"
+                const idMatch = item.title.match(/Reviewer (\d+), Comment (\d+(\.\d+)?)/);
+                if (idMatch) {
+                    commentCard.id = `comment:${idMatch[2]}`;
+                }
+
                 commentCard.innerHTML = `
                     <h4 class="comment-title question-style">
                         <span class="q-icon">❓</span> ${item.title}
@@ -407,6 +639,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Handle Cross-Reviewer Links
+    document.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A' && e.target.getAttribute('href') && e.target.getAttribute('href').startsWith('#comment:')) {
+            e.preventDefault();
+            const targetId = e.target.getAttribute('href').substring(1); // e.g. "comment:4.10" or "comment:1.4"
+
+            // Parse reviewer index from targetId (assuming "comment:R.C")
+            // R matches the reviewer index roughly.
+            // Reviewer 1 -> Index 1
+            // Reviewer 4 -> Index 4
+            const parts = targetId.split(':');
+            if (parts.length > 1) {
+                const commentRef = parts[1]; // "4.10"
+                const reviewerRef = commentRef.split('.')[0]; // "4"
+                const reviewerIndex = parseInt(reviewerRef, 10); // 4
+
+                // If we are currently viewing this reviewer, just scroll
+                // But we don't track current view state simply. Check DOM.
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    targetElement.classList.add('highlight-flash');
+                    setTimeout(() => targetElement.classList.remove('highlight-flash'), 2000);
+                } else {
+                    // Need to switch view
+                    // Check if reviewerIndex is valid in responseData
+                    // Indices in responseData: 0=Editor, 1=Rev1, 2=Rev2...
+                    if (responseData[reviewerIndex]) {
+                        renderContent(responseData[reviewerIndex], reviewerIndex);
+                        // Wait for render
+                        setTimeout(() => {
+                            const newTarget = document.getElementById(targetId);
+                            if (newTarget) {
+                                newTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                newTarget.classList.add('highlight-flash');
+                                setTimeout(() => newTarget.classList.remove('highlight-flash'), 2000);
+                            }
+                        }, 100);
+                    }
+                }
+            }
+        }
+    });
+
     // Lightbox Logic
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -417,7 +694,8 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImg.src = src;
     }
 
-    closeBtn.onclick = function () {
+    closeBtn.onclick = function (e) {
+        if (e) e.stopPropagation();
         lightbox.style.display = 'none';
     }
 
@@ -433,3 +711,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
