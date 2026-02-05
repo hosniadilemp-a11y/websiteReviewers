@@ -5,18 +5,18 @@ const responseData = [
       {
         "title": "Editor's Comment",
         "comment": "Authors are expected to incorporate the referees' recommendations and suggestions into the final manuscript. Additionally, they must clearly articulate why their work requires supercomputing/HPC capabilities, real-time performance, and/or parallel or distributed processing. Since the journal's focus is on Supercomputing, it is essential that the revised paper demonstrates alignment with this scope. To that end, authors should explicitly justify the need for HPC/real-time power in the Abstract, Introduction, and throughout the manuscript, making a strong and consistent case for the paper's relevance to the field of Supercomputing.",
-        "response": "We thank the editore for your constructive feedback and for providing us the opportunity to revise our manuscript. We sincerely appreciate your time and the detailed comments, which have significantly helped us to improve the paper and better align it with the journal's focus on Supercomputing.<div class=\"para-break\"></div>We fully recognize the importance of explicitly justifying the need for High-Performance Computing (HPC) capabilities, real-time performance, and parallel/distributed processing. Your comment is crucial because it underscores the core mission of the journal and ensures that the published work genuinely contributes to the supercomputing community. We have taken this comment very seriously and have thoroughly revised the manuscript to make a strong, consistent case for the relevance of our work to HPC.<div class=\"para-break\"></div>To address your comment, we have made substantial revisions throughout the paper. Below, we detail the specific changes we have implemented.<div class=\"para-break\"></div><ul><div class=\"para-break\"></div><li><b>1. Addition of a Novel HPC-Oriented Theoretical Framework: Line Graph Pruning</b></li><div class=\"para-break\"></div>A central enhancement to our manuscript is the introduction of a principled <b>Line Graph Pruning</b> framework (Section 3.5), specifically designed for HPC environments. This framework directly addresses the computational bottleneck of line graphs\u2014their enormous edge count\u2014by systematically reducing edges while preserving structural and spectral properties. The pruning serves a dual purpose: (1) as a compression technique to fit larger graphs into memory, and (2) as a regularization mechanism to improve generalization by removing noisy connections.<div class=\"para-break\"></div>The theoretical foundation is built on a <b>spectral distortion factor</b> \\(\\kappa\\), which quantifies how much the Laplacian spectrum (and thus global connectivity properties) is altered. We prove bounds on \\(\\kappa\\) for our pruning strategies, ensuring that the pruned graph remains a faithful representation of the original. This theoretical grounding is crucial for HPC because it provides guarantees that aggressive compression will not break the model's accuracy.<div class=\"para-break\"></div>We propose and analyze three parallel-friendly pruning strategies:<div class=\"para-break\"></div><ol> <li><b>k-Nearest Neighbor (kNN) Spectral Pruning:</b> Retains only the top-\\(k\\) most similar neighbors for each node based on feature vectors. This strategy is highly parallelizable, as the distance computations and sorting for each node are independent. We provide an algorithm (Algorithm 2) and a theorem bounding the spectral distortion.</li> <li><b>Spectral Sparsification via Effective Resistance Sampling:</b> Samples edges with probability proportional to their <i>effective resistance</i>, a measure of their importance in global connectivity. We employ a nearly-linear time approximation via Johnson-Lindenstrauss random projections, making it feasible for large graphs. The algorithm (Algorithm 3) includes a parameter \\(\\alpha\\) to explicitly control the preservation ratio, offering a tunable trade-off between efficiency and fidelity. This method is ideal for distributed settings as it minimizes communication overhead by preserving critical bridges.</li> <li><b>Degree-Based Hierarchical Pruning:</b> Leverages the power-law degree distribution of real-world graphs by removing edges incident to either very high-degree or very low-degree nodes. This simple strategy is extremely fast and reduces adjacency matrix density, improving cache locality\u2014a critical factor in HPC performance.</li> </ol><div class=\"para-break\"></div>A key theoretical result is <b>Lemma 2 (Training Time Reduction)</b>, which formally proves that pruning reduces per-epoch training time by a factor of \\(\\alpha\\) (the preservation ratio) and proportionally reduces communication overhead in distributed settings. This lemma provides a direct, quantitative link between our pruning framework and HPC performance gains.<div class=\"para-break\"></div><li><b>2. Comprehensive Experimental Validation of HPC Performance</b></li><div class=\"para-break\"></div>We have added an experimental section (Section 4) dedicated to non-functional performance metrics, validating the scalability and efficiency of LineML in HPC contexts. <ul><div class=\"para-break\"></div><li><b>2.1 Pruning Strategies: Performance-Scalability Trade-offs</b></li> We rigorously evaluate our three pruning methods across multiple datasets (Cora, CiteSeer, PubMed, Physics). Table 1 (a shortened version is included below for reference) shows that: <ul> <li><b>kNN pruning with k=10</b> achieves the best balance, removing \\(\\sim\\)76% of edges while maintaining or even improving AUC.</li> <li>Pruning provides near-linear reduction in training time (e.g., 4.6\\(\u00d7\\) speedup on Physics with kNN pruning), confirming Lemma 1.</li> <li>The benefits are most pronounced on large graphs, justifying the need for HPC to handle such scale.</li> </ul><div class=\"para-break\"></div><div class=\"table-container\"><div class=\"para-break\"></div><div class=\"table-caption\">Comparison of Pruning Methods. Bold values indicate the best results.</div><div class=\"para-break\"></div><table><tr><td><b>Methods</b></td><td><b>Param</b></td><td><b>Pruned (%)</b></td><td colspan=\"2\"><b>Cora</b></td><td colspan=\"2\"><b>CiteSeer</b></td></tr><tr><td></td><td></td><td></td><td><b>AUC (Imp)</b></td><td><b>Time</b></td><td><b>AUC (Imp)</b></td><td><b>Time</b></td></tr><tr><td colspan=\"3\"><i>Baseline (Unpruned)</i></td><td>95.14</td><td>10.79s</td><td>96.85</td><td>13.29s</td></tr><tr><td>Degree Pruning</td><td>high \\(\\tau =0.1\\)</td><td>64.1%</td><td><b>95.19 (0.05%)</b></td><td>8.8s (1.2\\(\u00d7\\))</td><td><b>95.03 (-1.88%)</b></td><td>6.4s (2.1\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.1\\)</td><td>35.9%</td><td>95.22 (0.08%)</td><td>9.0s (1.2\\(\u00d7\\))</td><td>90.56 (-6.49%)</td><td>8.2s (1.6\\(\u00d7\\))</td></tr><tr><td></td><td>high \\(\\tau =0.3\\)</td><td>31.2%</td><td>95.06 (-0.08%)</td><td>9.4s (1.1\\(\u00d7\\))</td><td>94.04 (-2.90%)</td><td>7.9s (1.7\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.3\\)</td><td>68.8%</td><td>93.04 (-2.21%)</td><td>7.4s (1.5\\(\u00d7\\))</td><td>89.79 (-7.29%)</td><td>6.9s (1.9\\(\u00d7\\))</td></tr><tr><td></td><td>high \\(\\tau =0.5\\)</td><td>19.3%</td><td>95.84 (0.74%)</td><td>15.2s (0.7\\(\u00d7\\))</td><td>94.33 (-2.60%)</td><td>9.7s (1.4\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.5\\)</td><td>80.7%</td><td>90.85 (-4.51%)</td><td>6.2s (1.7\\(\u00d7\\))</td><td>88.71 (-8.40%)</td><td>6.4s (2.1\\(\u00d7\\))</td></tr><tr><td>Spectral Pruning</td><td>\\(\\lambda=\\)0.1</td><td>90.0%</td><td>70.91 (-25.47%)</td><td>7.4s (1.5\\(\u00d7\\))</td><td>76.98 (-20.52%)</td><td>6.7s (2.0\\(\u00d7\\))</td></tr><tr><td></td><td>\\(\\lambda=\\)0.3</td><td>70.0%</td><td>82.20 (-13.60%)</td><td>8.2s (1.3\\(\u00d7\\))</td><td>89.70 (-7.38%)</td><td>8.5s (1.6\\(\u00d7\\))</td></tr><tr><td></td><td>\\(\\lambda=\\)0.5</td><td>50.0%</td><td>90.58 (-4.79%)</td><td>8.6s (1.3\\(\u00d7\\))</td><td>91.81 (-5.20%)</td><td>11.5s (1.2\\(\u00d7\\))</td></tr><tr><td></td><td><b>\\(\\lambda=\\)0.7</b></td><td><b>30.0%</b></td><td><b>94.39 (-0.79%)</b></td><td><b>9.9s (1.1\\(\u00d7\\))</b></td><td><b>92.40 (-4.59%)</b></td><td><b>12.9s (1.0\\(\u00d7\\))</b></td></tr><tr><td></td><td>\\(\\lambda=\\)0.9</td><td>10.0%</td><td>95.06 (-0.08%)</td><td>10.0s (1.1\\(\u00d7\\))</td><td>93.30 (-3.67%)</td><td>13.0s (1.0\\(\u00d7\\))</td></tr><tr><td>Knn Pruning</td><td>\\(k=\\)2</td><td>94.9%</td><td>85.62 (-10.01%)</td><td>6.5s (1.7\\(\u00d7\\))</td><td>88.61 (-8.51%)</td><td>5.5s (2.4\\(\u00d7\\))</td></tr><tr><td></td><td>\\(k=\\)5</td><td>87.8%</td><td>93.18 (-2.06%)</td><td>6.2s (1.7\\(\u00d7\\))</td><td>93.69 (-3.26%)</td><td>6.5s (2.0\\(\u00d7\\))</td></tr><tr><td></td><td><b>\\(k=\\)10</b></td><td><b>75.9%</b></td><td><b>95.61 (0.49%)</b></td><td><b>8.8s (1.2\\(\u00d7\\))</b></td><td><b>96.01 (-0.87%)</b></td><td><b>6.7s (2.0\\(\u00d7\\))</b></td></tr><tr><td><b></b></td><td><b></b></td><td><b></b></td><td colspan=\"2\"><b>PubMed</b></td><td colspan=\"2\"><b>Physics</b></td></tr><tr><td colspan=\"3\"><i>Baseline (Unpruned)</i></td><td>98.85</td><td>119.84s</td><td>97.70</td><td>1,793.08s</td></tr><tr><td>Degree Pruning</td><td>high \\(\\tau =0.1\\)</td><td>64.1%</td><td>98.93 (0.08%)</td><td><b>106.3s (1.1\\(\u00d7\\))</b></td><td><b>97.60 (-0.10%)</b></td><td>730.8s (2.5\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.1\\)</td><td>35.9%</td><td>98.37 (-0.49%)</td><td>111.2s (1.1\\(\u00d7\\))</td><td>97.21 (-0.50%)</td><td>1082.4s (1.7\\(\u00d7\\))</td></tr><tr><td></td><td>high\\(\\tau =0.3\\)</td><td>31.2%</td><td>98.92 (0.07%)</td><td>118.3s (1.0\\(\u00d7\\))</td><td>97.41 (-0.30%)</td><td>1289.6s (1.4\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.3\\)</td><td>68.8%</td><td>92.56 (-6.36%)</td><td>79.2s (1.5\\(\u00d7\\))</td><td>93.42 (-4.38%)</td><td>255.0s (7.0\\(\u00d7\\))</td></tr><tr><td></td><td>high \\(\\tau =0.5\\)</td><td>19.3%</td><td>99.09 (0.24%)</td><td>118.2s (1.0\\(\u00d7\\))</td><td>97.42 (-0.29%)</td><td>1617.6s (1.1\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.5\\)</td><td>80.7%</td><td>93.43 (-5.48%)</td><td>71.5s (1.7\\(\u00d7\\))</td><td>91.91 (-5.93%)</td><td>164.5s (10.9\\(\u00d7\\))</td></tr><tr><td>Spectral Pruning</td><td>\\(\\lambda=\\)0.1</td><td>90.0%</td><td>97.51 (-1.36%)</td><td>76.4s (1.6\\(\u00d7\\))</td><td>85.05 (-12.95%)</td><td>708.9s (2.5\\(\u00d7\\))</td></tr><tr><td></td><td>\\(\\lambda=\\)0.3</td><td>70.0%</td><td>98.17 (-0.69%)</td><td>80.5s (1.5\\(\u00d7\\))</td><td>92.36 (-5.47%)</td><td>1127.5s (1.6\\(\u00d7\\))</td></tr><tr><td></td><td>\\(\\lambda=\\)0.5</td><td>50.0%</td><td>98.63 (-0.22%)</td><td>101.8s (1.2\\(\u00d7\\))</td><td>95.43 (-2.32%)</td><td>1194.7s (1.5\\(\u00d7\\))</td></tr><tr><td></td><td><b>\\(\\lambda=\\)0.7</b></td><td><b>30.0%</b></td><td><b>98.88 (0.03%)</b></td><td><b>116.9s (1.0\\(\u00d7\\))</b></td><td><b>97.43 (-0.28%)</b></td><td><b>1520.3s (1.2\\(\u00d7\\))</b></td></tr><tr><td></td><td>\\(\\lambda=\\)0.9</td><td>10.0%</td><td>98.90 (0.05%)</td><td>118.1s (1.0\\(\u00d7\\))</td><td>97.54 (-0.16%)</td><td>1621.3s (1.1\\(\u00d7\\))</td></tr><tr><td>Knn Pruning</td><td>\\(k=\\)2</td><td>94.9%</td><td>94.69 (-4.21%)</td><td>76.7s (1.6\\(\u00d7\\))</td><td>94.80 (-2.97%)</td><td>167.3s (10.7\\(\u00d7\\))</td></tr><tr><td></td><td>\\(k=\\)5</td><td>87.8%</td><td>96.51 (-2.37%)</td><td>77.7s (1.5\\(\u00d7\\))</td><td>95.03 (-2.73%)</td><td>231.0s (7.8\\(\u00d7\\))</td></tr><tr><td></td><td><b>\\(k=\\)10</b></td><td><b>75.9%</b></td><td><b>98.94 (0.09%)</b></td><td><b>88.3s (1.4\\(\u00d7\\))</b></td><td><b>98.07 (0.38%)</b></td><td><b>389.4s (4.6\\(\u00d7\\))</b></td></tr></table> </div><div class=\"para-break\"></div><li><b>2.2 High-Performance Computing Integration and Scalability</b></li> We implemented a distributed training pipeline using PyTorch's Distributed Data Parallel across multiple GPUs. Figure 1 (included below) demonstrates: <ul> <li><b>Parallelization alone</b> provides up to 3.23\\(\u00d7\\) speedup on the large Physics dataset.</li> <li><b>Combining parallelization with pruning</b> yields multiplicative gains. <b>Parallel kNN pruning</b> achieves a remarkable <b>13.98\\(\u00d7\\) speedup</b> on Physics, reducing epoch time from 1793s to 128s.</li> <li>We identify a threshold (\\(\\sim\\)50,000 edges) where parallelization becomes beneficial for inference, providing practical deployment guidance.</li> </ul><div class=\"para-break\"></div></ul> <b>3.3 Comparative Analysis Against State-of-the-Art</b> Figure 2 compares LineML against six strong baselines (LGLP, SEAL, GAE, GraphSAGE, EG-DNMF, DGI) in terms of training time, inference time, and latency. <ul> <li><b>Parallel LineML with pruning</b> trains <b>14.09\\(\u00d7\\) faster</b> than the baseline line graph method (LGLP) on Physics.</li> <li>While original-graph methods are inherently faster due to smaller input size, our pruned and parallelized line graph method closes the gap significantly, achieving training times within an order of magnitude while offering superior representational capacity for link prediction.</li> <li>This comparative analysis directly addresses <a href=\"#comment:1.4\">R1\\#4</a>) on profiling training/inference times.</li> </ul><div class=\"para-break\"></div><li><b>3. Explicit HPC Justification Throughout the Manuscript</b></li><div class=\"para-break\"></div>While our original solution inherently relied on HPC principles, we acknowledge that this dependency was not stated with sufficient clarity throughout the manuscript. In the revised version, we have systematically and explicitly positioned HPC as a <i>foundational requirement</i> rather than an auxiliary enhancement. We believe these revisions now fully align the manuscript with the standards and expectations of a supercomputing-focused journal.<div class=\"para-break\"></div>Below, we summarize how HPC justification has been strengthened and integrated across the paper.<div class=\"para-break\"></div><b>Abstract</b> The abstract has been restructured to immediately establish the <b>HPC motivation</b>. We now explicitly identify the core computational bottleneck: the quadratic growth of line graphs, which transforms graphs with millions of edges into structures with tens of millions of interactions. This growth is clearly stated as <i>necessitating high-performance computing resources</i>. <div class=\"para-break\"></div>LineML is introduced not only as a learning framework but as an HPC-enabled solution, whose design explicitly incorporates pruning and parallel training mechanisms. We highlight spectral pruning and multi-GPU distributed data parallelism as essential components for mitigating quadratic complexity. The abstract now concludes with quantitative HPC benefits, reporting a 4.6\\(\u00d7\\) reduction in training time via pruning and a 13.98\\(\u00d7\\) speedup through distributed training. This framing establishes a clear problem--solution narrative grounded in supercomputing.<div class=\"para-break\"></div><b>Introduction</b> The introduction has been reorganized around a clear <b>three-part argument</b> demonstrating why HPC is a prerequisite for our approach:<div class=\"para-break\"></div><ol> <li><b>Methodological Advantage:</b> We present line graph reformulation as a theoretically superior strategy for direct edge modeling. This claim is formalized through Theorem 5, which establishes the expressivity of line graph-based GNNs relative to the 1-Weisfeiler--Lehman test.</li><div class=\"para-break\"></div> <li><b>Computational Bottleneck:</b> We explicitly state that this expressivity comes at a cost. The quadratic expansion of the line graph leads to explosive memory and computation requirements, rendering conventional processing infeasible for large-scale networks and <i>explicitly motivating the need for HPC</i>.</li><div class=\"para-break\"></div> <li><b>HPC-Centric Solution:</b> LineML is introduced as a scalable system designed for HPC environments. We emphasize that pruning strategies (kNN spectral pruning, effective resistance sampling, and degree-based hierarchical pruning) and distributed multi-GPU training are not optional optimizations, but necessary mechanisms to enable practical deployment on graphs with millions of edges.</li> </ol><div class=\"para-break\"></div>This structure ensures that readers clearly understand that HPC is a precondition for applying the theoretically motivated line graph approach at scale.<div class=\"para-break\"></div><b>Theoretical and Experimental Integration of HPC</b><div class=\"para-break\"></div>HPC considerations are now woven throughout the technical development of the manuscript:<div class=\"para-break\"></div><ul> <li><b>Formalization of Quadratic Growth:</b> We explicitly establish the computational explosion induced by line graph construction through Theorem 1, which quantifies node and edge growth and motivates the need for pruning and parallelization.</li><div class=\"para-break\"></div> <li><b>Section 4.2 (Line Graph Pruning -- Theoretical Framework):</b> This new subsection is explicitly designed for HPC settings. We introduce the spectral distortion factor to control pruning quality and present Lemma 1, which theoretically demonstrates that training time and communication overhead scale linearly with the pruning ratio in distributed environments. This directly links algorithmic design to HPC performance gains.</li><div class=\"para-break\"></div> <li><b>Section 5 (Computational Efficiency and Scalability):</b> A dedicated experimental section now empirically validates our HPC claims:</li> <ol> <li><b>Pruning Effectiveness:</b> We show that kNN pruning removes up to 75.9% of line graph edges while preserving or improving accuracy, enabling larger-scale processing.</li> <li><b>Distributed Training and Scalability:</b> We demonstrate a PyTorch Distributed Data Parallel (DDP) implementation, achieving a 13.98\\(\u00d7\\) end-to-end speedup on the Physics dataset. Scaling behavior and communication thresholds are analyzed to provide practical HPC deployment insights.</li> <li><b>Comparative Efficiency:</b> We show that Parallel LineML trains 14.09\\(\u00d7\\) faster than the baseline line graph method (LGLP), substantially narrowing the computational gap between line graph methods and original-graph approaches.</li> </ol> </ul><div class=\"para-break\"></div></ul><div class=\"para-break\"></div>Through these revisions, HPC is now explicitly articulated as a central design principle across theoretical motivation, algorithmic development, and experimental validation. We hope that this revised manuscript now clearly meets the scope, rigor, and expectations of a supercomputing journal and satisfactorily addresses the reviewer\u2019s concern.",
+        "response": "We thank the editore for your constructive feedback and for providing us the opportunity to revise our manuscript. We sincerely appreciate your time and the detailed comments, which have significantly helped us to improve the paper and better align it with the journal's focus on Supercomputing.<div class=\"para-break\"></div>We fully recognize the importance of explicitly justifying the need for High-Performance Computing (HPC) capabilities, real-time performance, and parallel/distributed processing. Your comment is crucial because it underscores the core mission of the journal and ensures that the published work genuinely contributes to the supercomputing community. We have taken this comment very seriously and have thoroughly revised the manuscript to make a strong, consistent case for the relevance of our work to HPC.<div class=\"para-break\"></div>To address your comment, we have made substantial revisions throughout the paper. Below, we detail the specific changes we have implemented.<div class=\"para-break\"></div><ul><div class=\"para-break\"></div><li><b>1. Addition of a Novel HPC-Oriented Theoretical Framework: Line Graph Pruning</b></li><div class=\"para-break\"></div>A central enhancement to our manuscript is the introduction of a principled <b>Line Graph Pruning</b> framework (Section 3.5). This framework directly addresses the computational bottleneck of line graphs\u2014their enormous edge count\u2014by systematically reducing edges while preserving structural and spectral properties. The pruning serves a dual purpose: (1) as a compression technique to reduce the graphs size, and (2) as a regularization mechanism to improve generalization by removing noisy connections.<div class=\"para-break\"></div>The theoretical foundation is built on a <b>spectral distortion factor</b> \\(\\kappa\\), which quantifies how much the Laplacian spectrum (and thus global connectivity properties) is altered. We prove bounds on \\(\\kappa\\) for our pruning strategies, ensuring that the pruned graph remains a faithful representation of the original. This theoretical grounding is crucial for HPC because it provides guarantees that aggressive compression will not break the model's accuracy.<div class=\"para-break\"></div>We propose and analyze three pruning strategies:<div class=\"para-break\"></div><ol> <li><b>k-Nearest Neighbor (kNN) Spectral Pruning:</b> Retains only the top-\\(k\\) most similar neighbors for each node based on feature vectors. This strategy is highly parallelizable, as the distance computations and sorting for each node are independent. We provide an algorithm (Algorithm 2) and a theorem bounding the spectral distortion.</li> <li><b>Spectral Sparsification via Effective Resistance Sampling:</b> Samples edges with probability proportional to their <i>effective resistance</i>, a measure of their importance in global connectivity. We employ a nearly-linear time approximation via Johnson-Lindenstrauss random projections, making it feasible for large graphs. The algorithm (Algorithm 3) includes a parameter \\(\\alpha\\) to explicitly control the preservation ratio, offering a tunable trade-off between efficiency and fidelity. This method is ideal for distributed settings as it minimizes communication overhead by preserving critical bridges.</li> <li><b>Degree-Based Hierarchical Pruning:</b> Leverages the power-law degree distribution of real-world graphs by removing edges incident to either very high-degree or very low-degree nodes. This simple strategy is extremely fast and reduces adjacency matrix density, improving cache locality\u2014a critical factor in HPC performance.</li> </ol><div class=\"para-break\"></div>A key theoretical result is <b>Lemma 2 (Training Time Reduction)</b>, which formally proves that pruning reduces per-epoch training time by a factor of \\(\\alpha\\) (the preservation ratio) and proportionally reduces communication overhead in distributed settings. This lemma provides a direct, quantitative link between our pruning framework and HPC performance gains.<div class=\"para-break\"></div><li><b>2. Comprehensive Experimental Validation of HPC Performance</b></li><div class=\"para-break\"></div>We have added an experimental section (Section 4) dedicated to non-functional performance metrics, validating the scalability and efficiency of LineML in HPC contexts. <ul><div class=\"para-break\"></div><li><b>2.1 Pruning Strategies: Performance-Scalability Trade-offs</b></li> We rigorously evaluate our three pruning methods across multiple datasets (Cora, CiteSeer, PubMed, Physics). Table 1 prennted below (Table 5 in the paper) shows that: <ul> <li><b>kNN pruning with k=10</b> achieves the best balance, removing \\(\\sim\\)76% of edges while maintaining or even improving AUC.</li> <li>Pruning provides near-linear reduction in training time (e.g., 4.6\\(\u00d7\\) speedup on Physics with kNN pruning), confirming Lemma 1.</li> <li>The benefits are most pronounced on large graphs, justifying the need for HPC to handle such scale.</li> </ul><div class=\"para-break\"></div><div class=\"table-container\"><div class=\"para-break\"></div><div class=\"table-caption\">Comparison of Pruning Methods. Bold values indicate the best results.</div><div class=\"para-break\"></div><table><tr><td><b>Methods</b></td><td><b>Param</b></td><td><b>Pruned (%)</b></td><td colspan=\"2\"><b>Cora</b></td><td colspan=\"2\"><b>CiteSeer</b></td></tr><tr><td></td><td></td><td></td><td><b>AUC (Imp)</b></td><td><b>Time</b></td><td><b>AUC (Imp)</b></td><td><b>Time</b></td></tr><tr><td colspan=\"3\"><i>Baseline (Unpruned)</i></td><td>95.14</td><td>10.79s</td><td>96.85</td><td>13.29s</td></tr><tr><td>Degree Pruning</td><td>high \\(\\tau =0.1\\)</td><td>64.1%</td><td><b>95.19 (0.05%)</b></td><td>8.8s (1.2\\(\u00d7\\))</td><td><b>95.03 (-1.88%)</b></td><td>6.4s (2.1\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.1\\)</td><td>35.9%</td><td>95.22 (0.08%)</td><td>9.0s (1.2\\(\u00d7\\))</td><td>90.56 (-6.49%)</td><td>8.2s (1.6\\(\u00d7\\))</td></tr><tr><td></td><td>high \\(\\tau =0.3\\)</td><td>31.2%</td><td>95.06 (-0.08%)</td><td>9.4s (1.1\\(\u00d7\\))</td><td>94.04 (-2.90%)</td><td>7.9s (1.7\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.3\\)</td><td>68.8%</td><td>93.04 (-2.21%)</td><td>7.4s (1.5\\(\u00d7\\))</td><td>89.79 (-7.29%)</td><td>6.9s (1.9\\(\u00d7\\))</td></tr><tr><td></td><td>high \\(\\tau =0.5\\)</td><td>19.3%</td><td>95.84 (0.74%)</td><td>15.2s (0.7\\(\u00d7\\))</td><td>94.33 (-2.60%)</td><td>9.7s (1.4\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.5\\)</td><td>80.7%</td><td>90.85 (-4.51%)</td><td>6.2s (1.7\\(\u00d7\\))</td><td>88.71 (-8.40%)</td><td>6.4s (2.1\\(\u00d7\\))</td></tr><tr><td>Spectral Pruning</td><td>\\(\\lambda=\\)0.1</td><td>90.0%</td><td>70.91 (-25.47%)</td><td>7.4s (1.5\\(\u00d7\\))</td><td>76.98 (-20.52%)</td><td>6.7s (2.0\\(\u00d7\\))</td></tr><tr><td></td><td>\\(\\lambda=\\)0.3</td><td>70.0%</td><td>82.20 (-13.60%)</td><td>8.2s (1.3\\(\u00d7\\))</td><td>89.70 (-7.38%)</td><td>8.5s (1.6\\(\u00d7\\))</td></tr><tr><td></td><td>\\(\\lambda=\\)0.5</td><td>50.0%</td><td>90.58 (-4.79%)</td><td>8.6s (1.3\\(\u00d7\\))</td><td>91.81 (-5.20%)</td><td>11.5s (1.2\\(\u00d7\\))</td></tr><tr><td></td><td><b>\\(\\lambda=\\)0.7</b></td><td><b>30.0%</b></td><td><b>94.39 (-0.79%)</b></td><td><b>9.9s (1.1\\(\u00d7\\))</b></td><td><b>92.40 (-4.59%)</b></td><td><b>12.9s (1.0\\(\u00d7\\))</b></td></tr><tr><td></td><td>\\(\\lambda=\\)0.9</td><td>10.0%</td><td>95.06 (-0.08%)</td><td>10.0s (1.1\\(\u00d7\\))</td><td>93.30 (-3.67%)</td><td>13.0s (1.0\\(\u00d7\\))</td></tr><tr><td>Knn Pruning</td><td>\\(k=\\)2</td><td>94.9%</td><td>85.62 (-10.01%)</td><td>6.5s (1.7\\(\u00d7\\))</td><td>88.61 (-8.51%)</td><td>5.5s (2.4\\(\u00d7\\))</td></tr><tr><td></td><td>\\(k=\\)5</td><td>87.8%</td><td>93.18 (-2.06%)</td><td>6.2s (1.7\\(\u00d7\\))</td><td>93.69 (-3.26%)</td><td>6.5s (2.0\\(\u00d7\\))</td></tr><tr><td></td><td><b>\\(k=\\)10</b></td><td><b>75.9%</b></td><td><b>95.61 (0.49%)</b></td><td><b>8.8s (1.2\\(\u00d7\\))</b></td><td><b>96.01 (-0.87%)</b></td><td><b>6.7s (2.0\\(\u00d7\\))</b></td></tr><tr><td><b></b></td><td><b></b></td><td><b></b></td><td colspan=\"2\"><b>PubMed</b></td><td colspan=\"2\"><b>Physics</b></td></tr><tr><td colspan=\"3\"><i>Baseline (Unpruned)</i></td><td>98.85</td><td>119.84s</td><td>97.70</td><td>1,793.08s</td></tr><tr><td>Degree Pruning</td><td>high \\(\\tau =0.1\\)</td><td>64.1%</td><td>98.93 (0.08%)</td><td><b>106.3s (1.1\\(\u00d7\\))</b></td><td><b>97.60 (-0.10%)</b></td><td>730.8s (2.5\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.1\\)</td><td>35.9%</td><td>98.37 (-0.49%)</td><td>111.2s (1.1\\(\u00d7\\))</td><td>97.21 (-0.50%)</td><td>1082.4s (1.7\\(\u00d7\\))</td></tr><tr><td></td><td>high\\(\\tau =0.3\\)</td><td>31.2%</td><td>98.92 (0.07%)</td><td>118.3s (1.0\\(\u00d7\\))</td><td>97.41 (-0.30%)</td><td>1289.6s (1.4\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.3\\)</td><td>68.8%</td><td>92.56 (-6.36%)</td><td>79.2s (1.5\\(\u00d7\\))</td><td>93.42 (-4.38%)</td><td>255.0s (7.0\\(\u00d7\\))</td></tr><tr><td></td><td>high \\(\\tau =0.5\\)</td><td>19.3%</td><td>99.09 (0.24%)</td><td>118.2s (1.0\\(\u00d7\\))</td><td>97.42 (-0.29%)</td><td>1617.6s (1.1\\(\u00d7\\))</td></tr><tr><td></td><td>low \\(\\tau =0.5\\)</td><td>80.7%</td><td>93.43 (-5.48%)</td><td>71.5s (1.7\\(\u00d7\\))</td><td>91.91 (-5.93%)</td><td>164.5s (10.9\\(\u00d7\\))</td></tr><tr><td>Spectral Pruning</td><td>\\(\\lambda=\\)0.1</td><td>90.0%</td><td>97.51 (-1.36%)</td><td>76.4s (1.6\\(\u00d7\\))</td><td>85.05 (-12.95%)</td><td>708.9s (2.5\\(\u00d7\\))</td></tr><tr><td></td><td>\\(\\lambda=\\)0.3</td><td>70.0%</td><td>98.17 (-0.69%)</td><td>80.5s (1.5\\(\u00d7\\))</td><td>92.36 (-5.47%)</td><td>1127.5s (1.6\\(\u00d7\\))</td></tr><tr><td></td><td>\\(\\lambda=\\)0.5</td><td>50.0%</td><td>98.63 (-0.22%)</td><td>101.8s (1.2\\(\u00d7\\))</td><td>95.43 (-2.32%)</td><td>1194.7s (1.5\\(\u00d7\\))</td></tr><tr><td></td><td><b>\\(\\lambda=\\)0.7</b></td><td><b>30.0%</b></td><td><b>98.88 (0.03%)</b></td><td><b>116.9s (1.0\\(\u00d7\\))</b></td><td><b>97.43 (-0.28%)</b></td><td><b>1520.3s (1.2\\(\u00d7\\))</b></td></tr><tr><td></td><td>\\(\\lambda=\\)0.9</td><td>10.0%</td><td>98.90 (0.05%)</td><td>118.1s (1.0\\(\u00d7\\))</td><td>97.54 (-0.16%)</td><td>1621.3s (1.1\\(\u00d7\\))</td></tr><tr><td>Knn Pruning</td><td>\\(k=\\)2</td><td>94.9%</td><td>94.69 (-4.21%)</td><td>76.7s (1.6\\(\u00d7\\))</td><td>94.80 (-2.97%)</td><td>167.3s (10.7\\(\u00d7\\))</td></tr><tr><td></td><td>\\(k=\\)5</td><td>87.8%</td><td>96.51 (-2.37%)</td><td>77.7s (1.5\\(\u00d7\\))</td><td>95.03 (-2.73%)</td><td>231.0s (7.8\\(\u00d7\\))</td></tr><tr><td></td><td><b>\\(k=\\)10</b></td><td><b>75.9%</b></td><td><b>98.94 (0.09%)</b></td><td><b>88.3s (1.4\\(\u00d7\\))</b></td><td><b>98.07 (0.38%)</b></td><td><b>389.4s (4.6\\(\u00d7\\))</b></td></tr></table> </div><div class=\"para-break\"></div><li><b>2.2 High-Performance Computing Integration and Scalability</b></li> We implemented a distributed training pipeline using PyTorch's Distributed Data Parallel across multiple GPUs. Figure 1 (included below) demonstrates: <ul> <li><b>Parallelization alone</b> provides up to 3.23\\(\u00d7\\) speedup on the large Physics dataset.</li> <li><b>Combining parallelization with pruning</b> yields multiplicative gains. <b>Parallel kNN pruning</b> achieves a remarkable <b>13.98\\(\u00d7\\) speedup</b> on Physics, reducing epoch time from 1793s to 128s.</li> <li>We identify a threshold (\\(\\sim\\)50,000 edges) where parallelization becomes beneficial for inference, providing practical deployment guidance.</li> </ul><div class=\"para-break\"></div></ul> <b>3.3 Comparative Analysis Against State-of-the-Art</b> Figure 2 compares LineML against six strong baselines (LGLP, SEAL, GAE, GraphSAGE, EG-DNMF, DGI) in terms of training time, inference time, and latency. <ul> <li><b>Parallel LineML with pruning</b> trains <b>14.09\\(\u00d7\\) faster</b> than the baseline line graph method (LGLP) on Physics.</li> <li>While original-graph methods are inherently faster due to smaller input size, our pruned and parallelized line graph method closes the gap significantly, achieving training times within an order of magnitude while offering superior representational capacity for link prediction.</li> <li>This comparative analysis directly addresses <a href=\"#comment:1.4\">R1\\#4</a>) on profiling training/inference times.</li> </ul><div class=\"para-break\"></div><li><b>3. Explicit HPC Justification Throughout the Manuscript</b></li><div class=\"para-break\"></div>While our original solution inherently relied on HPC principles, we acknowledge that this dependency was not stated with sufficient clarity throughout the manuscript. In the revised version, we have systematically and explicitly positioned HPC as a <i>foundational requirement</i> rather than an auxiliary enhancement. We believe these revisions now fully align the manuscript with the standards and expectations of a supercomputing-focused journal.<div class=\"para-break\"></div>Below, we summarize how HPC justification has been strengthened and integrated across the paper.<div class=\"para-break\"></div><b>Abstract</b> The abstract has been restructured to immediately establish the <b>HPC motivation</b>. We now explicitly identify the core computational bottleneck: the quadratic growth of line graphs, which transforms graphs with millions of edges into structures with tens of millions of interactions. This growth is clearly stated as <i>necessitating high-performance computing resources</i>. <div class=\"para-break\"></div>LineML is introduced not only as a learning framework but as an HPC-enabled solution, whose design explicitly incorporates pruning and parallel training mechanisms. We highlight spectral pruning and multi-GPU distributed data parallelism as essential components for mitigating quadratic complexity. The abstract now concludes with quantitative HPC benefits, reporting a 4.6\\(\u00d7\\) reduction in training time via pruning and a 13.98\\(\u00d7\\) speedup through distributed training. This framing establishes a clear problem--solution narrative grounded in supercomputing.<div class=\"para-break\"></div><b>Introduction</b> The introduction has been reorganized around a clear <b>three-part argument</b> demonstrating why HPC is a prerequisite for our approach:<div class=\"para-break\"></div><ol> <li><b>Methodological Advantage:</b> We present line graph reformulation as a theoretically superior strategy for direct edge modeling. This claim is formalized through Theorem 5, which establishes the expressivity of line graph-based GNNs relative to the 1-Weisfeiler--Lehman test.</li><div class=\"para-break\"></div> <li><b>Computational Bottleneck:</b> We explicitly state that this expressivity comes at a cost. The quadratic expansion of the line graph leads to explosive memory and computation requirements, rendering conventional processing infeasible for large-scale networks and <i>explicitly motivating the need for HPC</i>.</li><div class=\"para-break\"></div> <li><b>HPC-Centric Solution:</b> LineML is introduced as a scalable system designed for HPC environments. We emphasize that pruning strategies (kNN spectral pruning, effective resistance sampling, and degree-based hierarchical pruning) and distributed multi-GPU training are not optional optimizations, but necessary mechanisms to enable practical deployment on graphs with millions of edges.</li> </ol><div class=\"para-break\"></div>This structure ensures that readers clearly understand that HPC is a precondition for applying the theoretically motivated line graph approach at scale.<div class=\"para-break\"></div><b>Theoretical and Experimental Integration of HPC</b><div class=\"para-break\"></div>HPC considerations are now woven throughout the technical development of the manuscript:<div class=\"para-break\"></div><ul> <li><b>Formalization of Quadratic Growth:</b> We explicitly establish the computational explosion induced by line graph construction through Theorem 1, which quantifies node and edge growth and motivates the need for pruning and parallelization.</li><div class=\"para-break\"></div> <li><b>Section 4.2 (Line Graph Pruning -- Theoretical Framework):</b> This new subsection is explicitly designed for HPC settings. We introduce the spectral distortion factor to control pruning quality and present Lemma 1, which theoretically demonstrates that training time and communication overhead scale linearly with the pruning ratio in distributed environments. This directly links algorithmic design to HPC performance gains.</li><div class=\"para-break\"></div> <li><b>Section 5 (Computational Efficiency and Scalability):</b> A dedicated experimental section now empirically validates our HPC claims:</li> <ol> <li><b>Pruning Effectiveness:</b> We show that kNN pruning removes up to 75.9% of line graph edges while preserving or improving accuracy, enabling larger-scale processing.</li> <li><b>Distributed Training and Scalability:</b> We demonstrate a PyTorch Distributed Data Parallel (DDP) implementation, achieving a 13.98\\(\u00d7\\) end-to-end speedup on the Physics dataset. Scaling behavior and communication thresholds are analyzed to provide practical HPC deployment insights.</li> <li><b>Comparative Efficiency:</b> We show that Parallel LineML trains 14.09\\(\u00d7\\) faster than the baseline line graph method (LGLP), substantially narrowing the computational gap between line graph methods and original-graph approaches.</li> </ol> </ul><div class=\"para-break\"></div></ul><div class=\"para-break\"></div>Through these revisions, HPC is now explicitly articulated as a central design principle across theoretical motivation, algorithmic development, and experimental validation. We hope that this revised manuscript now clearly meets the scope, rigor, and expectations of a supercomputing journal and satisfactorily addresses the reviewer\u2019s concern.",
         "reviewer": "Editor's comment",
         "images": [
           "figs/Fused_All_Pruning_Comparison.png",
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -38,11 +38,11 @@ const responseData = [
           "figs/1-Metric_loss_ROC_boxplot.png"
         ],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -53,11 +53,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -68,11 +68,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -85,10 +85,10 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "New Content",
           "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -101,11 +101,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -116,8 +116,8 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Methodology",
-          "Revision"
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -128,8 +128,8 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Methodology",
           "Comparison",
+          "Methodology",
           "Revision",
           "Experiment"
         ],
@@ -142,10 +142,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -166,11 +166,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -181,11 +181,11 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -196,10 +196,10 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -210,9 +210,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -239,10 +239,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -256,11 +256,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -284,10 +284,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -300,11 +300,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -315,10 +315,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -329,10 +329,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -351,11 +351,11 @@ const responseData = [
           "figs/metrics_boxplots_grid.png"
         ],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -368,11 +368,11 @@ const responseData = [
           "figs/Fused_All_Pruning_Comparison.png"
         ],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -383,8 +383,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Methodology",
           "Comparison",
+          "Methodology",
           "Revision",
           "Experiment"
         ],
@@ -397,8 +397,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Methodology",
           "Comparison",
+          "Methodology",
           "Revision",
           "Experiment"
         ],
@@ -411,9 +411,9 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "New Content",
           "Revision",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -424,8 +424,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "New Content",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -450,11 +450,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -465,11 +465,11 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -480,10 +480,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "New Content",
           "Comparison",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -499,11 +499,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -514,10 +514,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
           "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -528,10 +528,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
           "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -542,37 +542,37 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 5, Comment 5.5",
         "comment": "5. Tables 2 and 3 show results with standard deviations but do not specify the number of repeated experiments.",
-        "response": "We thank the reviewer for pointing this out. You are correct that explicitly stating the number of repeated experiments improves the clarity and reproducibility of the reported results. In the revised manuscript, we have updated Tables 2 and 3 to indicate that all reported results (mean \\(\u00b1\\) standard deviation) are computed over <b>5 independent runs</b> for each method. This information has also been added to the caption of each table for transparency. By including the number of repetitions, readers can better assess the reliability and variability of the performance metrics.",
+        "response": "We thank the reviewer for pointing this out. You are correct that explicitly stating the number of repeated experiments improves the clarity and reproducibility of the reported results. In the revised manuscript, we have updated Tables 2 and 3 (now in the paper Table 3 and 4) to indicate that all reported results (mean \\(\u00b1\\) standard deviation) are computed over <b>5 independent runs</b> for each method. This information has also been added to the caption of each table for transparency. By including the number of repetitions, readers can better assess the reliability and variability of the performance metrics.",
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 5, Comment 5.6",
         "comment": "6. Figure 6 compares LineML with only 5 selected methods. Why were these 5 chosen instead of all 12 comparison methods?",
-        "response": "We thank the reviewer for this important observation. We selected the five comparison methods (Katz, PageRank (PR), SimRank (SR), SEAL, and LGLP) for Figure 6 based on the following rationale:<div class=\"para-break\"></div><ol> <li>These five methods represent the most commonly used and state-of-the-art approaches for link prediction, including classical heuristics (Katz, PR, SR), embedding-based approaches (LGLP), and graph neural network-based methods (SEAL). Including all 12 methods would dilute the focus and make the visual comparison less clear.</li> <li>Visualization clarity: Figure 6 contains multiple subplots showing performance across several datasets. Including all 12 methods in each subplot would result in overcrowded graphs, making it difficult to discern differences and trends between methods. By focusing on the most representative and competitive baselines, we ensure readability and highlight the relative improvement of our proposed method, LineML.</li> <li>For completeness, the quantitative results of all 12 comparison methods are provided in Tables 2 and 3. This allows readers to access full experimental outcomes while keeping the figure concise and interpretable.</li> </ol><div class=\"para-break\"></div>This selection strategy balances comprehensiveness and clarity, ensuring that the visual comparisons are both informative and legible, while detailed numerical results remain fully available in the tables.",
+        "response": "We thank the reviewer for this important observation. We selected the five comparison methods (Katz, PageRank (PR), SimRank (SR), SEAL, and LGLP) for Figure 6 based on the following rationale:<div class=\"para-break\"></div><ol> <li>These five methods represent the most commonly used and state-of-the-art approaches for link prediction, including classical heuristics (Katz, PR, SR), embedding-based approaches (LGLP), and graph neural network-based methods (SEAL). Including all 12 methods would dilute the focus and make the visual comparison less clear.</li> <li>Visualization clarity: Figure 6 contains multiple subplots showing performance across several datasets. Including all 12 methods in each subplot would result in overcrowded graphs, making it difficult to discern differences and trends between methods. By focusing on the most representative and competitive baselines, we ensure readability and highlight the relative improvement of our proposed method, LineML.</li> </ol><div class=\"para-break\"></div>This selection strategy balances comprehensiveness and clarity, ensuring that the visual comparisons are both informative and legible.",
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Methodology",
           "Comparison",
+          "Methodology",
           "Experiment"
         ],
         "is_intro": false
@@ -580,15 +580,15 @@ const responseData = [
       {
         "title": "Reviewer 5, Comment 5.7",
         "comment": "7. Independent T-test, Cohen's d, and Mann-Whitney U test are used without citations or prior introduction. References should be added, and a dedicated subsection should introduce these statistical methods.",
-        "response": "We thank the reviewer for this valuable comment, which is highly relevant to improving the methodological clarity and scientific rigor of the manuscript. Explicitly introducing and properly citing statistical tests is essential for transparency, reproducibility, and correct interpretation of experimental results.<div class=\"para-break\"></div>In response, we have revised our evaluation protocol and clarified the statistical methodology used. In particular, we emphasize that our analysis relies on <i>more robust, non-parametric statistical tools</i>\u2014namely the Wilcoxon signed-rank test and Cliff's Delta effect size\u2014which are better suited to machine learning performance evaluation than classical parametric alternatives such as the independent \\(t\\)-test and Cohen's \\(d\\).<div class=\"para-break\"></div><h4>Rationale for the chosen tests.</h4> The Wilcoxon signed-rank test is a non-parametric test for paired samples that does not assume normality of the data. This makes it appropriate for performance scores obtained from repeated experimental runs, which are often non-normally distributed and may contain outliers. The test evaluates whether the observed differences between paired results (LineML versus a baseline method) are systematically positive or negative.<div class=\"para-break\"></div>Cliff's Delta is a complementary non-parametric effect size measure that quantifies the magnitude of the performance difference. Unlike Cohen's \\(d\\), it does not rely on distributional assumptions and provides an intuitive probabilistic interpretation of dominance between methods. Together, these two tests allow us to assess both <i>statistical significance</i> and <i>practical relevance</i> in a robust and assumption-free manner.<div class=\"para-break\"></div><h4>Manuscript revision.</h4> To address the reviewer\u2019s request, we have added a dedicated subsection entitled <i>Section 4.2: Statistical Significance Testing</i>. This new section formally introduces the Wilcoxon signed-rank test and Cliff's Delta, explains their underlying principles, and clarifies their role in our experimental evaluation. All statistical tests used in the paper are now explicitly motivated, defined, and supported by appropriate references.<div class=\"para-break\"></div><h4>Added references.</h4> The following references have been added to the manuscript to properly ground the statistical methodology:<div class=\"para-break\"></div><ul> <li>Wilcoxon, F. (1945). <i>Individual comparisons by ranking methods</i>. Biometrics Bulletin, 1(6), 80--83.</li> <li>Dem\\v{s}ar, J. (2006). <i>Statistical comparisons of classifiers over multiple data sets</i>. Journal of Machine Learning Research, 7, 1--30.</li> <li>Hollander, M., Wolfe, D. A., & Chicken, E. (2013). <i>Nonparametric Statistical Methods</i>. Wiley Series in Probability and Statistics.</li> <li>Cliff, N. (1993). <i>Dominance statistics: Ordinal analyses to answer ordinal questions</i>. Psychological Bulletin, 114(3), 494--509.</li> </ul><div class=\"para-break\"></div>We hope that these revisions adequately address the reviewer\u2019s concerns and significantly improve the clarity and robustness of the experimental evaluation.",
+        "response": "We thank the reviewer for this valuable comment, which is highly relevant to improving the methodological clarity and scientific rigor of the manuscript. Explicitly introducing and properly citing statistical tests is essential for transparency, reproducibility, and correct interpretation of experimental results.<div class=\"para-break\"></div>In response, we have revised our evaluation protocol and clarified the statistical methodology used. In particular, we emphasize that our analysis relies on <i>more robust, non-parametric statistical tools</i>\u2014namely the Wilcoxon signed-rank test and Cliff's Delta effect size\u2014which are better suited to machine learning performance evaluation than classical parametric alternatives such as the independent \\(t\\)-test and Cohen's \\(d\\).<div class=\"para-break\"></div><h4>Rationale for the chosen tests.</h4> The Wilcoxon signed-rank test is a non-parametric test for paired samples that does not assume normality of the data. This makes it appropriate for performance scores obtained from repeated experimental runs, which are often non-normally distributed and may contain outliers. The test evaluates whether the observed differences between paired results (LineML versus a baseline method) are systematically positive or negative.<div class=\"para-break\"></div>Cliff's Delta is a complementary non-parametric effect size measure that quantifies the magnitude of the performance difference. Unlike Cohen's \\(d\\), it does not rely on distributional assumptions and provides an intuitive probabilistic interpretation of dominance between methods. Together, these two tests allow us to assess both <i>statistical significance</i> and <i>practical relevance</i> in a robust and assumption-free manner.<div class=\"para-break\"></div><h4>Manuscript revision.</h4> To address the reviewer\u2019s request, we have added a dedicated subsection entitled <i>Section 4.2: Statistical Significance Testing</i>. This new section formally introduces the Wilcoxon signed-rank test and Cliff's Delta, explains their underlying principles, and clarifies their role in our experimental evaluation. All statistical tests used in the paper are now explicitly motivated, defined, and supported by appropriate references.<div class=\"para-break\"></div><h4>Added references.</h4> The following references have been added to the manuscript to properly ground the statistical methodology:<div class=\"para-break\"></div><ul> <li>Wilcoxon, F. (1945). <i>Individual comparisons by ranking methods</i>. Biometrics Bulletin, 1(6), 80--83.</li> <li>Cliff, N. (1993). <i>Dominance statistics: Ordinal analyses to answer ordinal questions</i>. Psychological Bulletin, 114(3), 494--509.</li> </ul><div class=\"para-break\"></div>We hope that these revisions adequately address the reviewer\u2019s concerns and significantly improve the clarity and robustness of the experimental evaluation.",
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
-          "New Content",
           "Comparison",
+          "Revision",
           "Experiment",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -612,10 +612,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -626,10 +626,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -640,10 +640,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -654,10 +654,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision",
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -680,9 +680,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -693,8 +693,8 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       }
