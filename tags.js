@@ -55,25 +55,20 @@ const commentTags = {
     "Comparison"
   ],
   "Reviewer 2: Reviewer 2, Comment 2.2": [
-    "Methodology",
     "Revision",
     "Experiment",
     "New Content",
     "Comparison"
   ],
   "Reviewer 2: Reviewer 2, Comment 2.3": [
-    "New Content",
-    "Methodology",
-    "Revision",
-    "Experiment"
+    "Revision"
+
   ],
   "Reviewer 2: Reviewer 2, Comment 2.4": [
-    "Revision",
-    "Methodology",
-    "New Content"
+    "Revision"
   ],
   "Reviewer 2: Reviewer 2, Comment 2.5": [
-    "Methodology"
+    "Revision"
   ],
   "Reviewer 3: Reviewer 3, Comment 3.1": [
     "New Content",
@@ -82,61 +77,53 @@ const commentTags = {
     "Experiment"
   ],
   "Reviewer 3: Reviewer 3, Comment 3.2": [
-    "Methodology",
+
     "Revision",
     "Experiment",
     "New Content",
-    "Comparison"
+
   ],
   "Reviewer 3: Reviewer 3, Comment 3.3": [
     "Revision",
-    "Methodology",
     "Experiment"
   ],
   "Reviewer 3: Reviewer 3, Comment 3.4": [
     "New Content",
-    "Methodology",
     "Revision",
     "Experiment"
   ],
   "Reviewer 3: Reviewer 3, Comment 3.5": [
-    "Methodology",
+
     "Revision",
-    "Experiment",
-    "New Content",
-    "Comparison"
+
   ],
   "Reviewer 3: Reviewer 3, Comment 3.6": [
     "New Content",
     "Methodology",
-    "Revision",
-    "Experiment"
+
   ],
   "Reviewer 3: Reviewer 3, Comment 3.7": [
-    "New Content",
-    "Methodology",
+
     "Revision",
-    "Experiment"
+
   ],
   "Reviewer 4: Reviewer 4, Comment 4.1": [
     "Methodology",
     "Revision",
     "Experiment",
     "New Content",
-    "Comparison"
+
   ],
   "Reviewer 4: Reviewer 4, Comment 4.2": [
     "Methodology",
     "Revision",
     "Experiment",
     "New Content",
-    "Comparison"
+
   ],
   "Reviewer 4: Reviewer 4, Comment 4.3": [
     "Revision",
-    "Methodology",
-    "Experiment",
-    "Comparison"
+
   ],
   "Reviewer 4: Reviewer 4, Comment 4.4": [
     "Revision",
@@ -145,126 +132,103 @@ const commentTags = {
     "Comparison"
   ],
   "Reviewer 4: Reviewer 4, Comment 4.5": [
-    "New Content",
+
     "Revision",
-    "Experiment"
+
   ],
   "Reviewer 4: Reviewer 4, Comment 4.6": [
-    "New Content",
-    "Experiment"
+    "Revision",
   ],
   "Reviewer 4: Reviewer 4, Comment 4.7": [
     "Revision",
-    "Experiment"
+
   ],
   "Reviewer 4: Reviewer 4, Comment 4.8": [
-    "Methodology",
+
     "Revision",
-    "Experiment",
+
     "New Content",
-    "Comparison"
+
   ],
   "Reviewer 4: Reviewer 4, Comment 4.9": [
-    "Methodology",
+
     "Revision",
-    "Experiment",
-    "New Content",
-    "Comparison"
+
   ],
   "Reviewer 4: Reviewer 4, Comment 4.10": [
     "Revision",
-    "Methodology",
-    "New Content",
-    "Comparison"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.1": [
-    "Methodology",
+
     "Revision",
-    "Experiment",
-    "New Content",
-    "Comparison"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.2": [
     "New Content",
-    "Methodology",
-    "Experiment",
+    "Revision",
     "Comparison"
   ],
   "Reviewer 5: Reviewer 5, Comment 5.3": [
     "New Content",
-    "Methodology",
-    "Experiment",
+    "Revision",
     "Comparison"
   ],
   "Reviewer 5: Reviewer 5, Comment 5.4": [
-    "Methodology",
+
     "Revision",
-    "Experiment",
-    "New Content",
-    "Comparison"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.5": [
-    "New Content",
-    "Methodology",
+
     "Revision",
-    "Experiment"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.6": [
-    "Methodology",
-    "Experiment",
-    "Comparison"
+    "Revision",
   ],
   "Reviewer 5: Reviewer 5, Comment 5.7": [
-    "Methodology",
+
     "Revision",
-    "Experiment",
+
     "New Content",
-    "Comparison"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.8": [
     "Revision",
-    "Methodology",
-    "Experiment"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.9": [
     "New Content",
-    "Methodology",
+
     "Revision",
-    "Experiment"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.10": [
-    "New Content",
-    "Methodology",
+
     "Revision",
-    "Experiment"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.11": [
     "New Content",
-    "Methodology",
+
     "Revision",
-    "Experiment"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.12": [
-    "New Content",
-    "Methodology",
+
     "Revision",
-    "Experiment"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.13": [
     "Revision",
-    "Experiment"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.14": [
     "Revision",
-    "Methodology",
-    "New Content"
+
   ],
   "Reviewer 5: Reviewer 5, Comment 5.15": [
-    "New Content",
-    "Experiment"
-  ],
-  "Unknown Reviewer: 2": [
     "Revision",
-    "Comparison"
   ]
 };

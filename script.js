@@ -1,16 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Legacy sidebar references removed
     const contentContainer = document.getElementById('content-container');
-    const toggleModeBtn = document.getElementById('toggle-mode');
-
-    // Theme toggle
-    toggleModeBtn.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-
     // Load saved theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -82,25 +72,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const legend = document.createElement('div');
         legend.className = 'dashboard-legend';
         legend.innerHTML = `
-            <div class="legend-item" data-tag="Experiment" onclick="toggleFilter('Experiment')">
+            <div class="legend-item" data-tag="Experiment">
                 <span class="stat-badge-full" style="color:#1e40af; background:#dbeafe;">🧪 Experiments</span>
                 <span class="legend-desc">New experiments have been added</span>
             </div>
-            <div class="legend-item" data-tag="Revision" onclick="toggleFilter('Revision')">
+            <div class="legend-item" data-tag="Revision">
                 <span class="stat-badge-full" style="color:#9d174d; background:#fce7f3;">📄 Revisions</span>
-                <span class="legend-desc">Text revisions and corrections</span>
+                <span class="legend-desc">part of the paper has benn revised revisions and corrections</span>
             </div>
-            <div class="legend-item" data-tag="New Content" onclick="toggleFilter('New Content')">
+            <div class="legend-item" data-tag="New Content">
                 <span class="stat-badge-full" style="color:#166534; background:#dcfce7;">➕ New Content</span>
-                <span class="legend-desc">New sections or appendices</span>
+                <span class="legend-desc">New sections hass been added</span>
             </div>
-            <div class="legend-item" data-tag="Methodology" onclick="toggleFilter('Methodology')">
+            <div class="legend-item" data-tag="Methodology">
                 <span class="stat-badge-full" style="color:#5b21b6; background:#f5f3ff;">🧠 Methodology</span>
-                <span class="legend-desc">Theoretical analysis and models</span>
+                <span class="legend-desc">Theoretical analysis and enhencement to the metodology has been conducted</span>
             </div>
-            <div class="legend-item" data-tag="Comparison" onclick="toggleFilter('Comparison')">
+            <div class="legend-item" data-tag="Comparison">
                 <span class="stat-badge-full" style="color:#c2410c; background:#fff7ed;">⚖️ Comparison</span>
-                <span class="legend-desc">Baseline and SOTA comparisons</span>
+                <span class="legend-desc">new Baseline and SOTA comparisons has been added</span>
             </div>
         `;
         header.appendChild(legend);
@@ -434,9 +424,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = document.createElement('div');
         header.className = 'sticky-header';
 
-        // Left: Home + Title
+        // Left: Home
         const left = document.createElement('div');
-        left.className = 'nav-controls';
+        left.className = 'nav-controls left-controls';
 
         const homeBtn = document.createElement('button');
         homeBtn.className = 'nav-btn';
@@ -444,54 +434,50 @@ document.addEventListener('DOMContentLoaded', () => {
         homeBtn.onclick = () => renderDashboard(responseData);
         left.appendChild(homeBtn);
 
-        // Previous
-        if (reviewerIndex > 0) { // Reviewer 1 is index 1
-            const prevBtn = document.createElement('button');
-            prevBtn.className = 'nav-btn';
-            prevBtn.innerHTML = '← Prev';
+        // Center: Navigation
+        const center = document.createElement('div');
+        center.className = 'nav-controls center-controls';
+
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'nav-btn';
+        prevBtn.innerHTML = '← Prev';
+        if (reviewerIndex > 0) {
             prevBtn.onclick = () => renderContent(responseData[reviewerIndex - 1], reviewerIndex - 1);
-            left.appendChild(prevBtn);
+        } else {
+            prevBtn.disabled = true;
+            prevBtn.classList.add('disabled');
         }
+        center.appendChild(prevBtn);
 
-        // Next
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'nav-btn';
+        nextBtn.innerHTML = 'Next →';
         if (reviewerIndex < responseData.length - 1) {
-            const nextBtn = document.createElement('button');
-            nextBtn.className = 'nav-btn';
-            nextBtn.innerHTML = 'Next →';
             nextBtn.onclick = () => renderContent(responseData[reviewerIndex + 1], reviewerIndex + 1);
-            left.appendChild(nextBtn);
+        } else {
+            nextBtn.disabled = true;
+            nextBtn.classList.add('disabled');
         }
+        center.appendChild(nextBtn);
 
-        // Center/Right: Search
+        // Right: Theme Toggle
         const right = document.createElement('div');
-        right.className = 'search-container';
-        right.innerHTML = `
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" placeholder="Search in this review...">
-        `;
+        right.className = 'nav-controls right-controls';
 
-        // Search logic
-        const input = right.querySelector('input');
-        input.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const items = document.querySelectorAll('.discussion-item');
-            items.forEach(item => {
-                const text = item.innerText.toLowerCase();
-                if (text.includes(term)) {
-                    item.style.display = ''; // Reset display (might conflict with filter, handle later)
-                    if (activeFilter) { // Re-apply filter check
-                        // Re-running applyFilter is safer but let's do simple check
-                        const tags = Array.from(item.querySelectorAll('.tag')).map(t => t.innerText.trim());
-                        if (!tags.some(t => t.includes(activeFilter))) item.classList.add('hidden-by-filter');
-                        else item.classList.remove('hidden-by-filter');
-                    }
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
+        const themeBtn = document.createElement('button');
+        themeBtn.className = 'nav-btn theme-toggle-header';
+        themeBtn.innerHTML = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+        themeBtn.onclick = () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeBtn.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
+        };
+        right.appendChild(themeBtn);
 
         header.appendChild(left);
+        header.appendChild(center);
         header.appendChild(right);
 
         return header;
@@ -505,17 +491,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = renderHeader(index, reviewerData.reviewer);
         contentContainer.appendChild(header);
 
-        // Add Filter Legend (Mini version) here? Or just focus on content.
-        // Maybe add "Collapse All" button here
+        // Response Controls
         const controls = document.createElement('div');
         controls.className = 'response-controls';
-        controls.style.padding = '0 2rem 1rem 2rem';
         controls.innerHTML = `<button class="nav-btn" id="collapse-all">Collapse All Responses</button>`;
         contentContainer.appendChild(controls);
 
+        let allCollapsed = false;
         controls.querySelector('#collapse-all').addEventListener('click', () => {
-            document.querySelectorAll('.response-card').forEach(card => {
-                card.style.display = card.style.display === 'none' ? 'block' : 'none';
+            allCollapsed = !allCollapsed;
+            const btn = controls.querySelector('#collapse-all');
+            btn.innerText = allCollapsed ? "Expand All Responses" : "Collapse All Responses";
+
+            document.querySelectorAll('.discussion-item').forEach(item => {
+                // The structure is discussion-item -> [tags, comment-card, arrow, response-card]
+                const responseCard = item.querySelector('.response-card');
+                if (responseCard) {
+                    if (allCollapsed) {
+                        responseCard.classList.add('collapsed');
+                    } else {
+                        responseCard.classList.remove('collapsed');
+                    }
+                    if (responseCard.style.display === 'none') responseCard.style.display = ''; // Reset
+                }
             });
         });
 
@@ -587,8 +585,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 responseHeader.className = 'response-header';
                 responseHeader.innerHTML = `
                     <h4>📝 Response</h4>
-                    <div class="minimize-btn">−</div>
+                    <div class="expand-icon">−</div>
                 `;
+
+                // Add click toggle
+                responseHeader.addEventListener('click', () => {
+                    responseCard.classList.toggle('collapsed');
+                });
 
                 const responseContent = document.createElement('div');
                 responseContent.className = 'response-content';
@@ -613,16 +616,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 responseCard.appendChild(responseHeader);
                 responseCard.appendChild(responseContent);
-
-                // Add toggle functionality
-                const minimizeBtn = responseHeader.querySelector('.minimize-btn');
-                let isMinimized = false;
-
-                responseHeader.addEventListener('click', () => {
-                    isMinimized = !isMinimized;
-                    responseContent.style.display = isMinimized ? 'none' : 'block';
-                    minimizeBtn.textContent = isMinimized ? '+' : '−';
-                });
 
                 discussionItem.appendChild(responseCard);
             }

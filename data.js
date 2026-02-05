@@ -12,11 +12,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       }
@@ -38,11 +38,11 @@ const responseData = [
           "figs/1-Metric_loss_ROC_boxplot.png"
         ],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -53,11 +53,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -68,11 +68,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -86,8 +86,8 @@ const responseData = [
         ],
         "tags": [
           "New Content",
-          "Methodology",
           "Comparison",
+          "Methodology",
           "Experiment"
         ],
         "is_intro": false
@@ -101,11 +101,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -130,8 +130,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -143,9 +143,9 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -166,11 +166,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -181,11 +181,11 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -197,9 +197,9 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -211,8 +211,8 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
-          "Methodology",
-          "Revision"
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -235,14 +235,14 @@ const responseData = [
       {
         "title": "Reviewer 3, Comment 3.1",
         "comment": "The novelty of the proposed method is not sufficiently clear. The framework appears to be a combination of existing techniques, including line graph modeling, GraphSAGE, and triplet loss. While the empirical improvements are demonstrated, the manuscript does not sufficiently explain why this particular combination is necessary. The overall motivation of the paper should be reorganized and strengthened.",
-        "response": "We sincerely thank the reviewer for this critical comment, which provides an opportunity to clarify the novelty and necessity of our proposed integration. We acknowledge that our framework incorporates components that individually exist in the literature. However, the core novelty of <b>LineML</b> lies not in the invention of entirely new algorithmic components, but in their <i>synergistic integration</i> to overcome fundamental limitations that have previously prevented line-graph-based methods from being a practical, scalable, and high-performing solution for link prediction.<div class=\"para-break\"></div><b>1. The Fundamental Limitations of Current Link Prediction Approaches</b> Current link prediction methods primarily learn node embeddings \\(\\mathbf{z}_u, \\mathbf{z}_v\\) and define edge scores via a decoder \\(f(\\mathbf{z}_u, \\mathbf{z}_v)\\). This approach treats edges as implicit byproducts of node similarity, which fails to capture the <i>higher-order relational structure</i> between edges themselves\u2014such as edge adjacency patterns crucial in social triadic closure or metabolic pathway connectivity. Additionally, while negative sampling addresses extreme class imbalance, most methods treat sampled negatives as uniformly difficult, ignoring that some non-edges (e.g., between distant, low-degree nodes) are trivial while others (e.g., between adjacent high-degree nodes) are highly challenging and informative.<div class=\"para-break\"></div><b>2. The Unrealized Potential of Line Graph Transformation</b> The line graph transformation offers a theoretically elegant alternative by converting each edge \\(e = (u,v)\\) in the original graph into a node \\(v_e\\) in the line graph, thereby reformulating link prediction as node classification. This allows edges to be modeled as <i>first-class entities</i> and directly captures relationships between edges through the adjacency structure of the line graph. The transformation also enables natural class balancing by constructing a line graph from both positive edges and carefully sampled negative edges.<div class=\"para-break\"></div>Despite these theoretical advantages, line graph methods have remained largely impractical due to three critical, interconnected challenges: <ol> <li><b>Featureless Edge-Nodes:</b> The nodes of the line graph (representing original graph edges) lack inherent features, leaving models with no meaningful input signal.</li> <li><b>Computational Intractability:</b> The line graph grows quadratically in size, with \\(O(m^2)\\) connections for an original graph with \\(m\\) edges, rendering training infeasible for networks beyond a few thousand edges.</li> <li><b>Difficulty-Aware Learning:</b> Even with balanced classes, negative edge-nodes vary significantly in difficulty, requiring the model to distinguish between plausible missing links and obviously non-existent connections.</li> </ol><div class=\"para-break\"></div><b>3. LineML's Co-Designed Integration</b> LineML's components are specifically co-designed to address these challenges in a complementary manner:<div class=\"para-break\"></div><b>GNN-Based Feature Learning on Line Graph</b> Our GraphSAGE-based encoder operates directly on the line graph \\(L(G)\\) to learn structural embeddings \\(\\mathbf{z}_v\\) for all line graph nodes \\(v \\in V_L\\). The model processes the initial node features \\(\\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v\\) through \\(K\\) layers of message passing, where each layer updates node representations by aggregating information from neighboring nodes:<div class=\"para-break\"></div>\\[ \\mathbf{h}_v^{(k)} = \\sigma\u2264ft( \\mathbf{W}^{(k)} \u2264ft[ \\mathbf{h}_v^{(k-1)} \\| \\text{AGGREGATE}^{(k)} \u2264ft( \\{ \\mathbf{h}_u^{(k-1)} : u \\in \\mathcal{N}(v) \\} \\right) \\right] \\right), \\]<div class=\"para-break\"></div>with \\(\\mathbf{h}_v^{(0)} = \\mathbf{x}_v\\) and \\(\\mathbf{z}_v = \\mathbf{h}_v^{(K)}\\). This approach is essential because GraphSAGE's inductive neighborhood aggregation captures both the initial Hadamard-transformed features and the multi-hop structural context within the line graph. The final embeddings \\(\\mathbf{z}_v\\) encode rich information about edge relationships, enabling effective downstream metric learning and classification.<div class=\"para-break\"></div><b>Adaptive Metric Learning with Degree-Biased Sampling for Discrimination</b> We combine degree-based negative sampling (with \\(p_{uv} \\propto d_u \\cdot d_v\\)) and triplet loss with adaptive margins (\\(\\gamma_{ijk} = \\gamma_0 \\cdot \\exp(-\\alpha \\cdot s_{ij})\\)). This combination is crucial because scale-free networks follow power-law degree distributions, making non-edges between high-degree nodes statistically surprising and thus informative hard negatives. The adaptive margin ensures the learning objective focuses on these challenging triplets where the negative is semantically close to the anchor, refining the embedding space geometry for better discrimination.<div class=\"para-break\"></div><b>Spectral Pruning and HPC Parallelization for Scalability</b> We apply spectral k-NN pruning based on effective resistance to reduce the line graph's edge count from \\(O(m^2)\\) to \\(O(k \\cdot m)\\) while preserving structurally important connections. This is paired with multi-GPU distributed training optimized for sparse tensor operations. Effective resistance serves as a natural distance metric on graphs, with smaller values indicating connections critical for spectral properties. Distributed training is essential because even after pruning, line graphs for real-world networks can have millions of connections, requiring optimized parallel processing to make training feasible.<div class=\"para-break\"></div><b>4. The Theoretical and Practical Necessity of Integration</b> The novelty of LineML lies in demonstrating that this specific integration creates the first <i>practical, scalable, and high-performing</i> line-graph-based link prediction framework. Each component addresses a critical weakness: <ul> <li>Without GraphSAGE feature induction, line graph nodes lack meaningful representations, severely limiting model capacity.</li> <li>Without degree-biased sampling and adaptive metric learning, the model cannot effectively distinguish hard from easy negatives, leading to suboptimal discrimination.</li> <li>Without spectral pruning and HPC parallelization, the quadratic computational cost makes the approach impractical for real-world networks.</li> </ul><div class=\"para-break\"></div><b>5. Enhanced Theoretical Foundation in Revised Manuscript</b> Our revised manuscript now provides comprehensive theoretical analysis that clarifies the necessity of each component and their synergistic integration. Specifically, we have added:<div class=\"para-break\"></div><ul> <li><i><b>Line Graph Properties (Section 3.4):</b></i> Theorem 1 formally establishes line graph size properties, Corollary 1 analyzes density implications, Theorem 4 proves expressivity equivalence between GNNs on line graphs and WL tests on original graphs, while Theorem 3 guarantees leakage-free information flow in temporal settings.</li><div class=\"para-break\"></div> <li><i><b>Node-to-Edge Transformation (Section 3.4.2):</b></i> Theorem 2 provides formal guarantees for our symmetric labeling scheme, ensuring information preservation and automorphism equivariance during feature transformation.</li><div class=\"para-break\"></div> <li><i><b>Adaptive Metric Learning (Section 3.7):</b></i> Proposition 2 formally analyzes gradient scaling properties and active set behavior, demonstrating how adaptive margins accelerate convergence and refine decision boundaries for challenging negatives.</li><div class=\"para-break\"></div> <li><i><b>Scalability via Pruning (Section 3.5):</b></i> Theorem 3 provides spectral distortion bounds for k-NN pruning, Lemma 2 establishes training time reduction guarantees, ensuring practical feasibility while maintaining performance.</li><div class=\"para-break\"></div> <li><i><b>Class Imbalance Mitigation (Section 3.3):</b></i> Formal sampling distributions and Proposition 1 on degree-consistent sampling provide theoretical foundation for handling extreme class imbalance.</li> </ul><div class=\"para-break\"></div>These theoretical contributions demonstrate that our integration is not merely a collection of existing techniques, but a carefully designed framework where each component addresses specific theoretical challenges that have previously prevented line-graph methods from being practical. The synergy between these mathematically-grounded components creates a cohesive solution to the fundamental limitations of existing link prediction approaches. We hope this detailed explanation clarifies the novelty and necessity of our integrated approach. Thank you for prompting us to articulate this crucial aspect of our contribution.",
+        "response": "We sincerely thank the reviewer for this critical comment, which provides an opportunity to clarify the novelty and necessity of our proposed integration. We acknowledge that our framework incorporates components that individually exist in the literature. However, the core novelty of <b>LineML</b> lies not in the invention of entirely new algorithmic components, but in their <i>synergistic integration</i> to overcome fundamental limitations that have previously prevented line-graph-based methods from being a practical, scalable, and high-performing solution for link prediction.<div class=\"para-break\"></div><b>1. The Fundamental Limitations of Current Link Prediction Approaches</b> Current link prediction methods primarily learn node embeddings \\(\\mathbf{z}_u, \\mathbf{z}_v\\) and define edge scores via a decoder \\(f(\\mathbf{z}_u, \\mathbf{z}_v)\\). This approach treats edges as implicit byproducts of node similarity, which fails to capture the <i>higher-order relational structure</i> between edges themselves\u2014such as edge adjacency patterns crucial in social triadic closure or metabolic pathway connectivity. Additionally, while negative sampling addresses extreme class imbalance, most methods treat sampled negatives as uniformly difficult, ignoring that some non-edges (e.g., between distant, low-degree nodes) are trivial while others (e.g., between adjacent high-degree nodes) are highly challenging and informative.<div class=\"para-break\"></div><b>2. The Unrealized Potential of Line Graph Transformation</b> The line graph transformation offers a theoretically elegant alternative by converting each edge \\(e = (u,v)\\) in the original graph into a node \\(v_e\\) in the line graph, thereby reformulating link prediction as node classification. This allows edges to be modeled as <i>first-class entities</i> and directly captures relationships between edges through the adjacency structure of the line graph. The transformation also enables natural class balancing by constructing a line graph from both positive edges and carefully sampled negative edges.<div class=\"para-break\"></div>Despite these theoretical advantages, line graph methods have remained largely impractical due to three critical, interconnected challenges: <ol> <li><b>Featureless Edge-Nodes:</b> The nodes of the line graph (representing original graph edges) lack inherent features, leaving models with no meaningful input signal.</li> <li><b>Computational Intractability:</b> The line graph grows quadratically in size, with \\(O(m^2)\\) connections for an original graph with \\(m\\) edges, rendering training infeasible for networks beyond a few thousand edges.</li> <li><b>Difficulty-Aware Learning:</b> Even with balanced classes, negative edge-nodes vary significantly in difficulty, requiring the model to distinguish between plausible missing links and obviously non-existent connections.</li> </ol><div class=\"para-break\"></div><b>3. LineML's Co-Designed Integration</b> LineML's components are specifically co-designed to address these challenges in a complementary manner:<div class=\"para-break\"></div><b>GNN-Based Feature Learning on Line Graph</b> Our GraphSAGE-based encoder operates directly on the line graph \\(L(G)\\) to learn structural embeddings \\(\\mathbf{z}_v\\) for all line graph nodes \\(v \\in V_L\\). The model processes the initial node features \\(\\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v\\) through \\(K\\) layers of message passing, where each layer updates node representations by aggregating information from neighboring nodes:<div class=\"para-break\"></div>\\[ \\mathbf{h}_v^{(k)} = \\sigma ( \\mathbf{W}^{(k)} [ \\mathbf{h}_v^{(k-1)} \\| \\text{AGGREGATE}^{(k)} ( \\{ \\mathbf{h}_u^{(k-1)} : u \\in \\mathcal{N}(v) \\} ) ] ), \\]<div class=\"para-break\"></div>with \\(\\mathbf{h}_v^{(0)} = \\mathbf{x}_v\\) and \\(\\mathbf{z}_v = \\mathbf{h}_v^{(K)}\\). This approach is essential because GraphSAGE's inductive neighborhood aggregation captures both the initial Hadamard-transformed features and the multi-hop structural context within the line graph. The final embeddings \\(\\mathbf{z}_v\\) encode rich information about edge relationships, enabling effective downstream metric learning and classification.<div class=\"para-break\"></div><b>Adaptive Metric Learning with Degree-Biased Sampling for Discrimination</b> We combine degree-based negative sampling (with \\(p_{uv} \\propto d_u \\cdot d_v\\)) and triplet loss with adaptive margins (\\(\\gamma_{ijk} = \\gamma_0 \\cdot \\exp(-\\alpha \\cdot s_{ij})\\)). This combination is crucial because scale-free networks follow power-law degree distributions, making non-edges between high-degree nodes statistically surprising and thus informative hard negatives. The adaptive margin ensures the learning objective focuses on these challenging triplets where the negative is semantically close to the anchor, refining the embedding space geometry for better discrimination.<div class=\"para-break\"></div><b>Spectral Pruning and HPC Parallelization for Scalability</b> We apply spectral k-NN pruning based on effective resistance to reduce the line graph's edge count from \\(O(m^2)\\) to \\(O(k \\cdot m)\\) while preserving structurally important connections. This is paired with multi-GPU distributed training optimized for sparse tensor operations. Effective resistance serves as a natural distance metric on graphs, with smaller values indicating connections critical for spectral properties. Distributed training is essential because even after pruning, line graphs for real-world networks can have millions of connections, requiring optimized parallel processing to make training feasible.<div class=\"para-break\"></div><b>4. The Theoretical and Practical Necessity of Integration</b> The novelty of LineML lies in demonstrating that this specific integration creates the first <i>practical, scalable, and high-performing</i> line-graph-based link prediction framework. Each component addresses a critical weakness: <ul> <li>Without GraphSAGE feature induction, line graph nodes lack meaningful representations, severely limiting model capacity.</li> <li>Without degree-biased sampling and adaptive metric learning, the model cannot effectively distinguish hard from easy negatives, leading to suboptimal discrimination.</li> <li>Without spectral pruning and HPC parallelization, the quadratic computational cost makes the approach impractical for real-world networks.</li> </ul><div class=\"para-break\"></div><b>5. Enhanced Theoretical Foundation in Revised Manuscript</b> Our revised manuscript now provides comprehensive theoretical analysis that clarifies the necessity of each component and their synergistic integration. Specifically, we have added:<div class=\"para-break\"></div><ul> <li><i><b>Line Graph Properties (Section 3.4):</b></i> Theorem 1 formally establishes line graph size properties, Corollary 1 analyzes density implications, Theorem 4 proves expressivity equivalence between GNNs on line graphs and WL tests on original graphs, while Theorem 3 guarantees leakage-free information flow in temporal settings.</li><div class=\"para-break\"></div> <li><i><b>Node-to-Edge Transformation (Section 3.4.2):</b></i> Theorem 2 provides formal guarantees for our symmetric labeling scheme, ensuring information preservation and automorphism equivariance during feature transformation.</li><div class=\"para-break\"></div> <li><i><b>Adaptive Metric Learning (Section 3.7):</b></i> Proposition 2 formally analyzes gradient scaling properties and active set behavior, demonstrating how adaptive margins accelerate convergence and refine decision boundaries for challenging negatives.</li><div class=\"para-break\"></div> <li><i><b>Scalability via Pruning (Section 3.5):</b></i> Theorem 3 provides spectral distortion bounds for k-NN pruning, Lemma 2 establishes training time reduction guarantees, ensuring practical feasibility while maintaining performance.</li><div class=\"para-break\"></div> <li><i><b>Class Imbalance Mitigation (Section 3.3):</b></i> Formal sampling distributions and Proposition 1 on degree-consistent sampling provide theoretical foundation for handling extreme class imbalance.</li> </ul><div class=\"para-break\"></div>These theoretical contributions demonstrate that our integration is not merely a collection of existing techniques, but a carefully designed framework where each component addresses specific theoretical challenges that have previously prevented line-graph methods from being practical. The synergy between these mathematically-grounded components creates a cohesive solution to the fundamental limitations of existing link prediction approaches. We hope this detailed explanation clarifies the novelty and necessity of our integrated approach. Thank you for prompting us to articulate this crucial aspect of our contribution.",
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -256,11 +256,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -272,8 +272,8 @@ const responseData = [
         "images": [],
         "tags": [
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -285,9 +285,9 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -300,25 +300,25 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 3, Comment 3.6",
         "comment": "One of the key advantages of line graph modeling is the ability to naturally incorporate edge attributes by transforming them into node features. The authors should clarify which edge attributes are used in the experiments and whether these edge attributes contribute to the performance improvements.",
-        "response": "We thank the reviewer for raising this important point about edge feature incorporation in line graph modeling. We address this comment in three parts:<div class=\"para-break\"></div><b>1. Theoretical Framework for Edge Feature Integration:</b> Despite the absence of edge features in our experimental datasets, we have designed LineML with a comprehensive theoretical framework for edge feature integration. As detailed in Section 3.4.2 (Node Attribute and Label Transformation), our method includes a flexible transformation that can incorporate edge features when available. The feature vector for a line graph node \\(v_{uv}\\) corresponding to edge \\((u,v)\\) is constructed as:<div class=\"para-break\"></div>\\begin{equation*} \\mathbf{x}_{uv} = \u2264ft( \\mathbf{x}_u \\odot \\mathbf{x}_v \\right) \\odot \\sigma\u2264ft(\\mathbf{W}_e \\mathbf{e}_{uv} + \\mathbf{b}_e\\right) + \\text{MLP}\u2264ft(\\mathbf{e}_{uv}\\right), \\end{equation*}<div class=\"para-break\"></div>where \\(\\mathbf{e}_{uv} \\in \\mathbb{R}^{d_e}\\) represents edge features, \\(\\odot\\) denotes the Hadamard product, and the gating mechanism \\(\\sigma\u2264ft(\\mathbf{W}_e \\mathbf{e}_{uv} + \\mathbf{b}_e\\right)\\) dynamically modulates node feature interactions based on edge characteristics. When edge features are unavailable, the transformation simplifies to \\(\\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v\\).<div class=\"para-break\"></div><b>2. Dataset Characteristics:</b> The benchmark datasets used in our experiments, including the 18 networks from the comprehensive evaluation in Table 2 and the additional biological and infrastructure networks, do not contain edge features. These datasets are standard in the link prediction literature (Grover and Leskovec, 2016; Zhang and Chen, 2018) and primarily include node features, structural information, and occasionally node labels. Therefore, in our experimental evaluation, we could not assess the specific contribution of edge features to performance improvements.<div class=\"para-break\"></div>While our current experimental evaluation focuses on standard benchmarks without edge features, we have established a comprehensive theoretical and methodological foundation for edge feature integration in LineML. This design choice ensures our framework's versatility and readiness for applications where edge attributes are available, while maintaining strong performance on conventional link prediction benchmarks.",
+        "response": "We thank the reviewer for raising this important point about edge feature incorporation in line graph modeling. We address this comment in three parts:<div class=\"para-break\"></div><b>1. Theoretical Framework for Edge Feature Integration:</b> Despite the absence of edge features in our experimental datasets, we have designed LineML with a comprehensive theoretical framework for edge feature integration. As detailed in Section 3.4.2 (Node Attribute and Label Transformation), our method includes a flexible transformation that can incorporate edge features when available. The feature vector for a line graph node \\(v_{uv}\\) corresponding to edge \\((u,v)\\) is constructed as:<div class=\"para-break\"></div>\\begin{equation*} \\mathbf{x}_{uv} = ( \\mathbf{x}_u \\odot \\mathbf{x}_v ) \\odot \\sigma (\\mathbf{W}_e \\mathbf{e}_{uv} + \\mathbf{b}_e) + \\text{MLP}(\\mathbf{e}_{uv}), \\end{equation*}<div class=\"para-break\"></div>where \\(\\mathbf{e}_{uv} \\in \\mathbb{R}^{d_e}\\) represents edge features, \\(\\odot\\) denotes the Hadamard product, and the gating mechanism \\(\\sigma ( \\mathbf{W}_e \\mathbf{e}_{uv} + \\mathbf{b}_e ) \\) dynamically modulates node feature interactions based on edge characteristics. When edge features are unavailable, the transformation simplifies to \\(\\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v\\).<div class=\"para-break\"></div><b>2. Dataset Characteristics:</b> The benchmark datasets used in our experiments, including the 18 networks from the comprehensive evaluation in Table 2 and the additional biological and infrastructure networks, do not contain edge features. These datasets are standard in the link prediction literature (Grover and Leskovec, 2016; Zhang and Chen, 2018) and primarily include node features, structural information, and occasionally node labels. Therefore, in our experimental evaluation, we could not assess the specific contribution of edge features to performance improvements.<div class=\"para-break\"></div>While our current experimental evaluation focuses on standard benchmarks without edge features, we have established a comprehensive theoretical and methodological foundation for edge feature integration in LineML. This design choice ensures our framework's versatility and readiness for applications where edge attributes are available, while maintaining strong performance on conventional link prediction benchmarks.",
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -330,9 +330,9 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -351,11 +351,11 @@ const responseData = [
           "figs/metrics_boxplots_grid.png"
         ],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -368,11 +368,11 @@ const responseData = [
           "figs/Fused_All_Pruning_Comparison.png"
         ],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -385,8 +385,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -399,8 +399,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -412,8 +412,8 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -436,8 +436,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -450,11 +450,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -465,11 +465,11 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -481,9 +481,9 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       }
@@ -499,11 +499,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -515,8 +515,8 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
-          "Methodology",
           "Comparison",
+          "Methodology",
           "Experiment"
         ],
         "is_intro": false
@@ -529,8 +529,8 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
-          "Methodology",
           "Comparison",
+          "Methodology",
           "Experiment"
         ],
         "is_intro": false
@@ -542,11 +542,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -558,9 +558,9 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -584,11 +584,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
+          "Revision",
           "New Content",
-          "Methodology",
           "Comparison",
-          "Revision"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -600,22 +600,22 @@ const responseData = [
         "images": [],
         "tags": [
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 5, Comment 5.9",
         "comment": "9. In Section 3.5, node labels l\\_u and l\\_v are introduced without definition. What do these labels represent? How are they calculated? What is the dimensionality of l\\_uv in Equation (1)? Similarly, x\\_u and x\\_v require detailed explanation.",
-        "response": "We thank the reviewer for this important observation. We acknowledge that in the previous version of the manuscript, the node labels \\(\\ell_u\\), \\(\\ell_v\\), as well as the node attributes \\(\\mathbf{x}_u\\) and \\(\\mathbf{x}_v\\), were introduced without sufficient explanation.<div class=\"para-break\"></div>To address this issue, Section 3.4 <i>Line Graph Generation</i>, and in particular Section 3.4.2 <i>Node Attribute and Label Transformation</i>, has been fully revised and expanded to provide the required definitions, computations, and dimensionality details.<div class=\"para-break\"></div><h4>Node labels \\(\\ell(u)\\) and \\(\\ell(v)\\).</h4> The quantities \\(\\ell(u)\\) and \\(\\ell(v)\\) denote the discrete labels associated with nodes \\(u\\) and \\(v\\) in the original graph \\(G\\). These labels represent categorical information (e.g., node types, community identifiers, or class memberships) and are defined through a vertex labeling function \\(\\ell: V \\rightarrow \\mathcal{C}\\), where \\(\\mathcal{C}\\) is a discrete label space. In practice, these labels are either provided as part of the dataset or can be obtained from community detection algorithms.<div class=\"para-break\"></div><h4>Composite edge label \\(\\ell(u,v)\\).</h4> For each edge \\((u,v) \\in E\\), the corresponding node in the line graph is assigned a composite label computed as \\[ \\ell(u,v) = \\bigl(\\min(\\ell(u), \\ell(v)), \\max(\\ell(u), \\ell(v))\\bigr). \\] The composite label \\(\\ell(u,v)\\) is a 2-dimensional discrete tuple in \\(\\mathcal{C} \u00d7 \\mathcal{C}\\). This symmetric construction ensures invariance to the ordering of \\(u\\) and \\(v\\) and uniquely represents the unordered endpoint pair. The properties of this transformation (symmetry, label injectivity, order invariance, and automorphism equivariance) are formally stated and proven in Theorem 2.<div class=\"para-break\"></div><h4>Node attributes \\(\\mathbf{x</h4>_u\\) and \\(\\mathbf{x}_v\\).} The vectors \\(\\mathbf{x}_u\\) and \\(\\mathbf{x}_v\\) denote the continuous-valued attribute vectors of nodes \\(u\\) and \\(v\\) in the original graph, respectively, with \\(\\mathbf{x}_u, \\mathbf{x}_v \\in \\mathbb{R}^d\\). These features are typically provided as part of the dataset or can be learned through preliminary embedding methods.<div class=\"para-break\"></div><h4>Line graph node features \\(\\mathbf{x</h4>_{uv}\\).} The feature vector of the corresponding line graph node is constructed using a Hadamard product transformation (with optional edge feature integration when available): \\[ \\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v \\in \\mathbb{R}^{d}, \\] where \\(\\odot\\) denotes the element-wise Hadamard product. When edge features \\(\\mathbf{e}_{uv} \\in \\mathbb{R}^{d_e}\\) are available, we use an enhanced transformation: \\[ \\mathbf{x}_{uv} = (\\mathbf{x}_u \\odot \\mathbf{x}_v) \\odot \\sigma(\\mathbf{W}_e \\mathbf{e}_{uv} + \\mathbf{b}_e) + \\text{MLP}(\\mathbf{e}_{uv}). \\] This approach captures multiplicative interactions between node features while maintaining dimensionality \\(d\\), offering greater expressiveness than simple concatenation without increasing parameter counts in downstream GNN layers.<div class=\"para-break\"></div>Section 3.4.2 has been fully revised to clearly define all introduced symbols, explain how they are computed, explicitly state their dimensionalities, and provide theoretical justification for the chosen transformations, thereby addressing the reviewer's concern.",
+        "response": "We thank the reviewer for this important observation. We acknowledge that in the previous version of the manuscript, the node labels \\(\\ell_u\\), \\(\\ell_v\\), as well as the node attributes \\(\\mathbf{x}_u\\) and \\(\\mathbf{x}_v\\), were introduced without sufficient explanation.<div class=\"para-break\"></div>To address this issue, Section 3.4 <i>Line Graph Generation</i>, and in particular Section 3.4.2 <i>Node Attribute and Label Transformation</i>, has been fully revised and expanded to provide the required definitions, computations, and dimensionality details.<div class=\"para-break\"></div><h4>Node labels \\(\\ell(u)\\) and \\(\\ell(v)\\).</h4> The quantities \\(\\ell(u)\\) and \\(\\ell(v)\\) denote the discrete labels associated with nodes \\(u\\) and \\(v\\) in the original graph \\(G\\). These labels represent categorical information (e.g., node types, community identifiers, or class memberships) and are defined through a vertex labeling function \\(\\ell: V \\rightarrow \\mathcal{C}\\), where \\(\\mathcal{C}\\) is a discrete label space. In practice, these labels are either provided as part of the dataset or can be obtained from community detection algorithms.<div class=\"para-break\"></div><h4>Composite edge label \\(\\ell(u,v)\\).</h4> For each edge \\((u,v) \\in E\\), the corresponding node in the line graph is assigned a composite label computed as \\[ \\ell(u,v) = \\bigl(\\min(\\ell(u), \\ell(v)), \\max(\\ell(u), \\ell(v))\\bigr). \\] The composite label \\(\\ell(u,v)\\) is a 2-dimensional discrete tuple in \\(\\mathcal{C} \u00d7 \\mathcal{C}\\). This symmetric construction ensures invariance to the ordering of \\(u\\) and \\(v\\) and uniquely represents the unordered endpoint pair. The properties of this transformation (symmetry, label injectivity, order invariance, and automorphism equivariance) are formally stated and proven in Theorem 2.<div class=\"para-break\"></div><h4>Node attributes</h4> The vectors \\(\\mathbf{x}_u\\) and \\(\\mathbf{x}_v\\) denote the continuous-valued attribute vectors of nodes \\(u\\) and \\(v\\) in the original graph, respectively, with \\(\\mathbf{x}_u, \\mathbf{x}_v \\in \\mathbb{R}^d\\). These features are typically provided as part of the dataset or can be learned through preliminary embedding methods.<div class=\"para-break\"></div><h4>Line graph node features</h4> The feature vector of the corresponding line graph node is constructed using a Hadamard product transformation (with optional edge feature integration when available): \\[ \\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v \\in \\mathbb{R}^{d}, \\] where \\(\\odot\\) denotes the element-wise Hadamard product. When edge features \\(\\mathbf{e}_{uv} \\in \\mathbb{R}^{d_e}\\) are available, we use an enhanced transformation: \\[ \\mathbf{x}_{uv} = (\\mathbf{x}_u \\odot \\mathbf{x}_v) \\odot \\sigma(\\mathbf{W}_e \\mathbf{e}_{uv} + \\mathbf{b}_e) + \\text{MLP}(\\mathbf{e}_{uv}). \\] This approach captures multiplicative interactions between node features while maintaining dimensionality \\(d\\), offering greater expressiveness than simple concatenation without increasing parameter counts in downstream GNN layers.<div class=\"para-break\"></div>Section 3.4.2 has been fully revised to clearly define all introduced symbols, explain how they are computed, explicitly state their dimensionalities, and provide theoretical justification for the chosen transformations, thereby addressing the reviewer's concern.",
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -627,9 +627,9 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -641,23 +641,23 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 5, Comment 5.12",
         "comment": "12. The relationship between \\(Z\\) (introduced in Section 3.6 as ``initial input node features'') and \\(X_{uv}\\) is not explained.",
-        "response": "We thank the reviewer for highlighting this point. This comment is very helpful, as clarifying the relationship between input features and learned embeddings improves the transparency of the framework and makes the data flow through the model easier to follow. \\[ \\mathbf{x}_u, \\mathbf{x}_v \\;\\xrightarrow{\\text{Line Graph}}\\; \\mathbf{x}_{uv} \\;\\xrightarrow{\\text{GNN}}\\; \\mathbf{Z} \\;\\xrightarrow{\\text{Metric}}\\; \\mathbf{Z}_{\\text{final}} \\;\\xrightarrow{\\text{Classifier}}\\; \\hat{y} \\]<div class=\"para-break\"></div>We have revised the manuscript to explicitly explain the relationship between \\(X_{uv}\\) and \\(\\mathbf{Z}\\), which are indeed distinct but connected representations in our pipeline:<div class=\"para-break\"></div><ol> <li><b>Input Node Features (\\(X_{uv</b>\\) \u2192 \\(\\mathbf{X}_L\\)):} \\(X_{uv}\\) (or more precisely, \\(\\mathbf{x}_{uv}\\)) represents the initial feature vector for a node in the line graph, constructed during the line graph generation stage (Section 3.4). For each edge \\((u,v)\\) in the original graph, the corresponding line graph node \\(v_{uv}\\) receives features \\(\\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v \\in \\mathbb{R}^d\\) (or the enhanced version with edge feature integration). The collection of all \\(\\mathbf{x}_{uv}\\) forms the input feature matrix \\(\\mathbf{X}_L \\in \\mathbb{R}^{|V_L| \u00d7 d}\\) of the line graph.</li><div class=\"para-break\"></div> <li><b>GNN Embeddings (\\(\\mathbf{Z</b>\\)):} The GNN module (Section 3.6) takes \\(\\mathbf{X}_L\\) as input and processes it through \\(K\\) layers of message passing. The output is the structural embedding matrix \\(\\mathbf{Z} \\in \\mathbb{R}^{|V_L| \u00d7 d_{\\text{out}}}\\), where each row \\(\\mathbf{z}_v\\) encodes the \\(K\\)-hop structural neighborhood and feature context of node \\(v\\) in the line graph.</li><div class=\"para-break\"></div> <li><b>Refined Representations (\\(\\mathbf{Z</b>_{\\text{final}}\\)):} These initial GNN embeddings \\(\\mathbf{Z}\\) are further refined through adaptive metric learning (Section 3.7) to produce \\(\\mathbf{Z}_{\\text{final}}\\), which are optimized for geometric separation between positive and negative edges.</li><div class=\"para-break\"></div> <li><b>Final Predictions (\\(\\hat{\\mathbf{y</b>}\\)):} Finally, the link classification module (Section 3.8) maps \\(\\mathbf{Z}_{\\text{final}}\\) to predicted probabilities \\(\\hat{\\mathbf{y}}\\).</li> </ol><div class=\"para-break\"></div>To address this comment thoroughly, we have made the following updates to the manuscript:<div class=\"para-break\"></div><ul> <li><b>Section 3.2 (Framework Overview):</b> Enhanced with a clear, step-by-step description of the data flow, explicitly showing the transformation from \\(\\mathbf{X}_L\\) to \\(\\mathbf{Z}\\), \\(\\mathbf{Z}_{\\text{final}}\\), and finally \\(\\hat{\\mathbf{y}}\\).</li><div class=\"para-break\"></div> <li><b>Section 3.6 (GNN Architecture):</b> Revised to explicitly state that \\(\\mathbf{X}_L\\) serves as the initial input (\\(\\mathbf{h}_v^{(0)} = \\mathbf{x}_v\\)), and that the GNN processes these features through \\(K\\) layers to produce \\(\\mathbf{Z} = \\mathbf{h}^{(K)}\\).</li><div class=\"para-break\"></div> <li><b>Notation Table (Table 1):</b> Clarified the distinction between \\(\\mathbf{X}_L\\) (input feature matrix) and \\(\\mathbf{Z}\\) (GNN output embeddings).</li><div class=\"para-break\"></div> <li><b>Figure 1:</b> Updated to visually show the progression from \"Line Graph with Features \\(\\mathbf{X}_L\\)\" to \"GNN Embeddings \\(\\mathbf{Z}\\)\" to \"Refined Embeddings \\(\\mathbf{Z}_{\\text{final}}\\)\".</li> </ul><div class=\"para-break\"></div>We hope that this clarification and the corresponding revisions adequately address the reviewer's concern. The relationship between the input features \\(X_{uv}\\), the intermediate GNN embeddings \\(\\mathbf{Z}\\), and the final predictions is now clearly defined and consistently referenced throughout the manuscript.",
+        "response": "We thank the reviewer for highlighting this point. This comment is very helpful, as clarifying the relationship between input features and learned embeddings improves the transparency of the framework and makes the data flow through the model easier to follow. \\[ \\mathbf{x}_u, \\mathbf{x}_v \\;\\xrightarrow{\\text{Line Graph}}\\; \\mathbf{x}_{uv} \\;\\xrightarrow{\\text{GNN}}\\; \\mathbf{Z} \\;\\xrightarrow{\\text{Metric}}\\; \\mathbf{Z}_{\\text{final}} \\;\\xrightarrow{\\text{Classifier}}\\; \\hat{y} \\]<div class=\"para-break\"></div>We have revised the manuscript to explicitly explain the relationship between \\(X_{uv}\\) and \\(\\mathbf{Z}\\), which are indeed distinct but connected representations in our pipeline:<div class=\"para-break\"></div><ol> <li><b>Input Node Features</b> \\(X_{uv}\\) \u2192 \\(\\mathbf{X}_L\\): \\(X_{uv}\\) (or more precisely, \\(\\mathbf{x}_{uv}\\)) represents the initial feature vector for a node in the line graph, constructed during the line graph generation stage (Section 3.4). For each edge \\((u,v)\\) in the original graph, the corresponding line graph node \\(v_{uv}\\) receives features \\(\\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v \\in \\mathbb{R}^d\\) (or the enhanced version with edge feature integration). The collection of all \\(\\mathbf{x}_{uv}\\) forms the input feature matrix \\(\\mathbf{X}_L \\in \\mathbb{R}^{|V_L| \u00d7 d}\\) of the line graph.</li><div class=\"para-break\"></div> <li><b>GNN Embeddings</b> \\(\\mathbf{Z}\\): The GNN module (Section 3.6) takes \\(\\mathbf{X}_L\\) as input and processes it through \\(K\\) layers of message passing. The output is the structural embedding matrix \\(\\mathbf{Z} \\in \\mathbb{R}^{|V_L| \u00d7 d_{\\text{out}}}\\), where each row \\(\\mathbf{z}_v\\) encodes the \\(K\\)-hop structural neighborhood and feature context of node \\(v\\) in the line graph.</li><div class=\"para-break\"></div> <li><b>Refined Representations</b> \\(\\mathbf{Z}_{\\text{final}}\\): These initial GNN embeddings \\(\\mathbf{Z}\\) are further refined through adaptive metric learning (Section 3.7) to produce \\(\\mathbf{Z}_{\\text{final}}\\), which are optimized for geometric separation between positive and negative edges.</li><div class=\"para-break\"></div> <li><b>Final Predictions</b> \\(\\hat{\\mathbf{y}}\\): Finally, the link classification module (Section 3.8) maps \\(\\mathbf{Z}_{\\text{final}}\\) to predicted probabilities \\(\\hat{\\mathbf{y}}\\).</li> </ol><div class=\"para-break\"></div>To address this comment thoroughly, we have made the following updates to the manuscript:<div class=\"para-break\"></div><ul> <li><b>Section 3.2 (Framework Overview):</b> Enhanced with a clear, step-by-step description of the data flow, explicitly showing the transformation from \\(\\mathbf{X}_L\\) to \\(\\mathbf{Z}\\), \\(\\mathbf{Z}_{\\text{final}}\\), and finally \\(\\hat{\\mathbf{y}}\\).</li><div class=\"para-break\"></div> <li><b>Section 3.6 (GNN Architecture):</b> Revised to explicitly state that \\(\\mathbf{X}_L\\) serves as the initial input (\\(\\mathbf{h}_v^{(0)} = \\mathbf{x}_v\\)), and that the GNN processes these features through \\(K\\) layers to produce \\(\\mathbf{Z} = \\mathbf{h}^{(K)}\\).</li><div class=\"para-break\"></div> <li><b>Notation Table (Table 1):</b> Clarified the distinction between \\(\\mathbf{X}_L\\) (input feature matrix) and \\(\\mathbf{Z}\\) (GNN output embeddings).</li><div class=\"para-break\"></div> <li><b>Figure 1:</b> Updated to visually show the progression from \"Line Graph with Features \\(\\mathbf{X}_L\\)\" to \"GNN Embeddings \\(\\mathbf{Z}\\)\" to \"Refined Embeddings \\(\\mathbf{Z}_{\\text{final}}\\)\".</li> </ul><div class=\"para-break\"></div>We hope that this clarification and the corresponding revisions adequately address the reviewer's concern. The relationship between the input features \\(X_{uv}\\), the intermediate GNN embeddings \\(\\mathbf{Z}\\), and the final predictions is now clearly defined and consistently referenced throughout the manuscript.",
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
           "New Content",
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -668,8 +668,8 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -681,8 +681,8 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
-          "Methodology",
-          "Revision"
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -695,23 +695,6 @@ const responseData = [
         "tags": [
           "New Content",
           "Experiment"
-        ],
-        "is_intro": false
-      }
-    ]
-  },
-  {
-    "reviewer": "Unknown Reviewer",
-    "comments": [
-      {
-        "title": "2",
-        "comment": "\\begin{reviewerbox}[#1]#2\\end{reviewerbox}",
-        "response": "\\vspace{0.5em}\\noindent<b>\\textsc{Response:</b>} #1\\vspace{1.5em}",
-        "reviewer": "Unknown Reviewer",
-        "images": [],
-        "tags": [
-          "Comparison",
-          "Revision"
         ],
         "is_intro": false
       }
