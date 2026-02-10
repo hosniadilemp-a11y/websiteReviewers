@@ -14,9 +14,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       }
@@ -40,9 +40,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -55,9 +55,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -70,9 +70,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -86,9 +86,9 @@ const responseData = [
         ],
         "tags": [
           "Experiment",
-          "New Content",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -103,9 +103,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -129,9 +129,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "Revision",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -143,9 +143,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -168,9 +168,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -183,9 +183,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -197,9 +197,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -210,9 +210,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -223,9 +223,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -242,9 +242,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -260,9 +260,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -274,8 +274,8 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "Revision",
-          "Methodology"
+          "Methodology",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -287,9 +287,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -304,9 +304,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -318,9 +318,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -332,9 +332,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -355,9 +355,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -372,9 +372,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -386,9 +386,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "Revision",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -400,9 +400,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "Revision",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -414,8 +414,8 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
-          "Revision"
+          "Revision",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -454,9 +454,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -469,9 +469,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -482,10 +482,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "New Content",
           "Revision",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -503,9 +503,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -517,9 +517,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -531,9 +531,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -546,9 +546,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -560,9 +560,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -574,9 +574,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "Revision",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -589,9 +589,9 @@ const responseData = [
         "tags": [
           "Experiment",
           "Revision",
-          "Comparison",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -603,8 +603,8 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "Revision",
-          "Methodology"
+          "Methodology",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -616,9 +616,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -630,9 +630,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -644,9 +644,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -658,9 +658,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -683,9 +683,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -697,9 +697,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "New Content",
           "Revision",
-          "Methodology"
+          "Methodology",
+          "New Content"
         ],
         "is_intro": false
       }
