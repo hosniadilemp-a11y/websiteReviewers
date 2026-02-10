@@ -437,12 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
         homeBtn.onclick = () => renderDashboard(responseData);
         left.appendChild(homeBtn);
 
-        // // Checklist Link (small)
-        // const checklistBtn = document.createElement('button');
-        // checklistBtn.className = 'nav-btn';
-        // checklistBtn.innerHTML = '✅ Checklist';
-        // checklistBtn.onclick = () => window.location.href = 'index2.html';
-        // left.appendChild(checklistBtn);
+
 
         // Center: Navigation
         const center = document.createElement('div');
