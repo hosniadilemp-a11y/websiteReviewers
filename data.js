@@ -12,11 +12,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       }
@@ -38,11 +38,11 @@ const responseData = [
           "figs/1-Metric_loss_ROC_boxplot.png"
         ],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -53,11 +53,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -68,11 +68,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -86,26 +86,26 @@ const responseData = [
         ],
         "tags": [
           "Experiment",
-          "Comparison",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Comparison"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 1, Comment 1.5",
         "comment": "5. The impact of different negative sampling strategies (e.g., degree-based sampling) on the results is not discussed.",
-        "response": "We thank the reviewer for raising this important point. The choice of negative sampling strategy is a critical design decision that significantly impacts both the theoretical properties and empirical performance of link prediction models. Below we provide a comprehensive discussion of this impact from both theoretical and empirical perspectives.<div class=\"para-break\"></div><b>I-Theoretical Impact of Sampling Strategies</b><div class=\"para-break\"></div>The negative sampling distribution \\(\\mathcal{P}\\) fundamentally shapes the learning signal presented to the model. Each strategy encodes different inductive biases about which non-edges are most informative:<div class=\"para-break\"></div><b>1. Random Sampling:</b> <ul> <li><b>Theoretical Basis:</b> Yields an unbiased sample from the non-edge distribution that maintains the overall statistical characteristics of \\(E^-\\).</li> <li><b>Learning Implication:</b> Presents a mixture of trivial and challenging examples proportional to their natural occurrence. While unbiased, it may waste capacity on easy negatives that offer minimal learning signal.</li> <li><b>Efficiency:</b> \\(O(1)\\) sampling complexity but requires \\(O(|V|^2)\\) memory for precomputation.</li> </ul><div class=\"para-break\"></div><b>2. Degree-Based Sampling:</b> <ul> <li><b>Theoretical Basis:</b> Leverages scale-free network properties where \\(p_{uv}^{\\text{deg}} \\propto d_u \\cdot d_v\\). Non-edges between high-degree nodes are statistically surprising under random connection models.</li> <li><b>Learning Implication:</b> Focuses learning on challenging, structurally plausible negatives. Forces the model to learn why certain high-degree pairs remain unconnected despite statistical likelihood.</li> <li><b>Efficiency:</b> \\(O(|V|)\\) preprocessing, \\(O(\\log |V|)\\) sampling via alias method, making it highly scalable.</li> </ul><div class=\"para-break\"></div><b>3. Common Neighbor Sampling:</b> <ul> <li><b>Theoretical Basis:</b> Based on sociological triadic closure principles, with \\(p_{uv}^{\\text{cn}} \\propto \\text{Jaccard}(u,v)^\\gamma\\).</li> <li><b>Learning Implication:</b> Emphasizes locally plausible negatives, particularly effective in social networks but may introduce locality bias unsuitable for non-social networks.</li> <li><b>Efficiency:</b> \\(O(|V|\\langle d^2\\rangle)\\) similarity computations, moderately expensive.</li> </ul><div class=\"para-break\"></div><b>4. Hard Negative Sampling:</b> <ul> <li><b>Theoretical Basis:</b> Adaptive strategy where \\(p_{uv}^{\\text{hard}} \\propto \\exp(\\phi_\\theta(u,v)/\\tau)\\) evolves with model capability.</li> <li><b>Learning Implication:</b> Maximizes learning signal by presenting the most challenging examples, but risks training instability if negatives are too hard early in training.</li> <li><b>Efficiency:</b> \\(O(|V|^2)\\) for exact computation, requiring sophisticated approximations for scalability.</li> </ul><div class=\"para-break\"></div><b>II-Empirical Impact and Analysis</b><div class=\"para-break\"></div>We conducted systematic experiments comparing all four sampling strategies across our 18 benchmark datasets. The results, presented in Section 5.1.3 and visualized in Figure , demonstrate clear performance differences:<div class=\"para-break\"></div><b>1. Performance Rankings:</b> <ul> <li><b>Random + Metric Learning:</b> Highest median ROC-AUC (0.961) but with high variance across datasets.</li> <li><b>Degree-Based + Metric Learning:</b> Second-highest median (0.959) with significantly lower variance (IQR 0.033 vs 0.045 for random).</li> <li><b>Common Neighbor + Metric Learning:</b> Moderate performance (median 0.944) with substantial variability.</li> <li><b>Hard + Metric Learning:</b> Lowest performance (median 0.929) with highest variance, indicating instability.</li> </ul><div class=\"para-break\"></div> <b>2. The Paradox of Random Sampling:</b> While random sampling achieves the highest median AUC, this is largely due to its inclusion of many trivial negatives that are easily separable from positives. This creates deceptively high scores but does not necessarily translate to robust discrimination of challenging cases. The high interquartile range (0.045) suggests inconsistent performance across different network types.<div class=\"para-break\"></div> <b>3. Superiority of Degree-Based Sampling:</b> Degree-based sampling provides the optimal trade-off: <ul> <li><b>Consistency:</b> Lowest variance among all strategies when combined with metric learning.</li> <li><b>Robustness:</b> Maintains strong performance across all network types (social, biological, citation, infrastructure).</li> <li><b>Pedagogical Value:</b> By focusing on statistically surprising negatives, it forces the model to learn meaningful discriminative features rather than relying on simple heuristics.</li> </ul><div class=\"para-break\"></div><b>4. Metric Learning Amplification:</b> The impact of sampling strategy is magnified when combined with metric learning: <ul> <li>Metric learning improves all strategies, but the improvement is most dramatic for degree-based sampling (reducing IQR from 0.022 to 0.033).</li> <li>The combination of degree-biased sampling (providing challenging negatives) and adaptive margin triplet loss (refining embeddings based on difficulty) creates a synergistic effect.</li> </ul><div class=\"para-break\"></div><b>5. Computational Efficiency Considerations:</b> <ul> <li>Degree-based sampling requires only linear preprocessing and logarithmic sampling time, making it ideal for large-scale applications.</li> <li>Hard negative sampling, while theoretically appealing, proved computationally prohibitive for large graphs and showed the worst empirical performance due to training instability.</li> </ul><div class=\"para-break\"></div><b>III- Revised parts in the Manuscript</b><div class=\"para-break\"></div>In response to the reviewer's comment, we have made the following key additions to the manuscript:<div class=\"para-break\"></div><ul> <li><b>New Section 3.3:</b> A detailed theoretical analysis of negative sampling strategies, including formal definitions and mathematical properties for random, degree-based, common-neighbor, and hard negative sampling.</li> <li><b>New Section 5.2.3:</b> Experimental evaluation of negative sampling strategies (Fig. 9), demonstrating that degree-based sampling provides the best balance of accuracy, robustness, and efficiency when combined with metric learning.</li> <li><b>Enhanced Framework Overview (Section 3.1):</b> Clearer description of how link sampling integrates with the overall LineML pipeline, including its role in addressing class imbalance.</li> </ul><div class=\"para-break\"></div>The analysis confirms that negative sampling strategy is not merely an implementation detail but a critical design choice that significantly impacts model performance, with degree-based sampling emerging as the theoretically grounded and empirically superior approach.",
+        "response": "We thank the reviewer for raising this important point. The choice of negative sampling strategy is a critical design decision that significantly impacts both the theoretical properties and empirical performance of link prediction models. Below we provide a comprehensive discussion of this impact from both theoretical and empirical perspectives.<div class=\"para-break\"></div><b>I-Theoretical Impact of Sampling Strategies</b><div class=\"para-break\"></div>The negative sampling distribution \\(\\mathcal{P}\\) fundamentally shapes the learning signal presented to the model. Each strategy encodes different inductive biases about which non-edges are most informative:<div class=\"para-break\"></div><b>1. Random Sampling:</b> <ul> <li><b>Theoretical Basis:</b> Yields an unbiased sample from the non-edge distribution that maintains the overall statistical characteristics of \\(E^-\\).</li> <li><b>Learning Implication:</b> Presents a mixture of trivial and challenging examples proportional to their natural occurrence. While unbiased, it may waste capacity on easy negatives that offer minimal learning signal.</li> <li><b>Efficiency:</b> \\(O(1)\\) sampling complexity but requires \\(O(|V|^2)\\) memory for precomputation.</li> </ul><div class=\"para-break\"></div><b>2. Degree-Based Sampling:</b> <ul> <li><b>Theoretical Basis:</b> Leverages scale-free network properties where \\(p_{uv}^{\\text{deg}} \\propto d_u \\cdot d_v\\). Non-edges between high-degree nodes are statistically surprising under random connection models.</li> <li><b>Learning Implication:</b> Focuses learning on challenging, structurally plausible negatives. Forces the model to learn why certain high-degree pairs remain unconnected despite statistical likelihood.</li> <li><b>Efficiency:</b> \\(O(|V|)\\) preprocessing, \\(O(\\log |V|)\\) sampling via alias method, making it highly scalable.</li> </ul><div class=\"para-break\"></div><b>3. Common Neighbor Sampling:</b> <ul> <li><b>Theoretical Basis:</b> Based on sociological triadic closure principles, with \\(p_{uv}^{\\text{cn}} \\propto \\text{Jaccard}(u,v)^\\gamma\\).</li> <li><b>Learning Implication:</b> Emphasizes locally plausible negatives, particularly effective in social networks but may introduce locality bias unsuitable for non-social networks.</li> <li><b>Efficiency:</b> \\(O(|V|\\langle d^2\\rangle)\\) similarity computations, moderately expensive.</li> </ul><div class=\"para-break\"></div><b>4. Hard Negative Sampling:</b> <ul> <li><b>Theoretical Basis:</b> Adaptive strategy where \\(p_{uv}^{\\text{hard}} \\propto \\exp(\\phi_\\theta(u,v)/\\tau)\\) evolves with model capability.</li> <li><b>Learning Implication:</b> Maximizes learning signal by presenting the most challenging examples, but risks training instability if negatives are too hard early in training.</li> <li><b>Efficiency:</b> \\(O(|V|^2)\\) for exact computation, requiring sophisticated approximations for scalability.</li> </ul><div class=\"para-break\"></div><b>II-Empirical Impact and Analysis</b><div class=\"para-break\"></div>We conducted systematic experiments comparing all four sampling strategies across our 18 benchmark datasets. The results, presented in Section 5.1.3 and visualized in Figure , demonstrate clear performance differences:<div class=\"para-break\"></div><b>1. Performance Rankings:</b> <ul> <li><b>Random + Metric Learning:</b> Highest median ROC-AUC (0.961) but with high variance across datasets.</li> <li><b>Degree-Based + Metric Learning:</b> Second-highest median (0.959) with significantly lower variance (IQR 0.033 vs 0.045 for random).</li> <li><b>Common Neighbor + Metric Learning:</b> Moderate performance (median 0.944) with substantial variability.</li> <li><b>Hard + Metric Learning:</b> Lowest performance (median 0.929) with highest variance, indicating instability.</li> </ul><div class=\"para-break\"></div> <b>2. Superiority of Degree-Based Sampling:</b> Degree-based sampling provides the optimal trade-off: <ul> <li><b>Consistency:</b> Lowest variance among all strategies when combined with metric learning.</li> <li><b>Robustness:</b> Maintains strong performance across all network types (social, biological, citation, infrastructure).</li> <li><b>Pedagogical Value:</b> By focusing on statistically surprising negatives, it forces the model to learn meaningful discriminative features rather than relying on simple heuristics.</li> </ul><div class=\"para-break\"></div><b>III- Revised parts in the Manuscript</b><div class=\"para-break\"></div>In response to the reviewer's comment, we have made the following key additions to the manuscript:<div class=\"para-break\"></div><ul> <li><b>New Section 3.3:</b> A detailed theoretical analysis of negative sampling strategies, including formal definitions and mathematical properties for random, degree-based, common-neighbor, and hard negative sampling.</li> <li><b>New Section 5.2.3:</b> Experimental evaluation of negative sampling strategies (Fig. 9), demonstrating that degree-based sampling provides the best balance of accuracy, robustness, and efficiency when combined with metric learning.</li> <li><b>Enhanced Framework Overview (Section 3.1):</b> Clearer description of how link sampling integrates with the overall LineML pipeline, including its role in addressing class imbalance.</li> </ul><div class=\"para-break\"></div>The analysis confirms that negative sampling strategy is not merely an implementation detail but a critical design choice that significantly impacts model performance, with degree-based sampling emerging as the theoretically grounded and empirically superior approach.",
         "reviewer": "Reviewer 1",
         "images": [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -128,10 +128,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Comparison",
-          "Methodology"
+          "Revision",
+          "Methodology",
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -142,10 +142,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       }
@@ -166,11 +166,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -181,11 +181,11 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -196,10 +196,10 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -210,9 +210,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Methodology",
-          "New Content"
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -223,9 +223,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Methodology",
-          "New Content"
+          "Methodology"
         ],
         "is_intro": false
       }
@@ -241,10 +241,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -258,11 +258,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -273,8 +273,8 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
+          "Revision",
           "Methodology"
         ],
         "is_intro": false
@@ -286,10 +286,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -302,11 +302,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -317,10 +317,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -331,10 +331,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       }
@@ -353,11 +353,11 @@ const responseData = [
           "figs/metrics_boxplots_grid.png"
         ],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -370,11 +370,11 @@ const responseData = [
           "figs/Fused_All_Pruning_Comparison.png"
         ],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -385,10 +385,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Comparison",
-          "Methodology"
+          "Revision",
+          "Methodology",
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -399,10 +399,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Comparison",
-          "Methodology"
+          "Revision",
+          "Methodology",
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -413,9 +413,9 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "New Content"
+          "New Content",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -438,8 +438,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Revision",
-          "Experiment"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -452,11 +452,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -467,11 +467,11 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -482,10 +482,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Comparison",
           "Methodology",
-          "New Content"
+          "Comparison"
         ],
         "is_intro": false
       }
@@ -501,11 +501,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -517,9 +517,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "Comparison",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -531,9 +531,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Experiment",
-          "Comparison",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -544,11 +544,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -559,10 +559,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -573,10 +573,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Comparison",
-          "Methodology"
+          "Revision",
+          "Methodology",
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -587,11 +587,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
-          "Methodology",
-          "New Content",
           "Experiment",
-          "Comparison"
+          "Revision",
+          "Comparison",
+          "New Content",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -602,8 +602,8 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
+          "Revision",
           "Methodology"
         ],
         "is_intro": false
@@ -615,10 +615,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -629,10 +629,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -643,10 +643,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -657,10 +657,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -671,8 +671,8 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
-          "Experiment"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -683,9 +683,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Methodology",
-          "New Content"
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -696,10 +696,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Experiment",
-          "Methodology",
-          "New Content"
+          "New Content",
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       }
