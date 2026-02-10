@@ -15,8 +15,7 @@ const commentTags = {
   ],
   "Reviewer 1: Reviewer 1, Comment 1.2": [
     "Revision",
-    "Experiment",
-    "Comparison"
+    "Experiment"
   ],
   "Reviewer 1: Reviewer 1, Comment 1.3": [
     "Experiment",
@@ -57,7 +56,7 @@ const commentTags = {
   "Reviewer 2: Reviewer 2, Comment 2.2": [
     "Revision",
     "Experiment",
-    "New Content",
+
     "Comparison"
   ],
   "Reviewer 2: Reviewer 2, Comment 2.3": [
@@ -127,9 +126,7 @@ const commentTags = {
   ],
   "Reviewer 4: Reviewer 4, Comment 4.4": [
     "Revision",
-    "Methodology",
-    "Experiment",
-    "Comparison"
+
   ],
   "Reviewer 4: Reviewer 4, Comment 4.5": [
 
