@@ -64,14 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const dashboard = document.createElement('div');
         dashboard.className = 'dashboard';
 
-        const header = document.createElement('div');
-        header.className = 'dashboard-header';
-        header.innerHTML = `
-            <h1>Outline of Responses</h1>
-            <button class="nav-btn realistic-btn" onclick="window.location.href='index2.html'" style="margin: 1rem auto; display: flex; width: fit-content; font-size: 1.1rem; padding: 0.8rem 1.5rem;">
-                ✅ Open Paper Final Polish Checklist
-            </button>
-        `;
+        // const header = document.createElement('div');
+        // header.className = 'dashboard-header';
+        // header.innerHTML = `
+        //     <h1>Outline of Responses</h1>
+        //     <button class="nav-btn realistic-btn" onclick="window.location.href='index2.html'" style="margin: 1rem auto; display: flex; width: fit-content; font-size: 1.1rem; padding: 0.8rem 1.5rem;">
+        //         ✅ Open Paper Final Polish Checklist
+        //     </button>
+        // `;
 
         // Add Legend
         const legend = document.createElement('div');
@@ -439,12 +439,12 @@ document.addEventListener('DOMContentLoaded', () => {
         homeBtn.onclick = () => renderDashboard(responseData);
         left.appendChild(homeBtn);
 
-        // Checklist Link (small)
-        const checklistBtn = document.createElement('button');
-        checklistBtn.className = 'nav-btn';
-        checklistBtn.innerHTML = '✅ Checklist';
-        checklistBtn.onclick = () => window.location.href = 'index2.html';
-        left.appendChild(checklistBtn);
+        // // Checklist Link (small)
+        // const checklistBtn = document.createElement('button');
+        // checklistBtn.className = 'nav-btn';
+        // checklistBtn.innerHTML = '✅ Checklist';
+        // checklistBtn.onclick = () => window.location.href = 'index2.html';
+        // left.appendChild(checklistBtn);
 
         // Center: Navigation
         const center = document.createElement('div');
