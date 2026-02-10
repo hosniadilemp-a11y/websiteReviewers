@@ -66,6 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const header = document.createElement('div');
         header.className = 'dashboard-header';
+        header.innerHTML = `
+            <h1>Outline of Responses</h1>
+
+        `;
 
         // Add Legend
         const legend = document.createElement('div');
@@ -433,12 +437,12 @@ document.addEventListener('DOMContentLoaded', () => {
         homeBtn.onclick = () => renderDashboard(responseData);
         left.appendChild(homeBtn);
 
-        // Checklist Link (small)
-        const checklistBtn = document.createElement('button');
-        checklistBtn.className = 'nav-btn';
-        checklistBtn.innerHTML = '✅ Checklist';
-        checklistBtn.onclick = () => window.location.href = 'index2.html';
-        left.appendChild(checklistBtn);
+        // // Checklist Link (small)
+        // const checklistBtn = document.createElement('button');
+        // checklistBtn.className = 'nav-btn';
+        // checklistBtn.innerHTML = '✅ Checklist';
+        // checklistBtn.onclick = () => window.location.href = 'index2.html';
+        // left.appendChild(checklistBtn);
 
         // Center: Navigation
         const center = document.createElement('div');
