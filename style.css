@@ -1030,13 +1030,18 @@ body {
 }
 
 /* Legend Styling */
+/* Legend Styling */
 .dashboard-legend {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
     margin: 1.5rem auto 2.5rem auto;
-    max-width: 600px;
-    padding: 1rem;
+    max-width: 900px;
+    /* Increased from 600px */
+    width: 95%;
+    /* Responsive width */
+    padding: 1.5rem;
+    /* More breathing room */
     background-color: var(--bg-color);
     border: 1px solid var(--card-border);
     border-radius: 8px;
@@ -1052,8 +1057,12 @@ body {
 }
 
 .legend-desc {
-    opacity: 0.8;
+    opacity: 0.9;
     font-family: var(--font-sans);
+    text-align: left;
+    /* Explicit left align */
+    flex: 1;
+    /* Allow text to take remaining space */
 }
 
 /* Responsive Legend */

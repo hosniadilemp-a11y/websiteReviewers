@@ -66,7 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const header = document.createElement('div');
         header.className = 'dashboard-header';
-        header.innerHTML = `<h1>Outline of Responses</h1>`;
+        header.innerHTML = `
+            <h1>Outline of Responses</h1>
+            <button class="nav-btn realistic-btn" onclick="window.location.href='index2.html'" style="margin: 1rem auto; display: flex; width: fit-content; font-size: 1.1rem; padding: 0.8rem 1.5rem;">
+                ✅ Open Paper Final Polish Checklist
+            </button>
+        `;
 
         // Add Legend
         const legend = document.createElement('div');
@@ -78,19 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="legend-item" data-tag="Revision">
                 <span class="stat-badge-full" style="color:#9d174d; background:#fce7f3;">📄 Revisions</span>
-                <span class="legend-desc">part of the paper has benn revised revisions and corrections</span>
+                <span class="legend-desc">Parts of the paper have been revised and corrected</span>
             </div>
             <div class="legend-item" data-tag="New Content">
                 <span class="stat-badge-full" style="color:#166534; background:#dcfce7;">➕ New Content</span>
-                <span class="legend-desc">New sections hass been added</span>
+                <span class="legend-desc">New sections have been added</span>
             </div>
             <div class="legend-item" data-tag="Methodology">
                 <span class="stat-badge-full" style="color:#5b21b6; background:#f5f3ff;">🧠 Methodology</span>
-                <span class="legend-desc">Theoretical analysis and enhencement to the metodology has been conducted</span>
+                <span class="legend-desc">Theoretical analysis and methodology enhancements have been conducted</span>
             </div>
             <div class="legend-item" data-tag="Comparison">
                 <span class="stat-badge-full" style="color:#c2410c; background:#fff7ed;">⚖️ Comparison</span>
-                <span class="legend-desc">new Baseline and SOTA comparisons has been added</span>
+                <span class="legend-desc">New Baseline and SOTA comparisons have been added</span>
             </div>
         `;
         header.appendChild(legend);
@@ -433,6 +438,13 @@ document.addEventListener('DOMContentLoaded', () => {
         homeBtn.innerHTML = '🏠 Home';
         homeBtn.onclick = () => renderDashboard(responseData);
         left.appendChild(homeBtn);
+
+        // Checklist Link (small)
+        const checklistBtn = document.createElement('button');
+        checklistBtn.className = 'nav-btn';
+        checklistBtn.innerHTML = '✅ Checklist';
+        checklistBtn.onclick = () => window.location.href = 'index2.html';
+        left.appendChild(checklistBtn);
 
         // Center: Navigation
         const center = document.createElement('div');
