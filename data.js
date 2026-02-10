@@ -13,10 +13,10 @@ const responseData = [
         ],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       }
@@ -39,10 +39,10 @@ const responseData = [
         ],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -54,10 +54,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -69,10 +69,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -85,10 +85,10 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Comparison",
           "Methodology",
+          "New Content",
           "Experiment",
-          "New Content"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -102,10 +102,10 @@ const responseData = [
         ],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -116,8 +116,8 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
-          "Methodology"
+          "Methodology",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -128,10 +128,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Comparison",
           "Methodology",
           "Revision",
-          "Experiment"
+          "Experiment",
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -144,8 +144,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -167,10 +167,10 @@ const responseData = [
         ],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -182,10 +182,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -198,8 +198,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -210,8 +210,8 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Revision",
           "Methodology",
+          "Revision",
           "New Content"
         ],
         "is_intro": false
@@ -219,11 +219,13 @@ const responseData = [
       {
         "title": "Reviewer 2, Comment 2.5",
         "comment": "Provide a code, when you prepare to revise this work.",
-        "response": "We sincerely thank the reviewer for this valuable comment. We fully agree that code availability is essential for transparency, reproducibility, and the practical adoption of research contributions, particularly for a complex framework such as the proposed LineML model.<div class=\"para-break\"></div>In response, we have attached a link to the implementation of LineML, which is currently hosted in a private repository. The code has been made available to the editors and reviewers. Upon acceptance of the paper, the repository will be released publicly to ensure full reproducibility and accessibility.<div class=\"para-break\"></div>We believe that providing controlled access to the code at this stage, together with a clear commitment to public release upon publication, strikes an appropriate balance between reproducibility and responsible dissemination. We hope this adequately addresses the reviewer\u2019s request and meets the journal\u2019s expectations for transparency and scientific rigor.",
+        "response": "We sincerely thank the reviewer for this important suggestion. As also requested by Reviewer 5 (Comment \\hyperref[comment:5.15]{5.15}), we have now publicly released the complete LineML implementation at:<div class=\"para-break\"></div>\\texttt{https://github.com/hosniadilemp-a11y/LineML\\_framework.git}<div class=\"para-break\"></div>In addition, the revised manuscript now contains a <b>Code and Data Availability</b> section pointing to this repository.<div class=\"para-break\"></div>These changes were introduced explicitly to address both reviewers\u2019 concerns in a unified manner, ensuring full reproducibility, transparency, and accessibility of the proposed framework. We believe that this open-source release, together with the manuscript revisions, adequately fulfills the reviewers\u2019 requests and strengthens the scientific rigor and impact of the paper.",
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Methodology"
+          "Methodology",
+          "Revision",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -241,8 +243,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -257,10 +259,10 @@ const responseData = [
         ],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -286,8 +288,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -301,10 +303,10 @@ const responseData = [
         ],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -317,8 +319,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -331,8 +333,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -352,10 +354,10 @@ const responseData = [
         ],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -369,10 +371,10 @@ const responseData = [
         ],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -383,10 +385,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Comparison",
           "Methodology",
           "Revision",
-          "Experiment"
+          "Experiment",
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -397,10 +399,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Comparison",
           "Methodology",
           "Revision",
-          "Experiment"
+          "Experiment",
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -412,8 +414,8 @@ const responseData = [
         "images": [],
         "tags": [
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -424,8 +426,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -451,10 +453,10 @@ const responseData = [
         ],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -466,10 +468,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -480,10 +482,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Comparison",
-          "Revision",
           "Methodology",
-          "New Content"
+          "Revision",
+          "New Content",
+          "Comparison"
         ],
         "is_intro": false
       }
@@ -500,10 +502,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -514,10 +516,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
           "Methodology",
+          "New Content",
           "Experiment",
-          "New Content"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -528,10 +530,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
           "Methodology",
+          "New Content",
           "Experiment",
-          "New Content"
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -543,10 +545,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -559,8 +561,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -571,9 +573,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "Comparison"
         ],
         "is_intro": false
       },
@@ -585,10 +587,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Comparison",
-          "Revision",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -614,8 +616,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -628,8 +630,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -642,8 +644,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -656,8 +658,8 @@ const responseData = [
         "tags": [
           "Methodology",
           "Revision",
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -680,8 +682,8 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Methodology",
+          "Revision",
           "New Content"
         ],
         "is_intro": false
@@ -689,12 +691,14 @@ const responseData = [
       {
         "title": "Reviewer 5, Comment 5.15",
         "comment": "To enhance credibility and transparency, the authors should consider open-sourcing the experimental code on GitHub.",
-        "response": "We strongly agree that code availability promotes transparency, reproducibility, and scientific progress. We have prepared a complete and well-documented GitHub repository containing the full implementation of LineML, including all preprocessing scripts, hyperparameter configurations, and experiment replication code. <div class=\"para-break\"></div>To provide immediate transparency during the review process, we have submitted a link to the code repository as a private supplementary file. This allows reviewers to inspect the implementation, verify the experimental setup, and assess reproducibility directly.<div class=\"para-break\"></div>Furthermore, we have added a **\"Code and Data Availability\"** section at the end of the manuscript, committing to make the repository publicly available upon acceptance of the manuscript. This ensures that the research community will have full access to the code for replication, extension, and practical application.",
+        "response": "We strongly agree that code availability is essential for transparency, reproducibility, and scientific progress. In response to this comment (and in alignment with Reviewer 2, Comment \\hyperref[comment:2.5]{2.5}), we have publicly released a complete and well-documented GitHub repository containing the full implementation of LineML, including preprocessing scripts, hyperparameter configurations, and experiment replication code:<div class=\"para-break\"></div>\\texttt{https://github.com/hosniadilemp-a11y/LineML\\_framework.git}<div class=\"para-break\"></div>Furthermore, the manuscript has been revised to include a dedicated <b>Code and Data Availability</b> section explicitly referencing this repository.<div class=\"para-break\"></div>By making the implementation openly accessible and documenting the experimental pipeline, we directly address both reviewers\u2019 requests and substantially enhance the credibility, reproducibility, and practical usability of our work. We believe this modification fully satisfies the transparency requirements raised in both comments.",
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "New Content"
+          "Methodology",
+          "Revision",
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       }
