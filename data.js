@@ -12,11 +12,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       }
@@ -38,11 +38,11 @@ const responseData = [
           "figs/1-Metric_loss_ROC_boxplot.png"
         ],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -53,11 +53,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -68,11 +68,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -85,10 +85,10 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Experiment",
-          "Methodology",
+          "New Content",
           "Comparison",
-          "New Content"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -101,11 +101,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -116,8 +116,8 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
-          "Methodology"
+          "Methodology",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -128,9 +128,9 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Experiment",
           "Methodology",
           "Comparison",
+          "Experiment",
           "Revision"
         ],
         "is_intro": false
@@ -142,10 +142,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       }
@@ -166,11 +166,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -181,11 +181,11 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -196,10 +196,10 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -210,9 +210,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -223,9 +223,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Revision"
         ],
         "is_intro": false
       }
@@ -237,14 +237,14 @@ const responseData = [
       {
         "title": "Reviewer 3, Comment 3.1",
         "comment": "The novelty of the proposed method is not sufficiently clear. The framework appears to be a combination of existing techniques, including line graph modeling, GraphSAGE, and triplet loss. While the empirical improvements are demonstrated, the manuscript does not sufficiently explain why this particular combination is necessary. The overall motivation of the paper should be reorganized and strengthened.",
-        "response": "We sincerely thank the reviewer for this critical comment, which provides an opportunity to clarify the novelty and necessity of our proposed integration. We acknowledge that our framework incorporates components that individually exist in the literature. However, the core novelty of <b>LineML</b> lies not in the invention of entirely new algorithmic components, but in their <i>synergistic integration</i> to overcome fundamental limitations that have previously prevented line-graph-based methods from being a practical, scalable, and high-performing solution for link prediction.<div class=\"para-break\"></div><b>1. The Fundamental Limitations of Current Link Prediction Approaches</b> Current link prediction methods primarily learn node embeddings \\(\\mathbf{z}_u, \\mathbf{z}_v\\) and define edge scores via a decoder \\(f(\\mathbf{z}_u, \\mathbf{z}_v)\\). This approach treats edges as implicit byproducts of node similarity, which fails to capture the <i>higher-order relational structure</i> between edges themselves\u2014such as edge adjacency patterns crucial in social triadic closure or metabolic pathway connectivity. Additionally, while negative sampling addresses extreme class imbalance, most methods treat sampled negatives as uniformly difficult, ignoring that some non-edges (e.g., between distant, low-degree nodes) are trivial while others (e.g., between adjacent high-degree nodes) are highly challenging and informative.<div class=\"para-break\"></div><b>2. The Unrealized Potential of Line Graph Transformation</b> The line graph transformation offers a theoretically elegant alternative by converting each edge \\(e = (u,v)\\) in the original graph into a node \\(v_e\\) in the line graph, thereby reformulating link prediction as node classification. This allows edges to be modeled as <i>first-class entities</i> and directly captures relationships between edges through the adjacency structure of the line graph. The transformation also enables natural class balancing by constructing a line graph from both positive edges and carefully sampled negative edges.<div class=\"para-break\"></div>Despite these theoretical advantages, line graph methods have remained largely impractical due to three critical, interconnected challenges: <ol> <li><b>Featureless Edge-Nodes:</b> The nodes of the line graph (representing original graph edges) lack inherent features, leaving models with no meaningful input signal.</li> <li><b>Computational Intractability:</b> The line graph grows quadratically in size, with \\(O(m^2)\\) connections for an original graph with \\(m\\) edges, rendering training infeasible for networks beyond a few thousand edges.</li> <li><b>Difficulty-Aware Learning:</b> Even with balanced classes, negative edge-nodes vary significantly in difficulty, requiring the model to distinguish between plausible missing links and obviously non-existent connections.</li> </ol><div class=\"para-break\"></div><b>3. LineML's Co-Designed Integration</b> LineML's components are specifically co-designed to address these challenges in a complementary manner:<div class=\"para-break\"></div><b>GNN-Based Feature Learning on Line Graph</b> Our GraphSAGE-based encoder operates directly on the line graph \\(L(G)\\) to learn structural embeddings \\(\\mathbf{z}_v\\) for all line graph nodes \\(v \\in V_L\\). The model processes the initial node features \\(\\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v\\) through \\(K\\) layers of message passing, where each layer updates node representations by aggregating information from neighboring nodes:<div class=\"para-break\"></div>\\[ \\mathbf{h}_v^{(k)} = \\sigma ( \\mathbf{W}^{(k)} [ \\mathbf{h}_v^{(k-1)} \\| \\text{AGGREGATE}^{(k)} ( \\{ \\mathbf{h}_u^{(k-1)} : u \\in \\mathcal{N}(v) \\} ) ] ), \\]<div class=\"para-break\"></div>with \\(\\mathbf{h}_v^{(0)} = \\mathbf{x}_v\\) and \\(\\mathbf{z}_v = \\mathbf{h}_v^{(K)}\\). This approach is essential because GraphSAGE's inductive neighborhood aggregation captures both the initial Hadamard-transformed features and the multi-hop structural context within the line graph. The final embeddings \\(\\mathbf{z}_v\\) encode rich information about edge relationships, enabling effective downstream metric learning and classification.<div class=\"para-break\"></div><b>Adaptive Metric Learning with Degree-Biased Sampling for Discrimination</b> We combine degree-based negative sampling (with \\(p_{uv} \\propto d_u \\cdot d_v\\)) and triplet loss with adaptive margins (\\(\\gamma_{ijk} = \\gamma_0 \\cdot \\exp(-\\alpha \\cdot s_{ij})\\)). This combination is crucial because scale-free networks follow power-law degree distributions, making non-edges between high-degree nodes statistically surprising and thus informative hard negatives. The adaptive margin ensures the learning objective focuses on these challenging triplets where the negative is semantically close to the anchor, refining the embedding space geometry for better discrimination.<div class=\"para-break\"></div><b>Spectral Pruning and HPC Parallelization for Scalability</b> We apply spectral k-NN pruning based on effective resistance to reduce the line graph's edge count from \\(O(m^2)\\) to \\(O(k \\cdot m)\\) while preserving structurally important connections. This is paired with multi-GPU distributed training optimized for sparse tensor operations. Effective resistance serves as a natural distance metric on graphs, with smaller values indicating connections critical for spectral properties. Distributed training is essential because even after pruning, line graphs for real-world networks can have millions of connections, requiring optimized parallel processing to make training feasible.<div class=\"para-break\"></div><b>4. The Theoretical and Practical Necessity of Integration</b> The novelty of LineML lies in demonstrating that this specific integration creates the first <i>practical, scalable, and high-performing</i> line-graph-based link prediction framework. Each component addresses a critical weakness: <ul> <li>Without GraphSAGE feature induction, line graph nodes lack meaningful representations, severely limiting model capacity.</li> <li>Without degree-biased sampling and adaptive metric learning, the model cannot effectively distinguish hard from easy negatives, leading to suboptimal discrimination.</li> <li>Without spectral pruning and HPC parallelization, the quadratic computational cost makes the approach impractical for real-world networks.</li> </ul><div class=\"para-break\"></div><b>5. Enhanced Theoretical Foundation in Revised Manuscript</b> Our revised manuscript now provides comprehensive theoretical analysis that clarifies the necessity of each component and their synergistic integration. Specifically, we have added:<div class=\"para-break\"></div><ul> <li><i><b>Line Graph Properties (Section 3.4):</b></i> Theorem 1 formally establishes line graph size properties, Corollary 1 analyzes density implications, Theorem 4 proves expressivity equivalence between GNNs on line graphs and WL tests on original graphs, while Theorem 3 guarantees leakage-free information flow in temporal settings.</li><div class=\"para-break\"></div> <li><i><b>Node-to-Edge Transformation (Section 3.4.2):</b></i> Theorem 2 provides formal guarantees for our symmetric labeling scheme, ensuring information preservation and automorphism equivariance during feature transformation.</li><div class=\"para-break\"></div> <li><i><b>Adaptive Metric Learning (Section 3.7):</b></i> Proposition 2 formally analyzes gradient scaling properties and active set behavior, demonstrating how adaptive margins accelerate convergence and refine decision boundaries for challenging negatives.</li><div class=\"para-break\"></div> <li><i><b>Scalability via Pruning (Section 3.5):</b></i> Theorem 3 provides spectral distortion bounds for k-NN pruning, Lemma 2 establishes training time reduction guarantees, ensuring practical feasibility while maintaining performance.</li><div class=\"para-break\"></div> <li><i><b>Class Imbalance Mitigation (Section 3.3):</b></i> Formal sampling distributions and Proposition 1 on degree-consistent sampling provide theoretical foundation for handling extreme class imbalance.</li> </ul><div class=\"para-break\"></div>These theoretical contributions demonstrate that our integration is not merely a collection of existing techniques, but a carefully designed framework where each component addresses specific theoretical challenges that have previously prevented line-graph methods from being practical. The synergy between these mathematically-grounded components creates a cohesive solution to the fundamental limitations of existing link prediction approaches. We hope this detailed explanation clarifies the novelty and necessity of our integrated approach. Thank you for prompting us to articulate this crucial aspect of our contribution.",
+        "response": "We sincerely thank the reviewer for this critical comment, which provides an opportunity to clarify the novelty and necessity of our proposed integration. We acknowledge that our framework incorporates components that individually exist in the literature. However, the core novelty of <b>LineML</b> lies not in the invention of entirely new algorithmic components, but in their <i>synergistic integration</i> to overcome fundamental limitations that have previously prevented line-graph-based methods from being a practical, scalable, and high-performing solution for link prediction.<div class=\"para-break\"></div><b>1. The Fundamental Limitations of Current Link Prediction Approaches</b> Current link prediction methods primarily learn node embeddings \\(\\mathbf{z}_u, \\mathbf{z}_v\\) and define edge scores via a decoder \\(f(\\mathbf{z}_u, \\mathbf{z}_v)\\). This approach treats edges as implicit byproducts of node similarity, which fails to capture the <i>higher-order relational structure</i> between edges themselves\u2014such as edge adjacency patterns crucial in social triadic closure or metabolic pathway connectivity. Additionally, while negative sampling addresses extreme class imbalance, most methods treat sampled negatives as uniformly difficult, ignoring that some non-edges (e.g., between distant, low-degree nodes) are trivial while others (e.g., between adjacent high-degree nodes) are highly challenging and informative.<div class=\"para-break\"></div><b>2. The Potential of Line Graph Transformation</b> The line graph transformation offers a theoretically elegant alternative by converting each edge \\(e = (u,v)\\) in the original graph into a node \\(v_e\\) in the line graph, thereby reformulating link prediction as node classification. This allows edges to be modeled as <i>first-class entities</i> and directly captures relationships between edges through the adjacency structure of the line graph. The transformation also enables natural class balancing by constructing a line graph from both positive edges and carefully sampled negative edges.<div class=\"para-break\"></div>Despite these theoretical advantages, line graph methods have remained largely impractical due to three critical, interconnected challenges: <ol> <li><b>Featureless Edge-Nodes:</b> The nodes of the line graph (representing original graph edges) lack inherent features, leaving models with no meaningful input signal.</li> <li><b>Computational Intractability:</b> The line graph grows quadratically in size, with \\(O(m^2)\\) connections for an original graph with \\(m\\) edges, rendering training infeasible for networks beyond a few thousand edges.</li> <li><b>Difficulty-Aware Learning:</b> Even with balanced classes, negative edge-nodes vary significantly in difficulty, requiring the model to distinguish between plausible missing links and obviously non-existent connections.</li> </ol><div class=\"para-break\"></div><b>3. LineML's Co-Designed Integration</b> LineML's components are specifically co-designed to address these challenges in a complementary manner:<div class=\"para-break\"></div><b>GNN-Based Feature Learning on Line Graph</b> Our GraphSAGE-based encoder operates directly on the line graph \\(L(G)\\) to learn structural embeddings \\(\\mathbf{z}_v\\) for all line graph nodes \\(v \\in V_L\\). The model processes the initial node features \\(\\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v\\) through \\(K\\) layers of message passing, where each layer updates node representations by aggregating information from neighboring nodes:<div class=\"para-break\"></div>\\[ \\mathbf{h}_v^{(k)} = \\sigma ( \\mathbf{W}^{(k)} [ \\mathbf{h}_v^{(k-1)} \\| \\text{AGGREGATE}^{(k)} ( \\{ \\mathbf{h}_u^{(k-1)} : u \\in \\mathcal{N}(v) \\} ) ] ), \\]<div class=\"para-break\"></div>with \\(\\mathbf{h}_v^{(0)} = \\mathbf{x}_v\\) and \\(\\mathbf{z}_v = \\mathbf{h}_v^{(K)}\\). This approach is essential because GraphSAGE's inductive neighborhood aggregation captures both the initial Hadamard-transformed features and the multi-hop structural context within the line graph. The final embeddings \\(\\mathbf{z}_v\\) encode rich information about edge relationships, enabling effective downstream metric learning and classification.<div class=\"para-break\"></div><b>Adaptive Metric Learning with Degree-Biased Sampling for Discrimination</b> We combine degree-based negative sampling (with \\(p_{uv} \\propto d_u \\cdot d_v\\)) and triplet loss with adaptive margins (\\(\\gamma_{ijk} = \\gamma_0 \\cdot \\exp(-\\alpha \\cdot s_{ij})\\)). This combination is crucial because scale-free networks follow power-law degree distributions, making non-edges between high-degree nodes statistically surprising and thus informative hard negatives. The adaptive margin ensures the learning objective focuses on these challenging triplets where the negative is semantically close to the anchor, refining the embedding space geometry for better discrimination.<div class=\"para-break\"></div><b>Spectral Pruning and HPC Parallelization for Scalability</b> We apply spectral k-NN pruning based on effective resistance to reduce the line graph's edge count from \\(O(m^2)\\) to \\(O(k \\cdot m)\\) while preserving structurally important connections. This is paired with multi-GPU distributed training optimized for sparse tensor operations. Effective resistance serves as a natural distance metric on graphs, with smaller values indicating connections critical for spectral properties. Distributed training is essential because even after pruning, line graphs for real-world networks can have millions of connections, requiring optimized parallel processing to make training feasible.<div class=\"para-break\"></div><b>4. The Theoretical and Practical Necessity of Integration</b> The novelty of LineML lies in demonstrating that this specific integration creates the first <i>practical, scalable, and high-performing</i> line-graph-based link prediction framework. Each component addresses a critical weakness: <ul> <li>Without GraphSAGE feature induction, line graph nodes lack meaningful representations, severely limiting model capacity.</li> <li>Without degree-biased sampling and adaptive metric learning, the model cannot effectively distinguish hard from easy negatives, leading to suboptimal discrimination.</li> <li>Without spectral pruning and HPC parallelization, the quadratic computational cost makes the approach impractical for real-world networks.</li> </ul><div class=\"para-break\"></div><b>5. Enhanced Theoretical Foundation in Revised Manuscript</b> Our revised manuscript now provides comprehensive theoretical analysis that clarifies the necessity of each component and their synergistic integration. Specifically, we have added:<div class=\"para-break\"></div><ul> <li><i><b>Line Graph Properties (Section 3.4):</b></i> Theorem 1 formally establishes line graph size properties, Corollary 1 analyzes density implications, Theorem 4 proves expressivity equivalence between GNNs on line graphs and WL tests on original graphs, while Theorem 3 guarantees leakage-free information flow in temporal settings.</li><div class=\"para-break\"></div> <li><i><b>Node-to-Edge Transformation (Section 3.4.2):</b></i> Theorem 2 provides formal guarantees for our symmetric labeling scheme, ensuring information preservation and automorphism equivariance during feature transformation.</li><div class=\"para-break\"></div> <li><i><b>Adaptive Metric Learning (Section 3.7):</b></i> Proposition 2 formally analyzes gradient scaling properties and active set behavior, demonstrating how adaptive margins accelerate convergence and refine decision boundaries for challenging negatives.</li><div class=\"para-break\"></div> <li><i><b>Scalability via Pruning (Section 3.5):</b></i> Theorem 3 provides spectral distortion bounds for k-NN pruning, Lemma 2 establishes training time reduction guarantees, ensuring practical feasibility while maintaining performance.</li><div class=\"para-break\"></div> <li><i><b>Class Imbalance Mitigation (Section 3.3):</b></i> Formal sampling distributions and Proposition 1 on degree-consistent sampling provide theoretical foundation for handling extreme class imbalance.</li> </ul><div class=\"para-break\"></div>These theoretical contributions demonstrate that our integration is not merely a collection of existing techniques, but a carefully designed framework where each component addresses specific theoretical challenges that have previously prevented line-graph methods from being practical. The synergy between these mathematically-grounded components creates a cohesive solution to the fundamental limitations of existing link prediction approaches. We hope this detailed explanation clarifies the novelty and necessity of our integrated approach. Thank you for prompting us to articulate this crucial aspect of our contribution.",
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -258,23 +258,23 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 3, Comment 3.3",
         "comment": "Although the paper includes comprehensive ablation experiments, these analyses are conducted on only five datasets. The authors should justify why ablation is not performed on all datasets, or alternatively, at least one dataset from each network type listed in Table 1.",
-        "response": "We thank the reviewer for this thoughtful comment and for highlighting the importance of representative ablation analysis. We agree that ablation studies should reflect the diversity of network types considered in the benchmark evaluation.<div class=\"para-break\"></div><b>Clarification and correction.</b> We would like to clarify that the ablation study is conducted on <b>seven</b> datasets, not five. These datasets are explicitly selected to ensure coverage of all major network categories listed in Table 1. The selected datasets are: <b>BUP</b>, <b>UAL</b>, <b>GRQ</b>, <b>SMG</b>, <b>PubMed</b>, <b>YST</b>, and <b>CEG</b>. <b>Coverage of network categories.</b> <ol> <li><i>Citation networks</i>: PubMed; </li> <li><i>Co-authorship networks</i>: GRQ and SMG; </li> <li><i>Biological networks</i>: YST and CEG; </li> <li><i>Social networks</i>: BUP; <li><i>Infrastructure networks</i>: UAL. </ol> Each dataset represents a distinct network type:<div class=\"para-break\"></div>This selection ensures that the ablation analysis reflects variations in domain, graph size, density, directionality, and structural complexity.<div class=\"para-break\"></div>While the full benchmark includes 18 datasets, performing exhaustive ablation studies on all of them would be computationally prohibitive, particularly given the quadratic growth of line graphs and the use of multi-GPU training. More importantly, many datasets within the same category share similar structural properties, making redundant ablations unlikely to yield additional insights.<div class=\"para-break\"></div>Instead, we adopt a representative-subset strategy, which is standard practice in large-scale graph learning studies. The chosen seven datasets span small to large graphs, sparse to relatively dense structures, and directed to undirected settings. This allows us to conduct detailed ablation analyses on hyperparameter sensitivity, metric learning components, and core architectural choices, while still capturing the diversity of behaviors observed across the full benchmark.<div class=\"para-break\"></div>The goal of the ablation study is not to re-evaluate performance on every dataset, but to understand how key design decisions influence LineML\u2019s behavior across fundamentally different graph regimes. The consistency of trends observed in the ablation results, together with the full-scale evaluation on all 18 datasets, supports the generality of the conclusions.<div class=\"para-break\"></div>We have revised the manuscript to make this selection rationale explicit and to clearly state that the ablation datasets were chosen to ensure balanced coverage across all network categories.",
+        "response": "We thank the reviewer for this thoughtful comment emphasizing the importance of representative ablation analysis. We fully agree that ablation studies should reflect the diversity of network types considered in the benchmark evaluation.<div class=\"para-break\"></div><b>Clarification and revision.</b> In response to this comment, we have expanded the ablation study from <b>five</b> datasets in the original submission to <b>seven</b> datasets in the revised manuscript. This modification was introduced explicitly to improve representativeness and directly address the reviewer\u2019s concern. The selected datasets are: <b>BUP</b>, <b>UAL</b>, <b>GRQ</b>, <b>SMG</b>, <b>PubMed</b>, <b>YST</b>, and <b>CEG</b>. These datasets were deliberately chosen to ensure balanced coverage of all major network categories listed in Table 1.<div class=\"para-break\"></div><b>Coverage of network categories.</b> <ol> <li><i>Citation networks</i>: PubMed; </li> <li><i>Co-authorship networks</i>: GRQ and SMG; </li> <li><i>Biological networks</i>: YST and CEG; </li> <li><i>Social networks</i>: BUP; </li> <li><i>Infrastructure networks</i>: UAL. </li> </ol><div class=\"para-break\"></div>Each dataset represents a distinct network type, collectively spanning variations in domain, graph size, density, directionality, and structural complexity. By increasing the number of ablation datasets and ensuring coverage across all categories, we strengthen the robustness and generality of the ablation conclusions.<div class=\"para-break\"></div>Although the full benchmark includes 18 datasets, performing exhaustive ablation studies on all of them would be computationally prohibitive, particularly given the quadratic expansion induced by line-graph construction and the use of multi-GPU training. Moreover, datasets within the same category often exhibit similar structural characteristics, making redundant ablations unlikely to provide additional insight.<div class=\"para-break\"></div>Instead, we adopt a representative-subset strategy, which is standard practice in large-scale graph learning research. The selected seven datasets span small to large graphs, sparse to relatively dense structures, and directed to undirected settings. This enables detailed analysis of hyperparameter sensitivity, metric learning components, and core architectural choices while preserving diversity across graph regimes.<div class=\"para-break\"></div>The objective of the ablation study is not to replicate performance evaluation on every dataset, but to isolate and understand the impact of key design decisions across fundamentally different network types. The consistency of trends observed in the ablation results, together with comprehensive evaluation on all 18 datasets, supports the generality of our conclusions.<div class=\"para-break\"></div>We have revised the manuscript accordingly to explicitly state this updated selection rationale and to clarify that the ablation datasets were expanded and chosen to ensure balanced coverage across all network categories.",
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Experiment",
           "Methodology",
+          "Experiment",
           "Revision"
         ],
         "is_intro": false
@@ -282,14 +282,15 @@ const responseData = [
       {
         "title": "Reviewer 3, Comment 3.4",
         "comment": "The manuscript claims that LineML \u201ceffectively addresses challenges in large-scale and sparse graphs by leveraging each component\u2019s unique strengths.\u201d However, most datasets used in the experiments are not large-scale. In addition, to support claims related to sparsity, the authors should report basic network statistics such as graph density.",
-        "response": "We thank the reviewer for this valuable feedback. We have significantly expanded our experimental validation to address both points regarding graph scale and sparsity.<div class=\"para-break\"></div><b>1. Extended Dataset Collection:</b> In our revised manuscript, we now evaluate LineML on 18 diverse networks spanning citation, co-authorship, social, biological, and infrastructure domains. This includes four additional large-scale datasets (Physics, PubMed, HPD, and ZWL) alongside the existing smaller and medium-sized graphs. The expanded collection demonstrates scalability across a wide range of graph sizes, from small networks like BUP (105 nodes) to large-scale graphs like Physics (34,493 nodes, 247,962 edges) and its corresponding line graph (991,848 nodes, \\(\u2248\\)45 million edges).<div class=\"para-break\"></div><b>2. Comprehensive Network Statistics:</b> As requested, Table 1 in our revised manuscript now includes detailed statistics for both original graphs and their line graphs, including: <ul> <li>Node and edge counts</li> <li>Feature dimensions (where applicable)</li> <li><b>Density/Sparsity metrics</b> (reported as both density percentage and sparsity percentage)</li> </ul><div class=\"para-break\"></div>The data reveal that most networks are indeed sparse (original graph densities typically \\(\u2264 0.3%\\)), while their line graphs are even sparser (typically \\(\u2264 0.1%\\) density), validating our focus on sparsity adaptation.<div class=\"para-break\"></div><b>3. Theoretical Foundations for Scalability and Sparsity Adaptation:</b> We have developed theoretical mechanisms to handle large-scale graphs: <ul> <li><b>Pruning techniques:</b> Section 3.5 presents three pruning strategies with theoretical guarantees. For spectral sparsification (Algorithm 2), we prove \\((1\u00b1\\epsilon)\\)-approximation of the Laplacian quadratic form. Lemma 2 establishes that training time scales linearly with the preservation ratio \\(\\alpha\\).</li> <li><b>Parallel implementation:</b> Our distributed architecture is designed for HPC environments, with analysis showing that communication overhead reduces proportionally to the pruning ratio.</li> <li><b>Adaptive metric learning:</b> Proposition 1 in Section 3.7 demonstrates gradient-scaling properties that enable effective separation in sparse regions by amplifying learning signals for challenging examples.</li> </ul><div class=\"para-break\"></div><b>4. Empirical Validation of Scalability and Sparsity Adaptation:</b> Extensive experiments in Section 4.4 (Non-Functional Performance) validate these theoretical foundations: <ul> <li><b>Pruning effectiveness:</b> Table 5 shows that k-NN pruning reduces line graph edge counts by up to 75% while preserving accuracy. Fig. 5 demonstrates up to \\(4.6\u00d7\\) training speedup on individual GPUs.</li> <li><b>Parallel scalability:</b> Fig. 4 shows that parallel implementation achieves up to \\(13.98\u00d7\\) speedup on the Physics network when combined with pruning.</li> </ul><div class=\"para-break\"></div><div class=\"table-container\"><div class=\"para-break\"></div><div class=\"table-caption\">Statistics of Original Graphs and their corresponding Line Graphs (LG).</div><div class=\"para-break\"></div><table><tr><td colspan=\"3\"><b>Dataset Info</b></td><td colspan=\"4\"><b>Original Graph</b></td><td colspan=\"3\"><b>Line Graph (LG)</b></td></tr><tr><td><b>Category</b></td><td><b>Name</b></td><td><b>Type</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Feat.</b></td><td><b>Dens/Spar(%)</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Dens/Spar(%)</b></td></tr><tr><td><b>Citation</b></td><td>Cora</td><td>Undirected</td><td>2,708</td><td>5,278</td><td>1,433</td><td>0.14 / 99.86</td><td>21,112</td><td>314,992</td><td>0.07 / 99.93</td></tr><tr><td></td><td>CiteSeer</td><td>Undirected</td><td>3,327</td><td>4,552</td><td>3,703</td><td>0.08 / 99.92</td><td>18,208</td><td>203,788</td><td>0.06 / 99.94</td></tr><tr><td></td><td>PubMed</td><td>Undirected</td><td>19,717</td><td>44,324</td><td>500</td><td>0.02 / 99.98</td><td>177,296</td><td>3,496,168</td><td>0.01 / 99.99</td></tr><tr><td><b>Co-authorship</b></td><td>Physics</td><td>Undirected</td><td>34,493</td><td>247,962</td><td>8,415</td><td>0.04 / 99.96</td><td>991,848</td><td>45,856,498</td><td>0.005 / 99.99</td></tr><tr><td></td><td>ZWL</td><td>Directed</td><td>6,651</td><td>108,364</td><td>0</td><td>0.25 / 99.75</td><td>216,728</td><td>11,873,265</td><td>0.03 / 99.97</td></tr><tr><td></td><td>LDG</td><td>Directed</td><td>8,324</td><td>83,064</td><td>0</td><td>0.12 / 99.88</td><td>166,128</td><td>9,409,089</td><td>0.03 / 99.97</td></tr><tr><td></td><td>GRQ</td><td>Directed</td><td>5,241</td><td>28,968</td><td>0</td><td>0.11 / 99.89</td><td>57,936</td><td>1,231,571</td><td>0.04 / 99.96</td></tr><tr><td></td><td>NSC</td><td>Directed</td><td>1,461</td><td>5,484</td><td>0</td><td>0.26 / 99.74</td><td>9,445</td><td>106,668</td><td>0.12 / 99.88</td></tr><tr><td></td><td>SMG</td><td>Directed</td><td>1,024</td><td>9,832</td><td>0</td><td>0.94 / 99.06</td><td>19,664</td><td>787,630</td><td>0.20 / 99.80</td></tr><tr><td></td><td>KHN</td><td>Directed</td><td>3,772</td><td>25,436</td><td>0</td><td>0.18 / 99.82</td><td>50,872</td><td>2,799,022</td><td>0.11 / 99.89</td></tr><tr><td><b>Biological</b></td><td>HPD</td><td>Directed</td><td>8,756</td><td>64,662</td><td>0</td><td>0.08 / 99.92</td><td>129,324</td><td>4,985,396</td><td>0.03 / 99.97</td></tr><tr><td></td><td>YST</td><td>Directed</td><td>2,284</td><td>13,292</td><td>0</td><td>0.25 / 99.75</td><td>26,584</td><td>562,721</td><td>0.08 / 99.92</td></tr><tr><td></td><td>CEG</td><td>Directed</td><td>297</td><td>4,296</td><td>0</td><td>4.89 / 95.11</td><td>8,592</td><td>305,630</td><td>0.41 / 99.59</td></tr><tr><td><b>Social</b></td><td>ADV</td><td>Directed</td><td>5,155</td><td>78,570</td><td>0</td><td>0.30 / 99.70</td><td>157,140</td><td>14,420,896</td><td>0.06 / 99.94</td></tr><tr><td></td><td>EML</td><td>Directed</td><td>1,133</td><td>10,902</td><td>0</td><td>0.85 / 99.15</td><td>21,804</td><td>603,029</td><td>0.13 / 99.87</td></tr><tr><td></td><td>BUP</td><td>Directed</td><td>105</td><td>882</td><td>0</td><td>8.08 / 91.92</td><td>1,764</td><td>32,180</td><td>1.03 / 98.97</td></tr><tr><td><b>Infrastructure</b></td><td>UAL</td><td>Directed</td><td>332</td><td>4,252</td><td>0</td><td>3.87 / 96.13</td><td>8,504</td><td>417,821</td><td>0.58 / 99.42</td></tr><tr><td></td><td>UPG</td><td>Directed</td><td>4,941</td><td>13,188</td><td>0</td><td>0.05 / 99.95</td><td>26,376</td><td>168,349</td><td>0.02 / 99.98</td></tr></table> </div><div class=\"para-break\"></div>The expanded experiments and detailed statistics demonstrate that LineML effectively handles graphs across the full spectrum of scale and sparsity, from small dense networks to large sparse ones, while maintaining strong predictive performance and computational efficiency.",
+        "response": "We thank the reviewer for this insightful comment regarding graph scale and sparsity. We have substantially revised the manuscript to address both concerns through expanded experiments, additional network statistics, and clearer methodological positioning.<div class=\"para-break\"></div><b>1. Expanded dataset collection.</b> In the revised manuscript, we now evaluate LineML on <b>18</b> networks spanning citation, co-authorship, social, biological, and infrastructure domains. This includes several larger graphs (e.g., Physics, PubMed, HPD, and ZWL), in addition to small and medium-sized datasets. The expanded benchmark covers graph sizes ranging from BUP (105 nodes) to Physics (34,493 nodes and 247,962 edges), whose corresponding line graph contains 991,848 nodes and approximately 45 million edges. This extension directly strengthens empirical evidence for scalability across diverse graph regimes.<div class=\"para-break\"></div>We emphasize that while LineML is designed to operate on large graphs through pruning and distributed execution, addressing extremely large-scale graphs in isolation is not the primary focus of this work. Nevertheless, our method is systematically compared against baselines on these larger datasets, ensuring fair evaluation under realistic large-graph settings.<div class=\"para-break\"></div><b>2. Comprehensive network statistics and sparsity reporting.</b> As requested, Table 2 in the revised manuscript now reports detailed statistics for both original graphs and their line graphs, including: <ul> <li>node and edge counts,</li> <li>feature dimensions,</li> <li><b>density and sparsity metrics</b> (reported as both density and sparsity percentages).</li> </ul><div class=\"para-break\"></div>These results show that most original graphs are highly sparse (typically \\(\u22640.3%\\) density), while their corresponding line graphs are even sparser (typically \\(\u22640.1%\\)). This empirically supports our focus on sparsity-aware design.<div class=\"para-break\"></div>This behavior is further theoretically justified by Corollary 1 (Density Implications), which shows that line graphs can become increasingly dense for scale-free networks:<div class=\"para-break\"></div><b>corollary</b>: Density Implications For a graph \\(G\\) with average degree \\(\\bar d\\), the line graph \\(L(G)\\) satisfies \\[ \\bar d_L \u2265 2\\bar d - 2, \\] with equality if and only if \\(G\\) is regular. Moreover, for scale-free networks with power-law degree distribution \\(P(d)\\propto d^{-\\gamma}\\) \\((2<\\gamma<3)\\), the quantity \\(\\sum_i d_i^2/m\\) diverges with network size, making \\(L(G)\\) increasingly dense.<div class=\"para-break\"></div>This motivates our pruning and sparsification strategies as essential components rather than optional optimizations.<div class=\"para-break\"></div><b>3. Theoretical foundations for scalability and sparsity adaptation.</b> We provide explicit mechanisms to enable practical learning on large and sparse graphs: <ul> <li><b>Graph pruning (Section 3.5):</b> Three pruning strategies are introduced with theoretical guarantees. For spectral sparsification (Algorithm 2), we prove \\((1\u00b1\\epsilon)\\) preservation of the Laplacian quadratic form, and Lemma 2 shows that training time scales linearly with the preservation ratio \\(\\alpha\\).</li> <li><b>Parallel implementation:</b> The distributed design targets HPC environments, with communication costs decreasing proportionally to pruning strength.</li> <li><b>Adaptive metric learning (Section 3.7):</b> Proposition 1 establishes gradient-scaling behavior that enhances learning in sparse regions by amplifying hard-example signals.</li> </ul><div class=\"para-break\"></div><b>4. Empirical validation of scalability and sparsity adaptation.</b> Section 4.4 (Non-Functional Performance) empirically validates these design choices: <ul> <li><b>Pruning effectiveness:</b> Table 5 shows that k-NN pruning reduces line-graph edges by up to 75% while preserving predictive performance; Fig. 5 reports up to \\(4.6\u00d7\\) single-GPU training speedup.</li> <li><b>Parallel scalability:</b> Fig. 4 demonstrates up to \\(13.98\u00d7\\) speedup on the Physics dataset when combining pruning with multi-GPU execution.</li> </ul><div class=\"para-break\"></div><div class=\"table-container\"><div class=\"para-break\"></div><div class=\"table-caption\">Statistics of Original Graphs and their corresponding Line Graphs (LG).</div><div class=\"para-break\"></div><table><tr><td colspan=\"3\"><b>Dataset Info</b></td><td colspan=\"4\"><b>Original Graph</b></td><td colspan=\"3\"><b>Line Graph (LG)</b></td></tr><tr><td><b>Category</b></td><td><b>Name</b></td><td><b>Type</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Feat.</b></td><td><b>Dens/Spar(%)</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Dens/Spar(%)</b></td></tr><tr><td><b>Citation</b></td><td>Cora</td><td>Undirected</td><td>2,708</td><td>5,278</td><td>1,433</td><td>0.14 / 99.86</td><td>21,112</td><td>314,992</td><td>0.07 / 99.93</td></tr><tr><td></td><td>CiteSeer</td><td>Undirected</td><td>3,327</td><td>4,552</td><td>3,703</td><td>0.08 / 99.92</td><td>18,208</td><td>203,788</td><td>0.06 / 99.94</td></tr><tr><td></td><td>PubMed</td><td>Undirected</td><td>19,717</td><td>44,324</td><td>500</td><td>0.02 / 99.98</td><td>177,296</td><td>3,496,168</td><td>0.01 / 99.99</td></tr><tr><td><b>Co-authorship</b></td><td>Physics</td><td>Undirected</td><td>34,493</td><td>247,962</td><td>8,415</td><td>0.04 / 99.96</td><td>991,848</td><td>45,856,498</td><td>0.005 / 99.99</td></tr><tr><td></td><td>ZWL</td><td>Directed</td><td>6,651</td><td>108,364</td><td>0</td><td>0.25 / 99.75</td><td>216,728</td><td>11,873,265</td><td>0.03 / 99.97</td></tr><tr><td></td><td>LDG</td><td>Directed</td><td>8,324</td><td>83,064</td><td>0</td><td>0.12 / 99.88</td><td>166,128</td><td>9,409,089</td><td>0.03 / 99.97</td></tr><tr><td></td><td>GRQ</td><td>Directed</td><td>5,241</td><td>28,968</td><td>0</td><td>0.11 / 99.89</td><td>57,936</td><td>1,231,571</td><td>0.04 / 99.96</td></tr><tr><td></td><td>NSC</td><td>Directed</td><td>1,461</td><td>5,484</td><td>0</td><td>0.26 / 99.74</td><td>9,445</td><td>106,668</td><td>0.12 / 99.88</td></tr><tr><td></td><td>SMG</td><td>Directed</td><td>1,024</td><td>9,832</td><td>0</td><td>0.94 / 99.06</td><td>19,664</td><td>787,630</td><td>0.20 / 99.80</td></tr><tr><td></td><td>KHN</td><td>Directed</td><td>3,772</td><td>25,436</td><td>0</td><td>0.18 / 99.82</td><td>50,872</td><td>2,799,022</td><td>0.11 / 99.89</td></tr><tr><td><b>Biological</b></td><td>HPD</td><td>Directed</td><td>8,756</td><td>64,662</td><td>0</td><td>0.08 / 99.92</td><td>129,324</td><td>4,985,396</td><td>0.03 / 99.97</td></tr><tr><td></td><td>YST</td><td>Directed</td><td>2,284</td><td>13,292</td><td>0</td><td>0.25 / 99.75</td><td>26,584</td><td>562,721</td><td>0.08 / 99.92</td></tr><tr><td></td><td>CEG</td><td>Directed</td><td>297</td><td>4,296</td><td>0</td><td>4.89 / 95.11</td><td>8,592</td><td>305,630</td><td>0.41 / 99.59</td></tr><tr><td><b>Social</b></td><td>ADV</td><td>Directed</td><td>5,155</td><td>78,570</td><td>0</td><td>0.30 / 99.70</td><td>157,140</td><td>14,420,896</td><td>0.06 / 99.94</td></tr><tr><td></td><td>EML</td><td>Directed</td><td>1,133</td><td>10,902</td><td>0</td><td>0.85 / 99.15</td><td>21,804</td><td>603,029</td><td>0.13 / 99.87</td></tr><tr><td></td><td>BUP</td><td>Directed</td><td>105</td><td>882</td><td>0</td><td>8.08 / 91.92</td><td>1,764</td><td>32,180</td><td>1.03 / 98.97</td></tr><tr><td><b>Infrastructure</b></td><td>UAL</td><td>Directed</td><td>332</td><td>4,252</td><td>0</td><td>3.87 / 96.13</td><td>8,504</td><td>417,821</td><td>0.58 / 99.42</td></tr><tr><td></td><td>UPG</td><td>Directed</td><td>4,941</td><td>13,188</td><td>0</td><td>0.05 / 99.95</td><td>26,376</td><td>168,349</td><td>0.02 / 99.98</td></tr></table> </div><div class=\"para-break\"></div>Overall, the expanded experiments, added density statistics, and theoretical analysis collectively demonstrate that LineML effectively adapts to sparsity and scales to substantially larger graphs than those in the original submission. While extreme-scale graph learning is not the central objective of this work, LineML is rigorously evaluated against baselines on large datasets and equipped with principled mechanisms to operate efficiently in such settings. We believe these revisions fully address the reviewer\u2019s concerns.<div class=\"para-break\"></div>",
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -302,11 +303,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -317,10 +318,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -331,10 +332,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       }
@@ -353,11 +354,11 @@ const responseData = [
           "figs/metrics_boxplots_grid.png"
         ],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -370,11 +371,11 @@ const responseData = [
           "figs/Fused_All_Pruning_Comparison.png"
         ],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -385,9 +386,9 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Experiment",
           "Methodology",
           "Comparison",
+          "Experiment",
           "Revision"
         ],
         "is_intro": false
@@ -399,9 +400,9 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Experiment",
           "Methodology",
           "Comparison",
+          "Experiment",
           "Revision"
         ],
         "is_intro": false
@@ -413,9 +414,9 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
+          "New Content",
           "Experiment",
-          "Revision",
-          "New Content"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -426,8 +427,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -452,11 +453,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -467,11 +468,11 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -482,10 +483,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Revision",
           "Methodology",
+          "New Content",
           "Comparison",
-          "New Content"
+          "Revision"
         ],
         "is_intro": false
       }
@@ -501,11 +502,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -516,10 +517,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Methodology",
+          "New Content",
           "Comparison",
-          "New Content"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -530,10 +531,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Methodology",
+          "New Content",
           "Comparison",
-          "New Content"
+          "Experiment",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -544,11 +545,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -559,10 +560,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -573,9 +574,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
           "Methodology",
           "Comparison",
+          "Experiment",
           "Revision"
         ],
         "is_intro": false
@@ -587,11 +588,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
           "New Content",
-          "Comparison"
+          "Comparison",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -602,8 +603,8 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
           "Methodology",
+          "Experiment",
           "Revision"
         ],
         "is_intro": false
@@ -615,10 +616,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -629,10 +630,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -643,10 +644,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -657,10 +658,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -683,9 +684,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -696,10 +697,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision",
           "Methodology",
-          "New Content"
+          "New Content",
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       }
