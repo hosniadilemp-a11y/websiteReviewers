@@ -13,10 +13,10 @@ const responseData = [
         ],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -39,10 +39,10 @@ const responseData = [
         ],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -54,10 +54,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -69,10 +69,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -87,8 +87,8 @@ const responseData = [
         "tags": [
           "New Content",
           "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -102,10 +102,10 @@ const responseData = [
         ],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -116,8 +116,8 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Methodology",
-          "Revision"
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -128,10 +128,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Methodology",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -142,10 +142,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -167,10 +167,10 @@ const responseData = [
         ],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -182,10 +182,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -196,10 +196,10 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -210,9 +210,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Revision"
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -223,9 +223,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Revision"
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       }
@@ -237,21 +237,21 @@ const responseData = [
       {
         "title": "Reviewer 3, Comment 3.1",
         "comment": "The novelty of the proposed method is not sufficiently clear. The framework appears to be a combination of existing techniques, including line graph modeling, GraphSAGE, and triplet loss. While the empirical improvements are demonstrated, the manuscript does not sufficiently explain why this particular combination is necessary. The overall motivation of the paper should be reorganized and strengthened.",
-        "response": "We sincerely thank the reviewer for this critical comment, which provides an opportunity to clarify the novelty and necessity of our proposed integration. We acknowledge that our framework incorporates components that individually exist in the literature. However, the core novelty of <b>LineML</b> lies not in the invention of entirely new algorithmic components, but in their <i>synergistic integration</i> to overcome fundamental limitations that have previously prevented line-graph-based methods from being a practical, scalable, and high-performing solution for link prediction.<div class=\"para-break\"></div><b>1. The Fundamental Limitations of Current Link Prediction Approaches</b> Current link prediction methods primarily learn node embeddings \\(\\mathbf{z}_u, \\mathbf{z}_v\\) and define edge scores via a decoder \\(f(\\mathbf{z}_u, \\mathbf{z}_v)\\). This approach treats edges as implicit byproducts of node similarity, which fails to capture the <i>higher-order relational structure</i> between edges themselves\u2014such as edge adjacency patterns crucial in social triadic closure or metabolic pathway connectivity. Additionally, while negative sampling addresses extreme class imbalance, most methods treat sampled negatives as uniformly difficult, ignoring that some non-edges (e.g., between distant, low-degree nodes) are trivial while others (e.g., between adjacent high-degree nodes) are highly challenging and informative.<div class=\"para-break\"></div><b>2. The Potential of Line Graph Transformation</b> The line graph transformation offers a theoretically elegant alternative by converting each edge \\(e = (u,v)\\) in the original graph into a node \\(v_e\\) in the line graph, thereby reformulating link prediction as node classification. This allows edges to be modeled as <i>first-class entities</i> and directly captures relationships between edges through the adjacency structure of the line graph. The transformation also enables natural class balancing by constructing a line graph from both positive edges and carefully sampled negative edges.<div class=\"para-break\"></div>Despite these theoretical advantages, line graph methods have remained largely impractical due to three critical, interconnected challenges: <ol> <li><b>Featureless Edge-Nodes:</b> The nodes of the line graph (representing original graph edges) lack inherent features, leaving models with no meaningful input signal.</li> <li><b>Computational Intractability:</b> The line graph grows quadratically in size, with \\(O(m^2)\\) connections for an original graph with \\(m\\) edges, rendering training infeasible for networks beyond a few thousand edges.</li> <li><b>Difficulty-Aware Learning:</b> Even with balanced classes, negative edge-nodes vary significantly in difficulty, requiring the model to distinguish between plausible missing links and obviously non-existent connections.</li> </ol><div class=\"para-break\"></div><b>3. LineML's Co-Designed Integration</b> LineML's components are specifically co-designed to address these challenges in a complementary manner:<div class=\"para-break\"></div><b>GNN-Based Feature Learning on Line Graph</b> Our GraphSAGE-based encoder operates directly on the line graph \\(L(G)\\) to learn structural embeddings \\(\\mathbf{z}_v\\) for all line graph nodes \\(v \\in V_L\\). The model processes the initial node features \\(\\mathbf{x}_{uv} = \\mathbf{x}_u \\odot \\mathbf{x}_v\\) through \\(K\\) layers of message passing, where each layer updates node representations by aggregating information from neighboring nodes:<div class=\"para-break\"></div>\\[ \\mathbf{h}_v^{(k)} = \\sigma ( \\mathbf{W}^{(k)} [ \\mathbf{h}_v^{(k-1)} \\| \\text{AGGREGATE}^{(k)} ( \\{ \\mathbf{h}_u^{(k-1)} : u \\in \\mathcal{N}(v) \\} ) ] ), \\]<div class=\"para-break\"></div>with \\(\\mathbf{h}_v^{(0)} = \\mathbf{x}_v\\) and \\(\\mathbf{z}_v = \\mathbf{h}_v^{(K)}\\). This approach is essential because GraphSAGE's inductive neighborhood aggregation captures both the initial Hadamard-transformed features and the multi-hop structural context within the line graph. The final embeddings \\(\\mathbf{z}_v\\) encode rich information about edge relationships, enabling effective downstream metric learning and classification.<div class=\"para-break\"></div><b>Adaptive Metric Learning with Degree-Biased Sampling for Discrimination</b> We combine degree-based negative sampling (with \\(p_{uv} \\propto d_u \\cdot d_v\\)) and triplet loss with adaptive margins (\\(\\gamma_{ijk} = \\gamma_0 \\cdot \\exp(-\\alpha \\cdot s_{ij})\\)). This combination is crucial because scale-free networks follow power-law degree distributions, making non-edges between high-degree nodes statistically surprising and thus informative hard negatives. The adaptive margin ensures the learning objective focuses on these challenging triplets where the negative is semantically close to the anchor, refining the embedding space geometry for better discrimination.<div class=\"para-break\"></div><b>Spectral Pruning and HPC Parallelization for Scalability</b> We apply spectral k-NN pruning based on effective resistance to reduce the line graph's edge count from \\(O(m^2)\\) to \\(O(k \\cdot m)\\) while preserving structurally important connections. This is paired with multi-GPU distributed training optimized for sparse tensor operations. Effective resistance serves as a natural distance metric on graphs, with smaller values indicating connections critical for spectral properties. Distributed training is essential because even after pruning, line graphs for real-world networks can have millions of connections, requiring optimized parallel processing to make training feasible.<div class=\"para-break\"></div><b>4. The Theoretical and Practical Necessity of Integration</b> The novelty of LineML lies in demonstrating that this specific integration creates the first <i>practical, scalable, and high-performing</i> line-graph-based link prediction framework. Each component addresses a critical weakness: <ul> <li>Without GraphSAGE feature induction, line graph nodes lack meaningful representations, severely limiting model capacity.</li> <li>Without degree-biased sampling and adaptive metric learning, the model cannot effectively distinguish hard from easy negatives, leading to suboptimal discrimination.</li> <li>Without spectral pruning and HPC parallelization, the quadratic computational cost makes the approach impractical for real-world networks.</li> </ul><div class=\"para-break\"></div><b>5. Enhanced Theoretical Foundation in Revised Manuscript</b> Our revised manuscript now provides comprehensive theoretical analysis that clarifies the necessity of each component and their synergistic integration. Specifically, we have added:<div class=\"para-break\"></div><ul> <li><i><b>Line Graph Properties (Section 3.4):</b></i> Theorem 1 formally establishes line graph size properties, Corollary 1 analyzes density implications, Theorem 4 proves expressivity equivalence between GNNs on line graphs and WL tests on original graphs, while Theorem 3 guarantees leakage-free information flow in temporal settings.</li><div class=\"para-break\"></div> <li><i><b>Node-to-Edge Transformation (Section 3.4.2):</b></i> Theorem 2 provides formal guarantees for our symmetric labeling scheme, ensuring information preservation and automorphism equivariance during feature transformation.</li><div class=\"para-break\"></div> <li><i><b>Adaptive Metric Learning (Section 3.7):</b></i> Proposition 2 formally analyzes gradient scaling properties and active set behavior, demonstrating how adaptive margins accelerate convergence and refine decision boundaries for challenging negatives.</li><div class=\"para-break\"></div> <li><i><b>Scalability via Pruning (Section 3.5):</b></i> Theorem 3 provides spectral distortion bounds for k-NN pruning, Lemma 2 establishes training time reduction guarantees, ensuring practical feasibility while maintaining performance.</li><div class=\"para-break\"></div> <li><i><b>Class Imbalance Mitigation (Section 3.3):</b></i> Formal sampling distributions and Proposition 1 on degree-consistent sampling provide theoretical foundation for handling extreme class imbalance.</li> </ul><div class=\"para-break\"></div>These theoretical contributions demonstrate that our integration is not merely a collection of existing techniques, but a carefully designed framework where each component addresses specific theoretical challenges that have previously prevented line-graph methods from being practical. The synergy between these mathematically-grounded components creates a cohesive solution to the fundamental limitations of existing link prediction approaches. We hope this detailed explanation clarifies the novelty and necessity of our integrated approach. Thank you for prompting us to articulate this crucial aspect of our contribution.",
+        "response": "We sincerely thank the reviewer for this critical comment, which provides an opportunity to clarify the novelty and necessity of our proposed integration. We acknowledge that our framework incorporates components that individually exist in the literature. However, the core novelty of <b>LineML</b> lies not in the invention of entirely new algorithmic components, but in their <i>synergistic integration</i> to overcome fundamental limitations that have previously prevented line-graph-based methods from being a practical solution for link prediction.<div class=\"para-break\"></div><b>1. The Fundamental Limitations of Current Link Prediction Approaches</b> Current link prediction methods primarily learn node embeddings \\(\\mathbf{z}_u, \\mathbf{z}_v\\) and define edge scores via a decoder \\(f(\\mathbf{z}_u, \\mathbf{z}_v)\\). This approach treats edges as implicit byproducts of node similarity, which fails to capture the <i>higher-order relational structure</i> between edges themselves\u2014such as edge adjacency patterns crucial in social triadic closure or metabolic pathway connectivity. Additionally, while negative sampling addresses extreme class imbalance, most methods treat sampled negatives as uniformly difficult, ignoring that some non-edges (e.g., between distant, low-degree nodes) are trivial while others (e.g., between adjacent high-degree nodes) are highly challenging and informative.<div class=\"para-break\"></div><b>2. The Potential of Line Graph Transformation</b> The line graph transformation offers a theoretically elegant alternative by converting each edge \\(e = (u,v)\\) in the original graph into a node \\(v_e\\) in the line graph, thereby reformulating link prediction as node classification. This allows edges to be modeled as <i>first-class entities</i> and directly captures relationships between edges through the adjacency structure of the line graph. <div class=\"para-break\"></div>Despite these theoretical advantages, line graph methods have brought more challenges, which can be overcome by carefully designed training strategies and model architectures. <ol> <li><b>Computational Intractability:</b> The line graph grows quadratically in size, with \\(O(m^2)\\) connections for an original graph with \\(m\\) edges, rendering training infeasible for networks beyond a few thousand edges.</li> <li><b>Difficulty-Aware Learning:</b> Even with balanced classes, negative edge-nodes vary significantly in difficulty, requiring the model to distinguish between plausible missing links and obviously non-existent connections.</li> </ol><div class=\"para-break\"></div><b>3. LineML's Co-Designed Integration</b> LineML's components are specifically co-designed to address these challenges in a complementary manner:<div class=\"para-break\"></div><b>GNN-Based Feature Learning on Line Graph</b> Our GraphSAGE-based encoder operates directly on the line graph \\(L(G)\\) to learn structural embeddings \\(\\mathbf{z}_v\\) for all line graph nodes \\(v \\in V_L\\). The model processes the initial node features through \\(K\\) layers of message passing, where each layer updates node representations by aggregating information from neighboring nodes:<div class=\"para-break\"></div>\\[ \\mathbf{h}_v^{(k)} = \\sigma ( \\mathbf{W}^{(k)} [ \\mathbf{h}_v^{(k-1)} \\| \\text{AGGREGATE}^{(k)} ( \\{ \\mathbf{h}_u^{(k-1)} : u \\in \\mathcal{N}(v) \\} ) ] ), \\]<div class=\"para-break\"></div>with \\(\\mathbf{h}_v^{(0)} = \\mathbf{x}_v\\) and \\(\\mathbf{z}_v = \\mathbf{h}_v^{(K)}\\). This approach is essential because GraphSAGE's inductive neighborhood aggregation captures both the initial features and the multi-hop structural context within the line graph. The final embeddings \\(\\mathbf{z}_v\\) encode rich information about edge relationships, enabling effective downstream metric learning and classification.<div class=\"para-break\"></div><b>Adaptive Metric Learning with Degree-Biased Sampling for Discrimination</b> We combine degree-based negative sampling and triplet loss with adaptive margins. This combination is crucial because scale-free networks follow power-law degree distributions, making non-edges between high-degree nodes statistically surprising and thus informative hard negatives. The adaptive margin ensures the learning objective focuses on these challenging triplets where the negative is semantically close to the anchor, refining the embedding space geometry for better discrimination.<div class=\"para-break\"></div><b>Spectral Pruning and HPC Parallelization for Scalability</b> We apply spectral k-NN pruning based on effective resistance to reduce the line graph's edge count from \\(O(m^2)\\) to \\(O(k \\cdot m)\\) while preserving structurally important connections. This is paired with multi-GPU distributed training optimized for sparse tensor operations. Effective resistance serves as a natural distance metric on graphs, with smaller values indicating connections critical for spectral properties. Distributed training is essential because even after pruning, line graphs for real-world networks can have millions of connections, requiring optimized parallel processing to make training feasible.<div class=\"para-break\"></div><b>4. Enhanced Theoretical Foundation in Revised Manuscript</b> Our revised manuscript now provides comprehensive theoretical analysis that clarifies the necessity of each component and their synergistic integration. Specifically, we have added:<div class=\"para-break\"></div><ul> <li><i><b>Line Graph Properties (Section 3.4):</b></i> Theorem 1 formally establishes line graph size properties, Corollary 1 analyzes density implications, Theorem 4 proves expressivity equivalence between GNNs on line graphs and WL tests on original graphs, while Theorem 3 guarantees leakage-free information flow in temporal settings.</li><div class=\"para-break\"></div> <li><i><b>Node-to-Edge Transformation (Section 3.4.2):</b></i> Theorem 2 provides formal guarantees for our symmetric labeling scheme, ensuring information preservation and automorphism equivariance during feature transformation.</li><div class=\"para-break\"></div> <li><i><b>Adaptive Metric Learning (Section 3.7):</b></i> Proposition 2 formally analyzes gradient scaling properties and active set behavior, demonstrating how adaptive margins accelerate convergence and refine decision boundaries for challenging negatives.</li><div class=\"para-break\"></div> <li><i><b>Scalability via Pruning (Section 3.5):</b></i> Theorem 3 provides spectral distortion bounds for k-NN pruning, Lemma 2 establishes training time reduction guarantees, ensuring practical feasibility while maintaining performance.</li><div class=\"para-break\"></div> <li><i><b>Class Imbalance Mitigation (Section 3.3):</b></i> Formal sampling distributions and Proposition 1 on degree-consistent sampling provide theoretical foundation for handling extreme class imbalance.</li> </ul><div class=\"para-break\"></div>These theoretical contributions demonstrate that our integration is not merely a collection of existing techniques, but a carefully designed framework where each component addresses specific theoretical challenges that have previously prevented line-graph methods from being practical. The synergy between these mathematically-grounded components creates a cohesive solution to the fundamental limitations of existing link prediction approaches. We hope this detailed explanation clarifies the novelty and necessity of our integrated approach. Thank you for prompting us to articulate this crucial aspect of our contribution.",
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 3, Comment 3.2",
         "comment": "The manuscript adopts a 1:1 undersampling strategy for positive and negative links. However, it is unclear whether this undersampling is applied only to the training set or also to the test set. In Figure 1, both the training and testing sets are labeled with \u201cPositive Link\u201d and \u201cNegative Link,\u201d which suggests that the test set may also be undersampled. If the test set is artificially balanced to 1:1, this does not truly address the class imbalance problem but only simplifies the evaluation setting. If this is not the case, the construction of negative samples in the test set should be clearly described. The ratios of positive and negative samples in the training, validation, and test sets should be explicitly reported. In addition, since the authors claim robustness, experiments under different class imbalance ratios should be considered.",
-        "response": "We sincerely thank the reviewer for this insightful and critical comment, which highlights essential aspects of our experimental design and evaluation methodology. We agree completely that clarity in sampling procedures is fundamental to the integrity of link prediction studies. We have thoroughly revised the manuscript to address these concerns, providing explicit descriptions, theoretical foundations, and extensive empirical validation. Below, we address each of the reviewer's points in detail.<div class=\"para-break\"></div><b>1. Clarification on Sampling Across All Splits</b> The reviewer correctly notes that balancing the test set to a 1:1 ratio would simplify evaluation. We clarify that <b>we apply 1:1 undersampling consistently across all splits (training, validation, and test)</b>. This approach is justified by three fundamental considerations:<div class=\"para-break\"></div><ol> <li><b>Architectural Requirement of Line Graph Transformation:</b> The core innovation of our framework is the reformulation of link prediction as node classification on line graphs. This transformation requires a <i>fixed set of edges</i> (both positive and negative) to define the node set of the line graph. Each split (train, val, test) must therefore have a well-defined, balanced set of edges to construct its corresponding line graph. This ensures a consistent learning and evaluation framework.</li><div class=\"para-break\"></div> <li><b>Methodological Consistency:</b> Applying the same sampling strategy across all splits ensures that the model is trained and evaluated under the same distributional assumptions. This consistency is crucial for fair comparison and interpretation of results.</li><div class=\"para-break\"></div> <li><b>Theoretical and Pedagogical Foundation for the 1:1 Ratio:</b> The choice of a 1:1 ratio is grounded in our theoretical sampling framework (Section 3.3). The extreme class imbalance in networks\u2014where non-edges scale as \\(O(|V|^2)\\)\u2014necessitates a sampling strategy that selects the most <i>informative</i> subset of negatives. Our degree-based negative sampling (\\(p_{uv}^{\\text{deg}} \\propto d_u \\cdot d_v\\)) is explicitly designed for this purpose. It preferentially selects challenging negatives between high-degree nodes, where the absence of a link is statistically surprising. This creates a balanced (1:1) training set where every negative example carries strong pedagogical value, efficiently teaching the model to discriminate plausible from implausible missing links. Crucially, a higher negative ratio would predominantly introduce less-informative, \"easy\" negatives, diluting the learning signal and increasing computational cost without proportional benefit. The 1:1 ratio with curated, degree-biased negatives represents the optimal point for learning efficiency.</li><div class=\"para-break\"></div> <li><b>Computational and Conceptual Simplicity:</b> Using a balanced (1:1) test set eliminates the need for arbitrary choices about negative sample quantity during evaluation (e.g., 100 negatives per positive). It provides a clean, controlled assessment environment where each positive edge is evaluated against an equal number of negative edges, making performance metrics like AUC, AP, and F1 directly comparable and interpretable. This standardization simplifies both implementation and result interpretation while remaining theoretically justified by our sampling approach.</li> </ol><div class=\"para-break\"></div><b>2. Preventing Data Leakage in Test Set Construction</b> We emphasize that while the test set is balanced, it is constructed with strict attention to prevent data leakage: <ul> <li><b>Positive test edges</b> are held-out edges from the original graph that are never seen during training.</li> <li><b>Negative test edges</b> are sampled from the set of all non-existent edges, excluding any edges used in training or validation.</li> </ul> This procedure, now explicitly described in Section 4.3.1, ensures that the test set contains entirely novel information while maintaining the balanced structure required by our line graph methodology.<div class=\"para-break\"></div><b>4. Empirical Validation of the 1:1 Ratio and Robustness</b> For this concern about whether balancing simplifies evaluation is valid. We address this through both theoretical justification for the 1:1 ratio and extensive empirical validation across varying imbalance levels.<div class=\"para-break\"></div><b>Empirical Validation Through Ratio Experiments:</b> To directly test robustness to class imbalance, we conducted comprehensive experiments varying the training-time negative-to-positive ratio from 1:1 to 100:1. The results, presented in Section 5.1.4 and Figure , demonstrate:<div class=\"para-break\"></div><ul> <li><b>Near-Optimal Performance at 1:1:</b> While a 2:1 ratio yields a minor improvement for precision-based metrics (AP and F1), the 1:1 ratio remains highly competitive. The performance gain from 1:1 to 2:1 is minimal compared to the significant increase in training cost, validating the 1:1 ratio as an efficient and effective default.</li> <li><b>Metric Learning's Role in Robustness:</b> The adaptive metric learning component significantly mitigates performance degradation under extreme imbalance, with improvements of 42.1% in AP and 48.84% in F1 at 100:1 ratio. This shows our framework's inherent robustness.</li> </ul><div class=\"para-break\"></div><b>5. Comparative Analysis of Sampling Strategies</b> Complementing the ratio analysis, we investigated different sampling strategies in Section 5.1.3. Figure shows that degree-based sampling provides the optimal balance of accuracy, stability, and computational efficiency, further justifying its selection as the foundation for our 1:1 balanced training sets.<div class=\"para-break\"></div>These revisions address the reviewer's concerns about evaluation integrity and demonstrate that LineML's performance is robust, theoretically grounded, and methodologically sound. We believe this comprehensive response strengthens the manuscript and provides the necessary clarity for readers.",
+        "response": "We sincerely thank the reviewer for this insightful and critical comment, which highlights essential aspects of our experimental design and evaluation methodology. We agree completely that clarity in sampling procedures is fundamental to the integrity of link prediction studies. We have thoroughly revised the manuscript to address these concerns, providing explicit descriptions, theoretical foundations, and extensive empirical validation. Below, we address each of the reviewer's points in detail.<div class=\"para-break\"></div><b>1. Clarification on Sampling Across All Splits</b> The reviewer correctly notes that balancing the test set to a 1:1 ratio would simplify evaluation. We clarify that <b>we apply 1:1 undersampling consistently across all splits (training, validation, and test)</b>. This approach is justified by three fundamental considerations:<div class=\"para-break\"></div><ol> <li><b>Architectural Requirement of Line Graph Transformation:</b> The core innovation of our framework is the reformulation of link prediction as node classification on line graphs. This transformation requires a <i>fixed set of edges</i> (both positive and negative) to define the node set of the line graph. Each split (train, val, test) must therefore have a well-defined, balanced set of edges to construct its corresponding line graph. This ensures a consistent learning and evaluation framework.</li><div class=\"para-break\"></div> <li><b>Methodological Consistency:</b> Applying the same sampling strategy across all splits ensures that the model is trained and evaluated under the same distributional assumptions. This consistency is crucial for fair comparison and interpretation of results.</li><div class=\"para-break\"></div> <li><b>Theoretical and Pedagogical Foundation for the 1:1 Ratio:</b> The choice of a 1:1 ratio is grounded in our theoretical sampling framework (Section 3.3). The extreme class imbalance in networks\u2014where non-edges scale as \\(O(|V|^2)\\)\u2014necessitates a sampling strategy that selects the most <i>informative</i> subset of negatives. Our degree-based negative sampling (\\(p_{uv}^{\\text{deg}} \\propto d_u \\cdot d_v\\)) is explicitly designed for this purpose. It preferentially selects challenging negatives between high-degree nodes, where the absence of a link is statistically surprising. This creates a balanced (1:1) training set where every negative example carries strong pedagogical value, efficiently teaching the model to discriminate plausible from implausible missing links. Crucially, a higher negative ratio would predominantly introduce less-informative, \"easy\" negatives, diluting the learning signal and increasing computational cost without proportional benefit. The 1:1 ratio with curated, degree-biased negatives represents the optimal point for learning efficiency.</li><div class=\"para-break\"></div> <li><b>Computational and Conceptual Simplicity:</b> Using a balanced (1:1) test set eliminates the need for arbitrary choices about negative sample quantity during evaluation (e.g., 100 negatives per positive). It provides a clean, controlled assessment environment where each positive edge is evaluated against an equal number of negative edges, making performance metrics like AUC, AP, and F1 directly comparable and interpretable. This standardization simplifies both implementation and result interpretation while remaining theoretically justified by our sampling approach.</li> </ol><div class=\"para-break\"></div><b>2. Preventing Data Leakage in Test Set Construction</b> We emphasize that while the test set is balanced, it is constructed with strict attention to prevent data leakage: <ul> <li><b>Positive test edges</b> are held-out edges from the original graph that are never seen during training.</li> <li><b>Negative test edges</b> are sampled from the set of all non-existent edges, excluding any edges used in training or validation.</li> </ul> This procedure, now explicitly described in Section 4.3.1, ensures that the test set contains entirely novel information while maintaining the balanced structure required by our line graph methodology.<div class=\"para-break\"></div><b>3. Empirical Validation of the 1:1 Ratio and Robustness</b> For this concern about whether balancing simplifies evaluation is valid. We address this through both theoretical justification for the 1:1 ratio and extensive empirical validation across varying imbalance levels.<div class=\"para-break\"></div><b>Empirical Validation Through Ratio Experiments:</b> To directly test robustness to class imbalance, we conducted comprehensive experiments varying the training-time negative-to-positive ratio from 1:1 to 100:1. The results, presented in Section 5.1.4 and Figure , demonstrate:<div class=\"para-break\"></div><ul> <li><b>Near-Optimal Performance at 1:1:</b> While a 2:1 ratio yields a minor improvement for precision-based metrics (AP and F1), the 1:1 ratio remains highly competitive. The performance gain from 1:1 to 2:1 is minimal compared to the significant increase in training cost, validating the 1:1 ratio as an efficient and effective default.</li> <li><b>Metric Learning's Role in Robustness:</b> The adaptive metric learning component significantly mitigates performance degradation under extreme imbalance, with improvements of 42.1% in AP and 48.84% in F1 at 100:1 ratio. This shows our framework's inherent robustness.</li> </ul><div class=\"para-break\"></div><b>5. Comparative Analysis of Sampling Strategies</b> Complementing the ratio analysis, we investigated different sampling strategies in Section 5.1.3. Figure shows that degree-based sampling provides the optimal balance of accuracy, stability, and computational efficiency, further justifying its selection as the foundation for our 1:1 balanced training sets.<div class=\"para-break\"></div>These revisions address the reviewer's concerns about evaluation integrity and demonstrate that LineML's performance is robust, theoretically grounded, and methodologically sound. We believe this comprehensive response strengthens the manuscript and provides the necessary clarity for readers.",
         "reviewer": "Reviewer 3",
         "images": [
           "figs/metrics_boxplots_grid.png",
@@ -259,10 +259,10 @@ const responseData = [
         ],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -273,24 +273,24 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 3, Comment 3.4",
         "comment": "The manuscript claims that LineML \u201ceffectively addresses challenges in large-scale and sparse graphs by leveraging each component\u2019s unique strengths.\u201d However, most datasets used in the experiments are not large-scale. In addition, to support claims related to sparsity, the authors should report basic network statistics such as graph density.",
-        "response": "We thank the reviewer for this insightful comment regarding graph scale and sparsity. We have substantially revised the manuscript to address both concerns through expanded experiments, additional network statistics, and clearer methodological positioning.<div class=\"para-break\"></div><b>1. Expanded dataset collection.</b> In the revised manuscript, we now evaluate LineML on <b>18</b> networks spanning citation, co-authorship, social, biological, and infrastructure domains. This includes several larger graphs (e.g., Physics, PubMed, HPD, and ZWL), in addition to small and medium-sized datasets. The expanded benchmark covers graph sizes ranging from BUP (105 nodes) to Physics (34,493 nodes and 247,962 edges), whose corresponding line graph contains 991,848 nodes and approximately 45 million edges. This extension directly strengthens empirical evidence for scalability across diverse graph regimes.<div class=\"para-break\"></div>We emphasize that while LineML is designed to operate on large graphs through pruning and distributed execution, addressing extremely large-scale graphs in isolation is not the primary focus of this work. Nevertheless, our method is systematically compared against baselines on these larger datasets, ensuring fair evaluation under realistic large-graph settings.<div class=\"para-break\"></div><b>2. Comprehensive network statistics and sparsity reporting.</b> As requested, Table 2 in the revised manuscript now reports detailed statistics for both original graphs and their line graphs, including: <ul> <li>node and edge counts,</li> <li>feature dimensions,</li> <li><b>density and sparsity metrics</b> (reported as both density and sparsity percentages).</li> </ul><div class=\"para-break\"></div>These results show that most original graphs are highly sparse (typically \\(\u22640.3%\\) density), while their corresponding line graphs are even sparser (typically \\(\u22640.1%\\)). This empirically supports our focus on sparsity-aware design.<div class=\"para-break\"></div>This behavior is further theoretically justified by Corollary 1 (Density Implications), which shows that line graphs can become increasingly dense for scale-free networks:<div class=\"para-break\"></div><b>corollary</b>: Density Implications For a graph \\(G\\) with average degree \\(\\bar d\\), the line graph \\(L(G)\\) satisfies \\[ \\bar d_L \u2265 2\\bar d - 2, \\] with equality if and only if \\(G\\) is regular. Moreover, for scale-free networks with power-law degree distribution \\(P(d)\\propto d^{-\\gamma}\\) \\((2<\\gamma<3)\\), the quantity \\(\\sum_i d_i^2/m\\) diverges with network size, making \\(L(G)\\) increasingly dense.<div class=\"para-break\"></div>This motivates our pruning and sparsification strategies as essential components rather than optional optimizations.<div class=\"para-break\"></div><b>3. Theoretical foundations for scalability and sparsity adaptation.</b> We provide explicit mechanisms to enable practical learning on large and sparse graphs: <ul> <li><b>Graph pruning (Section 3.5):</b> Three pruning strategies are introduced with theoretical guarantees. For spectral sparsification (Algorithm 2), we prove \\((1\u00b1\\epsilon)\\) preservation of the Laplacian quadratic form, and Lemma 2 shows that training time scales linearly with the preservation ratio \\(\\alpha\\).</li> <li><b>Parallel implementation:</b> The distributed design targets HPC environments, with communication costs decreasing proportionally to pruning strength.</li> <li><b>Adaptive metric learning (Section 3.7):</b> Proposition 1 establishes gradient-scaling behavior that enhances learning in sparse regions by amplifying hard-example signals.</li> </ul><div class=\"para-break\"></div><b>4. Empirical validation of scalability and sparsity adaptation.</b> Section 4.4 (Non-Functional Performance) empirically validates these design choices: <ul> <li><b>Pruning effectiveness:</b> Table 5 shows that k-NN pruning reduces line-graph edges by up to 75% while preserving predictive performance; Fig. 5 reports up to \\(4.6\u00d7\\) single-GPU training speedup.</li> <li><b>Parallel scalability:</b> Fig. 4 demonstrates up to \\(13.98\u00d7\\) speedup on the Physics dataset when combining pruning with multi-GPU execution.</li> </ul><div class=\"para-break\"></div><div class=\"table-container\"><div class=\"para-break\"></div><div class=\"table-caption\">Statistics of Original Graphs and their corresponding Line Graphs (LG).</div><div class=\"para-break\"></div><table><tr><td colspan=\"3\"><b>Dataset Info</b></td><td colspan=\"4\"><b>Original Graph</b></td><td colspan=\"3\"><b>Line Graph (LG)</b></td></tr><tr><td><b>Category</b></td><td><b>Name</b></td><td><b>Type</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Feat.</b></td><td><b>Dens/Spar(%)</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Dens/Spar(%)</b></td></tr><tr><td><b>Citation</b></td><td>Cora</td><td>Undirected</td><td>2,708</td><td>5,278</td><td>1,433</td><td>0.14 / 99.86</td><td>21,112</td><td>314,992</td><td>0.07 / 99.93</td></tr><tr><td></td><td>CiteSeer</td><td>Undirected</td><td>3,327</td><td>4,552</td><td>3,703</td><td>0.08 / 99.92</td><td>18,208</td><td>203,788</td><td>0.06 / 99.94</td></tr><tr><td></td><td>PubMed</td><td>Undirected</td><td>19,717</td><td>44,324</td><td>500</td><td>0.02 / 99.98</td><td>177,296</td><td>3,496,168</td><td>0.01 / 99.99</td></tr><tr><td><b>Co-authorship</b></td><td>Physics</td><td>Undirected</td><td>34,493</td><td>247,962</td><td>8,415</td><td>0.04 / 99.96</td><td>991,848</td><td>45,856,498</td><td>0.005 / 99.99</td></tr><tr><td></td><td>ZWL</td><td>Directed</td><td>6,651</td><td>108,364</td><td>0</td><td>0.25 / 99.75</td><td>216,728</td><td>11,873,265</td><td>0.03 / 99.97</td></tr><tr><td></td><td>LDG</td><td>Directed</td><td>8,324</td><td>83,064</td><td>0</td><td>0.12 / 99.88</td><td>166,128</td><td>9,409,089</td><td>0.03 / 99.97</td></tr><tr><td></td><td>GRQ</td><td>Directed</td><td>5,241</td><td>28,968</td><td>0</td><td>0.11 / 99.89</td><td>57,936</td><td>1,231,571</td><td>0.04 / 99.96</td></tr><tr><td></td><td>NSC</td><td>Directed</td><td>1,461</td><td>5,484</td><td>0</td><td>0.26 / 99.74</td><td>9,445</td><td>106,668</td><td>0.12 / 99.88</td></tr><tr><td></td><td>SMG</td><td>Directed</td><td>1,024</td><td>9,832</td><td>0</td><td>0.94 / 99.06</td><td>19,664</td><td>787,630</td><td>0.20 / 99.80</td></tr><tr><td></td><td>KHN</td><td>Directed</td><td>3,772</td><td>25,436</td><td>0</td><td>0.18 / 99.82</td><td>50,872</td><td>2,799,022</td><td>0.11 / 99.89</td></tr><tr><td><b>Biological</b></td><td>HPD</td><td>Directed</td><td>8,756</td><td>64,662</td><td>0</td><td>0.08 / 99.92</td><td>129,324</td><td>4,985,396</td><td>0.03 / 99.97</td></tr><tr><td></td><td>YST</td><td>Directed</td><td>2,284</td><td>13,292</td><td>0</td><td>0.25 / 99.75</td><td>26,584</td><td>562,721</td><td>0.08 / 99.92</td></tr><tr><td></td><td>CEG</td><td>Directed</td><td>297</td><td>4,296</td><td>0</td><td>4.89 / 95.11</td><td>8,592</td><td>305,630</td><td>0.41 / 99.59</td></tr><tr><td><b>Social</b></td><td>ADV</td><td>Directed</td><td>5,155</td><td>78,570</td><td>0</td><td>0.30 / 99.70</td><td>157,140</td><td>14,420,896</td><td>0.06 / 99.94</td></tr><tr><td></td><td>EML</td><td>Directed</td><td>1,133</td><td>10,902</td><td>0</td><td>0.85 / 99.15</td><td>21,804</td><td>603,029</td><td>0.13 / 99.87</td></tr><tr><td></td><td>BUP</td><td>Directed</td><td>105</td><td>882</td><td>0</td><td>8.08 / 91.92</td><td>1,764</td><td>32,180</td><td>1.03 / 98.97</td></tr><tr><td><b>Infrastructure</b></td><td>UAL</td><td>Directed</td><td>332</td><td>4,252</td><td>0</td><td>3.87 / 96.13</td><td>8,504</td><td>417,821</td><td>0.58 / 99.42</td></tr><tr><td></td><td>UPG</td><td>Directed</td><td>4,941</td><td>13,188</td><td>0</td><td>0.05 / 99.95</td><td>26,376</td><td>168,349</td><td>0.02 / 99.98</td></tr></table> </div><div class=\"para-break\"></div>Overall, the expanded experiments, added density statistics, and theoretical analysis collectively demonstrate that LineML effectively adapts to sparsity and scales to substantially larger graphs than those in the original submission. While extreme-scale graph learning is not the central objective of this work, LineML is rigorously evaluated against baselines on large datasets and equipped with principled mechanisms to operate efficiently in such settings. We believe these revisions fully address the reviewer\u2019s concerns.<div class=\"para-break\"></div>",
+        "response": "We thank the reviewer for this insightful comment regarding graph scale and sparsity. We have substantially revised the manuscript to address both concerns through expanded experiments, additional network statistics, and clearer methodological positioning.<div class=\"para-break\"></div><b>1. Expanded dataset collection.</b> In the revised manuscript, we now evaluate LineML on <b>18</b> networks spanning citation, co-authorship, social, biological, and infrastructure domains. This includes several larger graphs (e.g., Physics, PubMed, HPD, and ZWL), in addition to small and medium-sized datasets. The expanded benchmark covers graph sizes ranging from BUP (105 nodes) to Physics (34,493 nodes and 247,962 edges), whose corresponding line graph contains 991,848 nodes and approximately 45 million edges. This extension directly strengthens empirical evidence for scalability across diverse graph regimes.<div class=\"para-break\"></div>We emphasize that while LineML is designed to operate on large graphs through pruning and distributed execution, addressing extremely large-scale graphs in isolation is not the primary focus of this work. Nevertheless, our method is systematically compared against baselines on these larger datasets, ensuring fair evaluation under realistic large-graph settings.<div class=\"para-break\"></div><b>2. Comprehensive network statistics and sparsity reporting.</b> As requested, Table 2 in the revised manuscript now reports detailed statistics for both original graphs and their line graphs, including: <ul> <li>node and edge counts,</li> <li>feature dimensions,</li> <li><b>density and sparsity metrics</b> (reported as both density and sparsity percentages).</li> </ul><div class=\"para-break\"></div>These results show that most original graphs are highly sparse (typically \\(\u22640.3%\\) density), while their corresponding line graphs are even sparser (typically \\(\u22640.1%\\)). This empirically supports our focus on sparsity-aware design.<div class=\"para-break\"></div>This behavior is further theoretically justified by Corollary 1 (Density Implications), which shows that line graphs can become increasingly dense for scale-free networks:<div class=\"para-break\"></div><b>corollary</b>: Density Implications For a graph \\(G\\) with average degree \\(\\bar d\\), the line graph \\(L(G)\\) satisfies \\[ \\bar d_L \u2265 2\\bar d - 2, \\] with equality if and only if \\(G\\) is regular. Moreover, for scale-free networks with power-law degree distribution \\(P(d)\\propto d^{-\\gamma}\\) \\((2<\\gamma<3)\\), the quantity \\(\\sum_i d_i^2/m\\) diverges with network size, making \\(L(G)\\) increasingly dense.<div class=\"para-break\"></div>This motivates our pruning and sparsification strategies as essential components rather than optional optimizations.<div class=\"para-break\"></div><b>3. Theoretical foundations for scalability and sparsity adaptation.</b> We provide explicit mechanisms to enable practical learning on large and sparse graphs: <ul> <li><b>Graph pruning (Section 3.5):</b> Three pruning strategies are introduced with theoretical guarantees. For spectral sparsification (Algorithm 2), we prove \\((1\u00b1\\epsilon)\\) preservation of the Laplacian quadratic form, and Lemma 2 shows that training time scales linearly with the preservation ratio \\(\\alpha\\).</li> <li><b>Parallel implementation:</b> The distributed design targets HPC environments, with communication costs decreasing proportionally to pruning strength.</li> <li><b>Adaptive metric learning (Section 3.7):</b> Proposition 1 establishes gradient-scaling behavior that enhances learning in sparse regions by amplifying hard-example signals.</li> </ul><div class=\"para-break\"></div><b>4. Empirical validation of scalability and sparsity adaptation.</b> Section 4.4 (Non-Functional Performance) empirically validates these design choices: <ul> <li><b>Pruning effectiveness:</b> Table 5 shows that k-NN pruning reduces line-graph edges by up to 75% while preserving predictive performance; Fig. 5 reports up to \\(4.6\u00d7\\) single-GPU training speedup.</li> <li><b>Parallel scalability:</b> Fig. 4 demonstrates up to \\(13.98\u00d7\\) speedup on the Physics dataset when combining pruning with multi-GPU execution.</li> </ul><div class=\"para-break\"></div><div class=\"table-container\"><div class=\"para-break\"></div><div class=\"table-caption\">Statistics of Original Graphs and their corresponding Line Graphs (LG).</div><div class=\"para-break\"></div><table><tr><td colspan=\"3\"><b>Dataset Info</b></td><td colspan=\"4\"><b>Original Graph</b></td><td colspan=\"3\"><b>Line Graph (LG)</b></td></tr><tr><td><b>Category</b></td><td><b>Name</b></td><td><b>Type</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Feat.</b></td><td><b>Dens/Spar(%)</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Dens/Spar(%)</b></td></tr><tr><td><b>Citation</b></td><td>Cora</td><td>Undirected</td><td>2,708</td><td>5,278</td><td>1,433</td><td>0.14 / 99.86</td><td>21,112</td><td>314,992</td><td>0.07 / 99.93</td></tr><tr><td></td><td>CiteSeer</td><td>Undirected</td><td>3,327</td><td>4,552</td><td>3,703</td><td>0.08 / 99.92</td><td>18,208</td><td>203,788</td><td>0.06 / 99.94</td></tr><tr><td></td><td>PubMed</td><td>Undirected</td><td>19,717</td><td>44,324</td><td>500</td><td>0.02 / 99.98</td><td>177,296</td><td>3,496,168</td><td>0.01 / 99.99</td></tr><tr><td><b>Co-authorship</b></td><td>Physics</td><td>Undirected</td><td>34,493</td><td>247,962</td><td>8,415</td><td>0.04 / 99.96</td><td>991,848</td><td>45,856,498</td><td>0.005 / 99.99</td></tr><tr><td></td><td>ZWL</td><td>Directed</td><td>6,651</td><td>108,364</td><td>0</td><td>0.25 / 99.75</td><td>216,728</td><td>11,873,265</td><td>0.03 / 99.97</td></tr><tr><td></td><td>LDG</td><td>Directed</td><td>8,324</td><td>83,064</td><td>0</td><td>0.12 / 99.88</td><td>166,128</td><td>9,409,089</td><td>0.03 / 99.97</td></tr><tr><td></td><td>GRQ</td><td>Directed</td><td>5,241</td><td>28,968</td><td>0</td><td>0.11 / 99.89</td><td>57,936</td><td>1,231,571</td><td>0.04 / 99.96</td></tr><tr><td></td><td>NSC</td><td>Directed</td><td>1,461</td><td>5,484</td><td>0</td><td>0.26 / 99.74</td><td>9,445</td><td>106,668</td><td>0.12 / 99.88</td></tr><tr><td></td><td>SMG</td><td>Directed</td><td>1,024</td><td>9,832</td><td>0</td><td>0.94 / 99.06</td><td>19,664</td><td>787,630</td><td>0.20 / 99.80</td></tr><tr><td></td><td>KHN</td><td>Directed</td><td>3,772</td><td>25,436</td><td>0</td><td>0.18 / 99.82</td><td>50,872</td><td>2,799,022</td><td>0.11 / 99.89</td></tr><tr><td><b>Biological</b></td><td>HPD</td><td>Directed</td><td>8,756</td><td>64,662</td><td>0</td><td>0.08 / 99.92</td><td>129,324</td><td>4,985,396</td><td>0.03 / 99.97</td></tr><tr><td></td><td>YST</td><td>Directed</td><td>2,284</td><td>13,292</td><td>0</td><td>0.25 / 99.75</td><td>26,584</td><td>562,721</td><td>0.08 / 99.92</td></tr><tr><td></td><td>CEG</td><td>Directed</td><td>297</td><td>4,296</td><td>0</td><td>4.89 / 95.11</td><td>8,592</td><td>305,630</td><td>0.41 / 99.59</td></tr><tr><td><b>Social</b></td><td>ADV</td><td>Directed</td><td>5,155</td><td>78,570</td><td>0</td><td>0.30 / 99.70</td><td>157,140</td><td>14,420,896</td><td>0.06 / 99.94</td></tr><tr><td></td><td>EML</td><td>Directed</td><td>1,133</td><td>10,902</td><td>0</td><td>0.85 / 99.15</td><td>21,804</td><td>603,029</td><td>0.13 / 99.87</td></tr><tr><td></td><td>BUP</td><td>Directed</td><td>105</td><td>882</td><td>0</td><td>8.08 / 91.92</td><td>1,764</td><td>32,180</td><td>1.03 / 98.97</td></tr><tr><td><b>Infrastructure</b></td><td>UAL</td><td>Directed</td><td>332</td><td>4,252</td><td>0</td><td>3.87 / 96.13</td><td>8,504</td><td>417,821</td><td>0.58 / 99.42</td></tr><tr><td></td><td>UPG</td><td>Directed</td><td>4,941</td><td>13,188</td><td>0</td><td>0.05 / 99.95</td><td>26,376</td><td>168,349</td><td>0.02 / 99.98</td></tr></table> </div><div class=\"para-break\"></div>The expanded experiments, added density statistics, and theoretical analysis collectively demonstrate that LineML effectively adapts to sparsity and scales to substantially larger graphs than those in the original submission. While extreme-scale graph learning is not the central objective of this work, LineML is rigorously evaluated against baselines on large datasets and equipped with principled mechanisms to operate efficiently in such settings. We believe these revisions fully address the reviewer\u2019s concerns.<div class=\"para-break\"></div>",
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -304,10 +304,10 @@ const responseData = [
         ],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -318,10 +318,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -332,10 +332,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -355,10 +355,10 @@ const responseData = [
         ],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -372,10 +372,10 @@ const responseData = [
         ],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -386,10 +386,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Methodology",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -400,10 +400,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Methodology",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -415,8 +415,8 @@ const responseData = [
         "images": [],
         "tags": [
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -439,8 +439,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -454,10 +454,10 @@ const responseData = [
         ],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -469,10 +469,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -483,10 +483,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
+          "Revision",
           "Comparison",
-          "Revision"
+          "Methodology"
         ],
         "is_intro": false
       }
@@ -503,10 +503,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -519,8 +519,8 @@ const responseData = [
         "tags": [
           "New Content",
           "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -533,8 +533,8 @@ const responseData = [
         "tags": [
           "New Content",
           "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -546,10 +546,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -560,10 +560,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -574,10 +574,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Methodology",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -589,10 +589,10 @@ const responseData = [
         "images": [],
         "tags": [
           "Methodology",
-          "New Content",
+          "Revision",
           "Comparison",
-          "Experiment",
-          "Revision"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -603,9 +603,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "Revision",
           "Methodology",
-          "Experiment",
-          "Revision"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -616,10 +616,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -630,10 +630,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -644,10 +644,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -658,10 +658,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -672,8 +672,8 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -684,9 +684,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Revision"
+          "Revision",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -697,10 +697,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Methodology",
           "New Content",
-          "Experiment",
-          "Revision"
+          "Revision",
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       }
