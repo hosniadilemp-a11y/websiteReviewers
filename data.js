@@ -12,11 +12,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -38,11 +38,11 @@ const responseData = [
           "figs/1-Metric_loss_ROC_boxplot.png"
         ],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -53,11 +53,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -68,11 +68,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -85,10 +85,10 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Comparison",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Comparison",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -101,11 +101,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -129,9 +129,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Revision",
-          "Experiment",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -142,10 +142,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -166,11 +166,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -181,11 +181,11 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -196,10 +196,10 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -210,9 +210,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Methodology",
-          "New Content"
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -223,9 +223,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Methodology",
-          "New Content"
+          "Methodology"
         ],
         "is_intro": false
       }
@@ -241,10 +241,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -258,11 +258,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -274,23 +274,23 @@ const responseData = [
         "images": [],
         "tags": [
           "Revision",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
       {
         "title": "Reviewer 3, Comment 3.4",
         "comment": "The manuscript claims that LineML \u201ceffectively addresses challenges in large-scale and sparse graphs by leveraging each component\u2019s unique strengths.\u201d However, most datasets used in the experiments are not large-scale. In addition, to support claims related to sparsity, the authors should report basic network statistics such as graph density.",
-        "response": "We thank the reviewer for this insightful comment regarding graph scale and sparsity. We have substantially revised the manuscript to address both concerns through expanded experiments, additional network statistics, and clearer methodological positioning.<div class=\"para-break\"></div><b>1. Expanded dataset collection.</b> In the revised manuscript, we now evaluate LineML on <b>18</b> networks spanning citation, co-authorship, social, biological, and infrastructure domains. This includes several larger graphs (e.g., Physics, PubMed, HPD, and ZWL), in addition to small and medium-sized datasets. The expanded benchmark covers graph sizes ranging from BUP (105 nodes) to Physics (34,493 nodes and 247,962 edges), whose corresponding line graph contains 991,848 nodes and approximately 45 million edges. This extension directly strengthens empirical evidence for scalability across diverse graph regimes.<div class=\"para-break\"></div>We emphasize that while LineML is designed to operate on large graphs through pruning and distributed execution, addressing extremely large-scale graphs in isolation is not the primary focus of this work. Nevertheless, our method is systematically compared against baselines on these larger datasets, ensuring fair evaluation under realistic large-graph settings.<div class=\"para-break\"></div><b>2. Comprehensive network statistics and sparsity reporting.</b> As requested, Table 2 in the revised manuscript now reports detailed statistics for both original graphs and their line graphs, including: <ul> <li>node and edge counts,</li> <li>feature dimensions,</li> <li><b>density and sparsity metrics</b> (reported as both density and sparsity percentages).</li> </ul><div class=\"para-break\"></div>These results show that most original graphs are highly sparse (typically \\(\u22640.3%\\) density), while their corresponding line graphs are even sparser (typically \\(\u22640.1%\\)). This empirically supports our focus on sparsity-aware design.<div class=\"para-break\"></div>This behavior is further theoretically justified by Corollary 1 (Density Implications), which shows that line graphs can become increasingly dense for scale-free networks:<div class=\"para-break\"></div><b>corollary</b>: Density Implications For a graph \\(G\\) with average degree \\(\\bar d\\), the line graph \\(L(G)\\) satisfies \\[ \\bar d_L \u2265 2\\bar d - 2, \\] with equality if and only if \\(G\\) is regular. Moreover, for scale-free networks with power-law degree distribution \\(P(d)\\propto d^{-\\gamma}\\) \\((2<\\gamma<3)\\), the quantity \\(\\sum_i d_i^2/m\\) diverges with network size, making \\(L(G)\\) increasingly dense.<div class=\"para-break\"></div>This motivates our pruning and sparsification strategies as essential components rather than optional optimizations.<div class=\"para-break\"></div><b>3. Theoretical foundations for scalability and sparsity adaptation.</b> We provide explicit mechanisms to enable practical learning on large and sparse graphs: <ul> <li><b>Graph pruning (Section 3.5):</b> Three pruning strategies are introduced with theoretical guarantees. For spectral sparsification (Algorithm 2), we prove \\((1\u00b1\\epsilon)\\) preservation of the Laplacian quadratic form, and Lemma 2 shows that training time scales linearly with the preservation ratio \\(\\alpha\\).</li> <li><b>Parallel implementation:</b> The distributed design targets HPC environments, with communication costs decreasing proportionally to pruning strength.</li> <li><b>Adaptive metric learning (Section 3.7):</b> Proposition 1 establishes gradient-scaling behavior that enhances learning in sparse regions by amplifying hard-example signals.</li> </ul><div class=\"para-break\"></div><b>4. Empirical validation of scalability and sparsity adaptation.</b> Section 4.4 (Non-Functional Performance) empirically validates these design choices: <ul> <li><b>Pruning effectiveness:</b> Table 5 shows that k-NN pruning reduces line-graph edges by up to 75% while preserving predictive performance; Fig. 5 reports up to \\(4.6\u00d7\\) single-GPU training speedup.</li> <li><b>Parallel scalability:</b> Fig. 4 demonstrates up to \\(13.98\u00d7\\) speedup on the Physics dataset when combining pruning with multi-GPU execution.</li> </ul><div class=\"para-break\"></div><div class=\"table-container\"><div class=\"para-break\"></div><div class=\"table-caption\">Statistics of Original Graphs and their corresponding Line Graphs (LG).</div><div class=\"para-break\"></div><table><tr><td colspan=\"3\"><b>Dataset Info</b></td><td colspan=\"4\"><b>Original Graph</b></td><td colspan=\"3\"><b>Line Graph (LG)</b></td></tr><tr><td><b>Category</b></td><td><b>Name</b></td><td><b>Type</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Feat.</b></td><td><b>Dens/Spar(%)</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Dens/Spar(%)</b></td></tr><tr><td><b>Citation</b></td><td>Cora</td><td>Undirected</td><td>2,708</td><td>5,278</td><td>1,433</td><td>0.14 / 99.86</td><td>21,112</td><td>314,992</td><td>0.07 / 99.93</td></tr><tr><td></td><td>CiteSeer</td><td>Undirected</td><td>3,327</td><td>4,552</td><td>3,703</td><td>0.08 / 99.92</td><td>18,208</td><td>203,788</td><td>0.06 / 99.94</td></tr><tr><td></td><td>PubMed</td><td>Undirected</td><td>19,717</td><td>44,324</td><td>500</td><td>0.02 / 99.98</td><td>177,296</td><td>3,496,168</td><td>0.01 / 99.99</td></tr><tr><td><b>Co-authorship</b></td><td>Physics</td><td>Undirected</td><td>34,493</td><td>247,962</td><td>8,415</td><td>0.04 / 99.96</td><td>991,848</td><td>45,856,498</td><td>0.005 / 99.99</td></tr><tr><td></td><td>ZWL</td><td>Directed</td><td>6,651</td><td>108,364</td><td>0</td><td>0.25 / 99.75</td><td>216,728</td><td>11,873,265</td><td>0.03 / 99.97</td></tr><tr><td></td><td>LDG</td><td>Directed</td><td>8,324</td><td>83,064</td><td>0</td><td>0.12 / 99.88</td><td>166,128</td><td>9,409,089</td><td>0.03 / 99.97</td></tr><tr><td></td><td>GRQ</td><td>Directed</td><td>5,241</td><td>28,968</td><td>0</td><td>0.11 / 99.89</td><td>57,936</td><td>1,231,571</td><td>0.04 / 99.96</td></tr><tr><td></td><td>NSC</td><td>Directed</td><td>1,461</td><td>5,484</td><td>0</td><td>0.26 / 99.74</td><td>9,445</td><td>106,668</td><td>0.12 / 99.88</td></tr><tr><td></td><td>SMG</td><td>Directed</td><td>1,024</td><td>9,832</td><td>0</td><td>0.94 / 99.06</td><td>19,664</td><td>787,630</td><td>0.20 / 99.80</td></tr><tr><td></td><td>KHN</td><td>Directed</td><td>3,772</td><td>25,436</td><td>0</td><td>0.18 / 99.82</td><td>50,872</td><td>2,799,022</td><td>0.11 / 99.89</td></tr><tr><td><b>Biological</b></td><td>HPD</td><td>Directed</td><td>8,756</td><td>64,662</td><td>0</td><td>0.08 / 99.92</td><td>129,324</td><td>4,985,396</td><td>0.03 / 99.97</td></tr><tr><td></td><td>YST</td><td>Directed</td><td>2,284</td><td>13,292</td><td>0</td><td>0.25 / 99.75</td><td>26,584</td><td>562,721</td><td>0.08 / 99.92</td></tr><tr><td></td><td>CEG</td><td>Directed</td><td>297</td><td>4,296</td><td>0</td><td>4.89 / 95.11</td><td>8,592</td><td>305,630</td><td>0.41 / 99.59</td></tr><tr><td><b>Social</b></td><td>ADV</td><td>Directed</td><td>5,155</td><td>78,570</td><td>0</td><td>0.30 / 99.70</td><td>157,140</td><td>14,420,896</td><td>0.06 / 99.94</td></tr><tr><td></td><td>EML</td><td>Directed</td><td>1,133</td><td>10,902</td><td>0</td><td>0.85 / 99.15</td><td>21,804</td><td>603,029</td><td>0.13 / 99.87</td></tr><tr><td></td><td>BUP</td><td>Directed</td><td>105</td><td>882</td><td>0</td><td>8.08 / 91.92</td><td>1,764</td><td>32,180</td><td>1.03 / 98.97</td></tr><tr><td><b>Infrastructure</b></td><td>UAL</td><td>Directed</td><td>332</td><td>4,252</td><td>0</td><td>3.87 / 96.13</td><td>8,504</td><td>417,821</td><td>0.58 / 99.42</td></tr><tr><td></td><td>UPG</td><td>Directed</td><td>4,941</td><td>13,188</td><td>0</td><td>0.05 / 99.95</td><td>26,376</td><td>168,349</td><td>0.02 / 99.98</td></tr></table> </div><div class=\"para-break\"></div>The expanded experiments, added density statistics, and theoretical analysis collectively demonstrate that LineML effectively adapts to sparsity and scales to substantially larger graphs than those in the original submission. While extreme-scale graph learning is not the central objective of this work, LineML is rigorously evaluated against baselines on large datasets and equipped with principled mechanisms to operate efficiently in such settings. We believe these revisions fully address the reviewer\u2019s concerns.<div class=\"para-break\"></div>",
+        "response": "We thank the reviewer for this insightful comment regarding graph scale and sparsity. We have substantially revised the manuscript to address both concerns through expanded experiments, additional network statistics, and clearer methodological positioning.<div class=\"para-break\"></div><b>1. Expanded dataset collection.</b> In the revised manuscript, we now evaluate LineML on <b>18</b> networks spanning citation, co-authorship, social, biological, and infrastructure domains. This includes several larger graphs (e.g., Physics, PubMed, HPD, and ZWL), in addition to small and medium-sized datasets. The expanded benchmark covers graph sizes ranging from BUP (105 nodes) to Physics (34,493 nodes and 247,962 edges), whose corresponding line graph contains 991,848 nodes and approximately 45 million edges. This extension directly strengthens empirical evidence for scalability across diverse graph regimes.<div class=\"para-break\"></div>We emphasize that while LineML is designed to operate on large graphs through pruning and distributed execution, addressing extremely large-scale graphs in isolation is not the primary focus of this work. Nevertheless, our method is systematically compared against baselines on these larger datasets, ensuring fair evaluation under realistic large-graph settings.<div class=\"para-break\"></div><b>2. Comprehensive network statistics and sparsity reporting.</b> As requested, Table 2 in the revised manuscript now reports detailed statistics for both original graphs and their line graphs, including: <ul> <li>node and edge counts,</li> <li>feature dimensions,</li> <li><b>density and sparsity metrics</b> (reported as both density and sparsity percentages).</li> </ul><div class=\"para-break\"></div>These results show that most original graphs are highly sparse (typically \\(\u22640.3%\\) density), while their corresponding line graphs are even sparser (typically \\(\u22640.1%\\)). This empirically supports our focus on sparsity-aware design.<div class=\"para-break\"></div><b>3. Theoretical foundations for scalability and sparsity adaptation.</b> We provide explicit mechanisms to enable practical learning on large and sparse graphs: <ul> <li><b>Graph pruning (Section 3.5):</b> Three pruning strategies are introduced with theoretical guarantees. For spectral sparsification (Algorithm 2), we prove \\((1\u00b1\\epsilon)\\) preservation of the Laplacian quadratic form, and Lemma 2 shows that training time scales linearly with the preservation ratio \\(\\alpha\\).</li> <li><b>Parallel implementation:</b> The distributed design targets HPC environments, with communication costs decreasing proportionally to pruning strength.</li> <li><b>Adaptive metric learning (Section 3.7):</b> Proposition 1 establishes gradient-scaling behavior that enhances learning in sparse regions by amplifying hard-example signals.</li> </ul><div class=\"para-break\"></div><b>4. Empirical validation of scalability and sparsity adaptation.</b> Section 4.4 (Non-Functional Performance) empirically validates these design choices: <ul> <li><b>Pruning effectiveness:</b> Table 5 shows that k-NN pruning reduces line-graph edges by up to 75% while preserving predictive performance; Fig. 5 reports up to \\(4.6\u00d7\\) single-GPU training speedup.</li> <li><b>Parallel scalability:</b> Fig. 4 demonstrates up to \\(13.98\u00d7\\) speedup on the Physics dataset when combining pruning with multi-GPU execution.</li> </ul><div class=\"para-break\"></div><div class=\"table-container\"><div class=\"para-break\"></div><div class=\"table-caption\">Statistics of Original Graphs and their corresponding Line Graphs (LG).</div><div class=\"para-break\"></div><table><tr><td colspan=\"3\"><b>Dataset Info</b></td><td colspan=\"4\"><b>Original Graph</b></td><td colspan=\"3\"><b>Line Graph (LG)</b></td></tr><tr><td><b>Category</b></td><td><b>Name</b></td><td><b>Type</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Feat.</b></td><td><b>Dens/Spar(%)</b></td><td><b>Nodes</b></td><td><b>Edges</b></td><td><b>Dens/Spar(%)</b></td></tr><tr><td><b>Citation</b></td><td>Cora</td><td>Undirected</td><td>2,708</td><td>5,278</td><td>1,433</td><td>0.14 / 99.86</td><td>21,112</td><td>314,992</td><td>0.07 / 99.93</td></tr><tr><td></td><td>CiteSeer</td><td>Undirected</td><td>3,327</td><td>4,552</td><td>3,703</td><td>0.08 / 99.92</td><td>18,208</td><td>203,788</td><td>0.06 / 99.94</td></tr><tr><td></td><td>PubMed</td><td>Undirected</td><td>19,717</td><td>44,324</td><td>500</td><td>0.02 / 99.98</td><td>177,296</td><td>3,496,168</td><td>0.01 / 99.99</td></tr><tr><td><b>Co-authorship</b></td><td>Physics</td><td>Undirected</td><td>34,493</td><td>247,962</td><td>8,415</td><td>0.04 / 99.96</td><td>991,848</td><td>45,856,498</td><td>0.005 / 99.99</td></tr><tr><td></td><td>ZWL</td><td>Directed</td><td>6,651</td><td>108,364</td><td>0</td><td>0.25 / 99.75</td><td>216,728</td><td>11,873,265</td><td>0.03 / 99.97</td></tr><tr><td></td><td>LDG</td><td>Directed</td><td>8,324</td><td>83,064</td><td>0</td><td>0.12 / 99.88</td><td>166,128</td><td>9,409,089</td><td>0.03 / 99.97</td></tr><tr><td></td><td>GRQ</td><td>Directed</td><td>5,241</td><td>28,968</td><td>0</td><td>0.11 / 99.89</td><td>57,936</td><td>1,231,571</td><td>0.04 / 99.96</td></tr><tr><td></td><td>NSC</td><td>Directed</td><td>1,461</td><td>5,484</td><td>0</td><td>0.26 / 99.74</td><td>9,445</td><td>106,668</td><td>0.12 / 99.88</td></tr><tr><td></td><td>SMG</td><td>Directed</td><td>1,024</td><td>9,832</td><td>0</td><td>0.94 / 99.06</td><td>19,664</td><td>787,630</td><td>0.20 / 99.80</td></tr><tr><td></td><td>KHN</td><td>Directed</td><td>3,772</td><td>25,436</td><td>0</td><td>0.18 / 99.82</td><td>50,872</td><td>2,799,022</td><td>0.11 / 99.89</td></tr><tr><td><b>Biological</b></td><td>HPD</td><td>Directed</td><td>8,756</td><td>64,662</td><td>0</td><td>0.08 / 99.92</td><td>129,324</td><td>4,985,396</td><td>0.03 / 99.97</td></tr><tr><td></td><td>YST</td><td>Directed</td><td>2,284</td><td>13,292</td><td>0</td><td>0.25 / 99.75</td><td>26,584</td><td>562,721</td><td>0.08 / 99.92</td></tr><tr><td></td><td>CEG</td><td>Directed</td><td>297</td><td>4,296</td><td>0</td><td>4.89 / 95.11</td><td>8,592</td><td>305,630</td><td>0.41 / 99.59</td></tr><tr><td><b>Social</b></td><td>ADV</td><td>Directed</td><td>5,155</td><td>78,570</td><td>0</td><td>0.30 / 99.70</td><td>157,140</td><td>14,420,896</td><td>0.06 / 99.94</td></tr><tr><td></td><td>EML</td><td>Directed</td><td>1,133</td><td>10,902</td><td>0</td><td>0.85 / 99.15</td><td>21,804</td><td>603,029</td><td>0.13 / 99.87</td></tr><tr><td></td><td>BUP</td><td>Directed</td><td>105</td><td>882</td><td>0</td><td>8.08 / 91.92</td><td>1,764</td><td>32,180</td><td>1.03 / 98.97</td></tr><tr><td><b>Infrastructure</b></td><td>UAL</td><td>Directed</td><td>332</td><td>4,252</td><td>0</td><td>3.87 / 96.13</td><td>8,504</td><td>417,821</td><td>0.58 / 99.42</td></tr><tr><td></td><td>UPG</td><td>Directed</td><td>4,941</td><td>13,188</td><td>0</td><td>0.05 / 99.95</td><td>26,376</td><td>168,349</td><td>0.02 / 99.98</td></tr></table> </div><div class=\"para-break\"></div>The expanded experiments, added density statistics, and theoretical analysis collectively demonstrate that LineML effectively adapts to sparsity and scales to substantially larger graphs than those in the original submission. While extreme-scale graph learning is not the central objective of this work, LineML is rigorously evaluated against baselines on large datasets and equipped with principled mechanisms to operate efficiently in such settings. We believe these revisions fully address the reviewer\u2019s concerns.<div class=\"para-break\"></div>",
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -303,11 +303,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -318,10 +318,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -332,10 +332,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       }
@@ -354,11 +354,11 @@ const responseData = [
           "figs/metrics_boxplots_grid.png"
         ],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -371,11 +371,11 @@ const responseData = [
           "figs/Fused_All_Pruning_Comparison.png"
         ],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -387,9 +387,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Revision",
-          "Experiment",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -401,9 +401,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Revision",
-          "Experiment",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -414,9 +414,9 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -427,8 +427,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Experiment",
-          "New Content"
+          "New Content",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -453,11 +453,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -468,11 +468,11 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -483,10 +483,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Comparison",
           "Methodology",
-          "New Content"
+          "Comparison"
         ],
         "is_intro": false
       }
@@ -502,11 +502,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -517,10 +517,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Comparison",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -531,10 +531,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
-          "Experiment",
+          "New Content",
           "Methodology",
-          "New Content"
+          "Comparison",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -545,11 +545,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -560,10 +560,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -575,9 +575,9 @@ const responseData = [
         "images": [],
         "tags": [
           "Revision",
-          "Experiment",
           "Methodology",
-          "Comparison"
+          "Comparison",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -588,11 +588,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "Comparison",
           "New Content",
           "Revision",
-          "Comparison",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -604,8 +604,8 @@ const responseData = [
         "images": [],
         "tags": [
           "Revision",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -616,10 +616,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -631,8 +631,8 @@ const responseData = [
         "images": [],
         "tags": [
           "Revision",
-          "Experiment",
-          "Methodology"
+          "Methodology",
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -643,10 +643,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -657,10 +657,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       },
@@ -683,9 +683,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Methodology",
-          "New Content"
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -696,10 +696,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "New Content",
           "Revision",
-          "Experiment",
           "Methodology",
-          "New Content"
+          "Experiment"
         ],
         "is_intro": false
       }
