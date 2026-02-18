@@ -12,11 +12,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       }
@@ -38,11 +38,11 @@ const responseData = [
           "figs/1-Metric_loss_ROC_boxplot.png"
         ],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -53,11 +53,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -68,11 +68,11 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -85,10 +85,10 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Comparison",
+          "Experiment",
           "New Content",
-          "Methodology",
-          "Experiment"
+          "Comparison",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -101,11 +101,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -116,10 +116,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -130,10 +130,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
+          "Experiment",
           "Comparison",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -144,10 +144,10 @@ const responseData = [
         "reviewer": "Reviewer 1",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       }
@@ -168,11 +168,11 @@ const responseData = [
           "figs/Fused_All_Baseline_Comparison.png"
         ],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -183,11 +183,11 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -198,10 +198,10 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -212,9 +212,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Revision",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -225,9 +225,9 @@ const responseData = [
         "reviewer": "Reviewer 2",
         "images": [],
         "tags": [
-          "Revision",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Revision"
         ],
         "is_intro": false
       }
@@ -243,10 +243,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -260,11 +260,11 @@ const responseData = [
           "figs/sampling_strategy_ROC_boxplot.png"
         ],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -275,9 +275,9 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -288,11 +288,11 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -305,11 +305,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -320,10 +320,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -334,10 +334,10 @@ const responseData = [
         "reviewer": "Reviewer 3",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       }
@@ -356,11 +356,11 @@ const responseData = [
           "figs/metrics_boxplots_grid.png"
         ],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -373,11 +373,11 @@ const responseData = [
           "figs/Fused_All_Pruning_Comparison.png"
         ],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -388,10 +388,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
+          "Experiment",
           "Comparison",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -402,10 +402,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
+          "Experiment",
           "Comparison",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -416,9 +416,9 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -429,8 +429,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "New Content",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -441,8 +441,8 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Revision",
-          "Experiment"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -455,11 +455,11 @@ const responseData = [
           "figs/cliffs_delta_summary_refined.png"
         ],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -470,11 +470,11 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -485,10 +485,10 @@ const responseData = [
         "reviewer": "Reviewer 4",
         "images": [],
         "tags": [
-          "Comparison",
-          "Revision",
+          "Methodology",
           "New Content",
-          "Methodology"
+          "Comparison",
+          "Revision"
         ],
         "is_intro": false
       }
@@ -504,11 +504,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -519,10 +519,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
+          "Experiment",
           "New Content",
-          "Methodology",
-          "Experiment"
+          "Comparison",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -533,10 +533,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
+          "Experiment",
           "New Content",
-          "Methodology",
-          "Experiment"
+          "Comparison",
+          "Methodology"
         ],
         "is_intro": false
       },
@@ -547,11 +547,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -562,10 +562,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -576,10 +576,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
+          "Experiment",
           "Comparison",
-          "Revision",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -590,11 +590,11 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Comparison",
           "Revision",
-          "New Content",
+          "Comparison",
           "Methodology",
-          "Experiment"
+          "Experiment",
+          "New Content"
         ],
         "is_intro": false
       },
@@ -605,9 +605,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -618,10 +618,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -632,9 +632,9 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -645,10 +645,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -659,10 +659,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -673,8 +673,8 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
-          "Experiment"
+          "Experiment",
+          "Revision"
         ],
         "is_intro": false
       },
@@ -685,10 +685,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       },
@@ -699,10 +699,10 @@ const responseData = [
         "reviewer": "Reviewer 5",
         "images": [],
         "tags": [
-          "Revision",
+          "Experiment",
           "New Content",
           "Methodology",
-          "Experiment"
+          "Revision"
         ],
         "is_intro": false
       }
